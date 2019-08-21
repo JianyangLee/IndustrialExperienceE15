@@ -12,7 +12,7 @@ import com.airbnb.lottie.LottieAnimationView;
 public class MainActivity extends AppCompatActivity {
 
 
-//    LottieAnimationView lottieAnimationView;
+    LottieAnimationView lottieAnimationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         final Button Go = (Button) findViewById(R.id.button);
 //        lottieAnimationView = (LottieAnimationView) findViewById(R.id.animation);
 //        startCheckAnimation();
-
+            ;;;;
 
         Go.setOnClickListener(new View.OnClickListener() {
             @Override
