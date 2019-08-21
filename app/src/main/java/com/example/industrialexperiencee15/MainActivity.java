@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+
 import com.airbnb.lottie.LottieAnimationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 //        lottieAnimationView = (LottieAnimationView) findViewById(R.id.animation);
 //        startCheckAnimation();
 
+        System.out.print("test");
 
         Go.setOnClickListener(new View.OnClickListener() {
             @Override
