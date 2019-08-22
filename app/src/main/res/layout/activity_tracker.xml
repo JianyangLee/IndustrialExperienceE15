@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgapp"
+    android:background="@drawable/insertfoodbgnew"
     tools:context=".Tracker">
 
     <View
@@ -24,7 +24,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
-        android:src="@drawable/a"
+        android:src="@drawable/happy"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -35,7 +35,7 @@
         android:layout_height="220dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/bgrate"
+        android:background="@drawable/transparent_bg_bordered_button"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/fisrtView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,6 +43,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/btnAdd"
         >
+
+
+
+
+
+
 
     </LinearLayout>
     
@@ -55,8 +61,8 @@
         android:layout_marginStart="16dp"
         android:text="Insert Food"
         android:textAllCaps="false"
-        android:textColor="#8E7324"
-        android:background="@drawable/bgbtnfeed"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/transparent_bg_bordered_button"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
