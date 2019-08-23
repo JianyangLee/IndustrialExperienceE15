@@ -26,6 +26,10 @@
             android:label="@string/Tracker">
 
         </activity>
+        <activity android:name=".Signup"
+            android:label="@string/Tracker">
+
+        </activity>
     </application>
 
 </manifest>
