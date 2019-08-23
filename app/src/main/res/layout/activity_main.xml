@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/homebg"
     tools:context=".MainActivity">
+    <!-- This is a Sample Line -->
 
     <!--<com.airbnb.lottie.LottieAnimationView-->
         <!--android:id="@+id/animation"-->
