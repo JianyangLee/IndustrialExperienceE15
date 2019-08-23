@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //final Button Go = (Button) findViewById(R.id.button1);
+        //final Button Go = (Button) findViewById(R.id.button1);//
         videoBG = (VideoView) findViewById(R.id.videoView);
         Uri uri = Uri.parse("android.resource://"+ getPackageName() + "/" + R.raw.v1);
 
