@@ -64,6 +64,6 @@ public class Signup extends AppCompatActivity {
                     Toast.makeText(Signup.this,"Error occurred, check your network connection.",Toast.LENGTH_LONG).show();
                 }
             }
-        });
+        });//
     }
 }
