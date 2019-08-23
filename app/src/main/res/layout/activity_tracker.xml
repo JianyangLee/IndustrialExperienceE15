@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/insertfoodbgnew"
     tools:context=".Tracker">
+    <!-- Raghul Committed-->
 
     <View
         android:id="@+id/view"
