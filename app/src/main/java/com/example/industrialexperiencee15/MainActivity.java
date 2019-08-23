@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 //                Intent test = new Intent(MainActivity.this, Dashboard.class);
 //                MainActivity.this.startActivity(test);
 //            }
-//        });
+//        });//
 
         SignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
