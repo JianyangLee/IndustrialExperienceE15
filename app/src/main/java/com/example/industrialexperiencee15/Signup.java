@@ -51,7 +51,7 @@ public class Signup extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()){
-                                Toast.makeText(Signup.this,"Register unsuccessful or your password is too short, try again!",Toast.LENGTH_LONG).show();
+                                Toast.makeText(Signup.this,"Unsuccessful register, your password is too short (more than 6) or you cannot have space in username, try again!",Toast.LENGTH_LONG).show();
                             }
                             else{
                                 Intent goToHome = new Intent(Signup.this, Dashboard.class);

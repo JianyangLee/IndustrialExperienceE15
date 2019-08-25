@@ -24,7 +24,7 @@
         android:layout_height="324dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="5dp"
         android:src="@drawable/happy"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,23 +33,55 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="320dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/transparent_bg_bordered_button"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/fisrtView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/btnAdd"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnAdd"
         >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
 
+            <EditText
+                android:id="@+id/foodName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:backgroundTint="@android:color/white"
+                android:hint="Search food name"
+                android:textColor="#4CAF50"
+                android:textColorHint="#737774"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/amount"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#4CAF50"
+                android:textColorHint="#737774"
+                android:backgroundTint="@android:color/white"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Amount"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
 
-
-
-
-
+        </ListView>
 
     </LinearLayout>
     
@@ -60,9 +92,9 @@
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:text="Insert Food"
+        android:text="Add Food"
         android:textAllCaps="false"
-        android:textColor="#FFFFFF"
+        android:textColor="#737774"
         android:background="@drawable/transparent_bg_bordered_button"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
