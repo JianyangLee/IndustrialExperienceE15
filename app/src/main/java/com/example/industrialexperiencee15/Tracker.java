@@ -126,6 +126,8 @@ public class Tracker extends AppCompatActivity {
 
                 int sugar = 10;//test value
                 if (sugar > 5){
+                    //Animation for sugar intake. we also need the similar thing is calorie and fat.
+                    //If user consumed value >= the standared value, run this code.
                     RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
                     anim.setInterpolator(new LinearInterpolator());
                     anim.setRepeatCount(Animation.INFINITE);
