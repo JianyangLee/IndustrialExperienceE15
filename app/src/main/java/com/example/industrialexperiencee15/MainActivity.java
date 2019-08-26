@@ -95,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //final Button Go = (Button) findViewById(R.id.button1);//
         videoBG = (VideoView) findViewById(R.id.videoView);
         Uri uri = Uri.parse("android.resource://"+ getPackageName() + "/" + R.raw.v1);
 
@@ -114,14 +113,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-//
-//        Go.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent test = new Intent(MainActivity.this, Dashboard.class);
-//                MainActivity.this.startActivity(test);
-//            }
-//        });////
+
 
         SignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override

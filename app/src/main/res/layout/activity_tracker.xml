@@ -18,6 +18,29 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+
+        />
+
+    <TextView
+        android:id="@+id/hello"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Hello"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+
     <ImageView
         android:id="@+id/fisrtView"
         android:layout_width="324dp"
@@ -59,20 +82,29 @@
                 android:inputType="textPersonName"
                 android:backgroundTint="@android:color/white"
                 android:hint="Search food name"
-                android:textColor="#4CAF50"
+                android:textColor="#121413"
                 android:textColorHint="#737774"
                 android:layout_weight="1"/>
             <EditText
                 android:id="@+id/amount"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#4CAF50"
+                android:textColor="#090A09"
                 android:textColorHint="#737774"
                 android:backgroundTint="@android:color/white"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:hint="Amount"
                 android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textColor="#171B18"
+                android:layout_marginRight="30dp"
+                android:text="UNIT"/>
+
         </LinearLayout>
         
         <ListView
@@ -93,7 +125,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:text="Add Food"
-        android:textAllCaps="false"
+        android:textAllCaps="true"
         android:textColor="#737774"
         android:background="@drawable/transparent_bg_bordered_button"
         android:textSize="22sp"
@@ -101,6 +133,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
-
-
 </android.support.constraint.ConstraintLayout>

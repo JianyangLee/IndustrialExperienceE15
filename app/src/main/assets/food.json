@@ -1,0 +1,51 @@
+[
+  {
+    "name":"beef",
+    "fat" : 20,
+    "sugar" : 10,
+    "Cal":1000,
+    "unit": "g"
+  },
+  {
+    "name":"chicken",
+    "fat" : 10,
+    "sugar" : 20,
+    "Cal":1100,
+    "unit": "g"
+  },
+  {
+      "name":"apple",
+      "fat" : 0,
+      "sugar" : 30,
+      "Cal":100,
+      "unit": "g"
+  },
+  {
+      "name":"lamb",
+      "fat" : 20,
+      "sugar" : 10,
+      "Cal":500,
+      "unit": "g"
+  },
+  {
+      "name":"banana",
+      "fat" : 40,
+      "sugar" : 30,
+      "Cal":2300,
+      "unit": "g"
+  },
+  {
+      "name":"pear",
+      "fat" : 0,
+      "sugar" : 20,
+      "Cal": 300,
+      "unit": "g"
+  },
+  {
+    "name":"kiwi fruit",
+    "fat" : 0,
+    "sugar" : 60,
+    "Cal": 200,
+    "unit": "g"
+  }
+]
