@@ -40,7 +40,6 @@ public class Tracker extends AppCompatActivity {
     EditText foodName;
     EditText amount;
     TextView unit;
-    private int sugar = 0;
     ImageView image;
     TextView hello;
     Button back;
@@ -125,7 +124,7 @@ public class Tracker extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                sugar = 10;
+                int sugar = 10;//test value
                 if (sugar > 5){
                     RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
                     anim.setInterpolator(new LinearInterpolator());
@@ -139,7 +138,7 @@ public class Tracker extends AppCompatActivity {
                     hello.setTextColor(getResources().getColor(R.color.colorAccent));
                     v.setVisibility(View.GONE);
                     return;
-                }
+                }//test code
                 //On click listener.
 
 
