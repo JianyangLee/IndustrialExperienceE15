@@ -14,14 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+
+        </activity>
+        <activity android:name=".Dashboard"
+            android:label="@string/Dashboard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".Dashboard"
-            android:label="@string/Dashboard">
-
         </activity>
         <activity android:name=".Tracker"
             android:label="@string/Tracker">
