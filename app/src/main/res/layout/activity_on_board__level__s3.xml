@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OnBoard_Goal_S2">
+
+
+    <TextView
+        android:id="@+id/ActivityTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="75dp"
+        android:text="@string/whatIsYourActivityLevel"
+        android:textSize="25dp" />
+
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/radio_actvityLevel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ActivityTextView"
+        android:layout_marginTop="64dp"
+        android:orientation="vertical"
+        android:paddingTop="2dp"
+        android:textSize="20dp"
+        tools:layout_editor_absoluteX="414dp"
+        tools:layout_editor_absoluteY="158dp">
+
+        <RadioButton
+            android:id="@+id/ActivityNotVeryActive"
+            android:layout_width="wrap_content"
+            android:layout_height="81dp"
+            android:layout_below="@+id/textView4"
+            android:layout_alignStart="@+id/radio_actvityLevel"
+            android:checked="true"
+            android:paddingTop="2dp"
+            android:text="@string/ActivityNotVeryActive"
+            android:textSize="20dp" />
+
+        <!-- android:onClick="onRadioButtonClicked"/> -->
+
+        <RadioButton
+            android:id="@+id/ActivityLightlyActive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/radio_actvityLevel"
+            android:checked="false"
+            android:paddingTop="2dp"
+            android:text="@string/ActivityLightlyActive"
+            android:textSize="20dp" />
+
+        <!-- android:onClick="onRadioButtonClicked"/> -->
+        <RadioButton
+            android:id="@+id/ActivityActive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:paddingTop="2dp"
+            android:text="@string/ActivityActive"
+            android:textSize="20dp" />
+
+        <!-- android:onClick="onRadioButtonClicked"/> -->
+        <RadioButton
+            android:id="@+id/ActivityVeryActive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:paddingTop="2dp"
+            android:text="@string/ActivityVeryActive"
+            android:textSize="20dp" />
+
+    </RadioGroup>
+
+
+    <Button
+        android:id="@+id/S3PreviousButton"
+        android:layout_width="156dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radio_actvityLevel"
+        android:layout_marginTop="62dp"
+        android:paddingRight="10dp"
+        android:text="@string/buttonPrevious"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="502dp" />
+
+    <Button
+        android:id="@+id/S3Nextbutton"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radio_actvityLevel"
+        android:layout_marginLeft="87dp"
+        android:layout_marginTop="60dp"
+        android:layout_toRightOf="@id/S3PreviousButton"
+        android:text="@string/buttonNext"
+        tools:layout_editor_absoluteX="291dp"
+        tools:layout_editor_absoluteY="502dp" />
+</RelativeLayout>

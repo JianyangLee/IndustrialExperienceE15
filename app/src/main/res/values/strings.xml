@@ -2,4 +2,28 @@
     <string name="app_name">IndustrialExperienceE15</string>
     <string name="Dashboard">M</string>
     <string name="Tracker">Tracker</string>
+    <string name="prompt_Welcome_Message">Tracker</string>
+    <!-- Welcome Page -->
+    <string name="lets_get_started">Lets Get Started</string>
+    <string name="welcome">Welcome</string>
+    <string name="Welcome_page_Message">We just need to ask you a few quick questions so we can calculate your recommended daily calories and help you achieve your goals </string>
+    <!-- Goal Page -->
+    <string name="whatIsYourGoal">What is your goal ?</string>
+    <string name="weightLossOption">Weight loss</string>
+    <string name="weightMaintainOption">Maintain my current weight</string>
+    <string name="weightGainOption">Weight gain</string>
+    <string name="buttonNext">Next</string>
+    <string name="buttonPrevious">Previous</string>
+
+    <!--Activity Level Page -->
+    <string name="whatIsYourActivityLevel">How active are you ?</string>
+    <string name="ActivityNotVeryActive">NOT VERY ACTIVE - Spend most of the day sitting, minimum movement (eg. bank , teller , desk job)</string>
+    <string name="ActivityLightlyActive">LIGHTLY ACTIVE - Spend a good part of the day on your feet (eg. teacher , salesperson)</string>
+    <string name="ActivityActive">ACTIVE -Spend a good part of the day doing some physical activity( eg. food server , postal carrier) </string>
+    <string name="ActivityVeryActive">VERY ACTIVE- Spend most of the day doing heavy physical activity (eg. warehouse worker , carpenter )</string>
+    <string name="NotVeryActiveDesc">Spend most of the day sitting (eg. bank , teller , desk job)</string>
+    <string name="LightlyActiveDesc">Spend a good part of the day on your feet (eg. teacher , salesperson)</string>
+    <string name="ActiveDesc">Spend a good part of the day doing some physical activity( eg. food server , postal carrier)</string>
+    <string name="VeryActiveDesc">Spend most of the day doing heavy physical activity (eg. warehouse worker , carpenter )</string>
+
 </resources>

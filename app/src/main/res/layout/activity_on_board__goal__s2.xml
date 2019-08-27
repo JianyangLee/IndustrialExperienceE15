@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OnBoard_Goal_S2">
+
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="125dp"
+        android:text="@string/whatIsYourGoal"
+        android:textSize="25dp" />
+
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/radio_goal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView4"
+        android:layout_marginTop="64dp"
+        android:orientation="vertical"
+        android:paddingTop="2dp"
+        android:textSize="25dp"
+        tools:layout_editor_absoluteX="414dp"
+        tools:layout_editor_absoluteY="158dp">
+
+        <RadioButton
+            android:id="@+id/radio_Weight_Loss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView4"
+            android:checked="true"
+            android:paddingTop="2dp"
+            android:text="@string/weightLossOption"
+            android:textSize="25dp" />
+
+        <!-- android:onClick="onRadioButtonClicked"/> -->
+
+        <RadioButton
+            android:id="@+id/radio_Weight_Maintain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:paddingTop="2dp"
+            android:text="@string/weightMaintainOption"
+            android:textSize="25dp" />
+
+        <!-- android:onClick="onRadioButtonClicked"/> -->
+        <RadioButton
+            android:id="@+id/radio_Weight_Gain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:paddingTop="2dp"
+            android:text="@string/weightGainOption"
+            android:textSize="25dp" />
+
+    </RadioGroup>
+
+
+    <Button
+        android:id="@+id/S2PreviousButton"
+        android:layout_width="156dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radio_goal"
+        android:layout_marginTop="132dp"
+        android:paddingRight="10dp"
+        android:text="@string/buttonPrevious"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="502dp" />
+
+    <Button
+        android:id="@+id/S2Nextbutton"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radio_goal"
+        android:layout_marginLeft="99dp"
+        android:layout_marginTop="131dp"
+        android:layout_toRightOf="@id/S2PreviousButton"
+        android:text="@string/buttonNext"
+        tools:layout_editor_absoluteX="291dp"
+        tools:layout_editor_absoluteY="502dp" />
+</RelativeLayout>
