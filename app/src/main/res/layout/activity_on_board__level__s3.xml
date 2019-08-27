@@ -11,9 +11,11 @@
         android:id="@+id/ActivityTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:paddingTop="75dp"
         android:text="@string/whatIsYourActivityLevel"
-        android:textSize="25dp" />
+        android:textSize="30dp" />
 
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
@@ -25,6 +27,8 @@
         android:orientation="vertical"
         android:paddingTop="2dp"
         android:textSize="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         tools:layout_editor_absoluteX="414dp"
         tools:layout_editor_absoluteY="158dp">
 
@@ -34,6 +38,8 @@
             android:layout_height="81dp"
             android:layout_below="@+id/textView4"
             android:layout_alignStart="@+id/radio_actvityLevel"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:checked="true"
             android:paddingTop="2dp"
             android:text="@string/ActivityNotVeryActive"
@@ -45,6 +51,8 @@
             android:id="@+id/ActivityLightlyActive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_alignStart="@+id/radio_actvityLevel"
             android:checked="false"
             android:paddingTop="2dp"
@@ -56,6 +64,8 @@
             android:id="@+id/ActivityActive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:checked="false"
             android:paddingTop="2dp"
             android:text="@string/ActivityActive"
@@ -66,6 +76,8 @@
             android:id="@+id/ActivityVeryActive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:checked="false"
             android:paddingTop="2dp"
             android:text="@string/ActivityVeryActive"
@@ -76,10 +88,12 @@
 
     <Button
         android:id="@+id/S3PreviousButton"
-        android:layout_width="156dp"
+        android:layout_width="137dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/radio_actvityLevel"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="62dp"
+        android:layout_marginRight="20dp"
         android:paddingRight="10dp"
         android:text="@string/buttonPrevious"
         tools:layout_editor_absoluteX="47dp"
@@ -87,11 +101,13 @@
 
     <Button
         android:id="@+id/S3Nextbutton"
-        android:layout_width="155dp"
+        android:layout_width="167dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/radio_actvityLevel"
-        android:layout_marginLeft="87dp"
+        android:layout_marginLeft="48dp"
         android:layout_marginTop="60dp"
+
+        android:layout_marginRight="20dp"
         android:layout_toRightOf="@id/S3PreviousButton"
         android:text="@string/buttonNext"
         tools:layout_editor_absoluteX="291dp"

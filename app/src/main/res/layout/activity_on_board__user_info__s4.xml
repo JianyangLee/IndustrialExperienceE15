@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/firstnametext"
+        android:layout_width="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/firstname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/prompt_firstname"
+            android:imeActionId="6"
+            android:imeOptions="actionUnspecified"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <!-- -->
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/lastnametext"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/firstnametext"
+        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/lastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/prompt_lastname"
+            android:imeActionId="6"
+
+            android:imeOptions="actionUnspecified"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+
+    <!--Date of Birth Label -->
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/dobtext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lastnametext"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="8dp">
+
+        <EditText
+            android:id="@+id/dob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_below="@+id/lastname"
+            android:hint="Date of Birth" />
+        <!-- android:onClick="showDatePicker" -->
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/heighttext"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/dobtext"
+        android:layout_marginLeft="20dp"
+
+        android:layout_height="wrap_content">
+
+        <AutoCompleteTextView
+            android:id="@+id/height"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/prompt_height"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/weighttext"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/heighttext"
+        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content">
+
+        <AutoCompleteTextView
+            android:id="@+id/weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/weighttext"
+            android:hint="@string/prompt_weight"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <!--Ref: https://www.mkyong.com/android/android-radio-buttons-example/ -->
+    <!--Ref: https://developer.android.com/guide/topics/ui/controls/radiobutton-->
+    <TextView
+        android:id="@+id/register_label_gender"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/weighttext"
+        android:layout_marginTop="25dp"
+        android:text="Gender:"
+        android:textSize="18sp" />
+
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/radio_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/register_label_gender"
+        android:layout_marginLeft="60dp"
+        android:orientation="vertical"
+        android:paddingTop="2dp">
+
+        <RadioButton
+            android:id="@+id/radio_male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:paddingTop="2dp"
+            android:text="@string/radio_male" />
+
+        <!-- android:onClick="onRadioButtonClicked"/> -->
+
+        <RadioButton
+            android:id="@+id/radio_female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:paddingTop="2dp"
+            android:text="@string/radio_female" />
+
+        <!-- android:onClick="onRadioButtonClicked"/> -->
+    </RadioGroup>
+    <!--https://www.mkyong.com/android/android-spinner-drop-down-list-example/-->
+
+    <Button
+        android:id="@+id/S4PreviousButton"
+        android:layout_width="156dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radio_gender"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="58dp"
+        android:paddingRight="10dp"
+        android:text="@string/buttonPrevious" />
+
+    <Button
+        android:id="@+id/S4Nextbutton"
+        android:layout_width="152dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radio_gender"
+        android:layout_marginLeft="63dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="20dp"
+        android:layout_toRightOf="@id/S4PreviousButton"
+        android:text="@string/buttonNext" />
+
+
+</RelativeLayout>

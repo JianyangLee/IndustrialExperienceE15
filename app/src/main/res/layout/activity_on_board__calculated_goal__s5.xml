@@ -8,19 +8,19 @@
 
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="@string/welcome"
+        android:text="@string/almoast_There"
         android:textSize="25dp"
         android:gravity="center"/>
 
     <TextView
-        android:id="@+id/editText"
+        android:id="@+id/displayCalorieGoal"
         android:layout_width="match_parent"
         android:layout_height="186dp"
-        android:layout_below="@+id/textView3"
+        android:layout_below="@+id/textView5"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="131dp"
         android:layout_marginLeft="20dp"
@@ -28,19 +28,18 @@
         android:ems="10"
         android:gravity="center_horizontal"
         android:inputType="textMultiLine"
-        android:text="@string/Welcome_page_Message"
         android:textSize="25dp" />
 
 
     <Button
-        android:id="@+id/Lets_get_Started"
+        android:id="@+id/lets_Start_now"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/displayCalorieGoal"
         android:layout_marginTop="131dp"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="130dp"
-        android:text="@string/lets_get_started" />
+        android:text="@string/lets_Start" />
 
 
 </RelativeLayout>

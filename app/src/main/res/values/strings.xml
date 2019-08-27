@@ -9,9 +9,9 @@
     <string name="Welcome_page_Message">We just need to ask you a few quick questions so we can calculate your recommended daily calories and help you achieve your goals </string>
     <!-- Goal Page -->
     <string name="whatIsYourGoal">What is your goal ?</string>
-    <string name="weightLossOption">Weight loss</string>
-    <string name="weightMaintainOption">Maintain my current weight</string>
-    <string name="weightGainOption">Weight gain</string>
+    <string name="weightLossOption">To lose weight</string>
+    <string name="weightMaintainOption">To maintain weight</string>
+    <string name="weightGainOption">To gain weight </string>
     <string name="buttonNext">Next</string>
     <string name="buttonPrevious">Previous</string>
 
@@ -25,5 +25,18 @@
     <string name="LightlyActiveDesc">Spend a good part of the day on your feet (eg. teacher , salesperson)</string>
     <string name="ActiveDesc">Spend a good part of the day doing some physical activity( eg. food server , postal carrier)</string>
     <string name="VeryActiveDesc">Spend most of the day doing heavy physical activity (eg. warehouse worker , carpenter )</string>
+
+    <!-- User Info Page -->
+    <string name="radio_male">Male</string>
+    <string name="radio_female">Female</string>
+    <string name="prompt_dob">Date of Birth</string>
+    <string name="prompt_height">Height</string>
+    <string name="prompt_weight">Weight</string>
+    <string name="prompt_gender">Gender</string>
+    <string name="prompt_lastname">Last Name</string>
+    <string name="prompt_firstname">First Name</string>
+<!-- Uesr Calculation Page -->
+    <string name="almoast_There">Almost There !! </string>
+    <string name="lets_Start">Lets Start</string>
 
 </resources>
