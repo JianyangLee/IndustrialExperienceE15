@@ -17,7 +17,7 @@
 
     <!--Activity Level Page -->
     <string name="whatIsYourActivityLevel">How active are you ?</string>
-    <string name="ActivityNotVeryActive">NOT VERY ACTIVE - Spend most of the day sitting, minimum movement (eg. bank , teller , desk job)</string>
+    <string name="ActivityNotVeryActive">NOT VERY ACTIVE - Spend most of the day sitting, minimum movement.</string>
     <string name="ActivityLightlyActive">LIGHTLY ACTIVE - Spend a good part of the day on your feet (eg. teacher , salesperson)</string>
     <string name="ActivityActive">ACTIVE -Spend a good part of the day doing some physical activity( eg. food server , postal carrier) </string>
     <string name="ActivityVeryActive">VERY ACTIVE- Spend most of the day doing heavy physical activity (eg. warehouse worker , carpenter )</string>

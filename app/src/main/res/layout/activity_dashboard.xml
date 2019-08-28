@@ -46,11 +46,12 @@
                             android:layout_centerVertical="true">
 
                         <TextView
+                                android:id="@+id/calShow"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="20px"
-                                android:text="3000"
+                                android:text="0"
                                 android:textColor="#1A1316"
                                 android:textSize="35sp"
                                 android:textStyle="bold" />
@@ -59,7 +60,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="0px"
-                            android:text="Cal"
+                            android:text="Remained"
                             android:textColor="#36242B"
                             android:textSize="25sp"
                             android:textStyle="bold" />
@@ -73,7 +74,8 @@
                     android:layout_marginLeft="10px"
                     android:layout_marginRight="10px"
                     android:layout_marginTop="20dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    >
 
                     <TextView
                         android:layout_width="match_parent"
@@ -82,11 +84,8 @@
                         android:textColor="#376B72"
                         android:textSize="20sp"
                         android:textStyle="italic"
-                        />
-
-
-
-
+                        android:gravity="center"
+                         />
                 </LinearLayout>
 
                 <LinearLayout
@@ -104,20 +103,56 @@
                         android:layout_marginRight="10px"
                         android:layout_marginTop="10dp"
                         android:orientation="horizontal">
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="SUGAR "
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1"/>
-                        <TextView
+                            android:layout_weight="1"
+                            android:layout_marginRight="5dp">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="SUGAR "
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="0.5"
+                                android:textSize="15sp"
+                                />
+
+                            <TextView
+                                android:id="@+id/sugarAmount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="0g "
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:textSize="15sp"/>
+                        </LinearLayout>
+
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="FAT"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1"
+                            android:layout_marginRight="5dp">
+                             <TextView
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:layout_gravity="center"
+                                 android:text="FAT"
+                                 android:layout_marginRight="5dp"
+                                 android:layout_weight="0.5"
+                                 android:textSize="15sp"/>
+                                 <TextView
+                                     android:id="@+id/fatAmount"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="wrap_content"
+                                     android:layout_gravity="center"
+                                     android:text="0g "
+                                     android:layout_marginRight="5dp"
+                                     android:layout_weight="1"
+                                     android:textSize="15sp"/>
+                        </LinearLayout>
 
                     </LinearLayout>
 

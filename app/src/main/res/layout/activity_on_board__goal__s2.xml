@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bgapp"
     tools:context=".OnBoard_Goal_S2">
 
 
@@ -77,6 +78,7 @@
         android:paddingRight="10dp"
         android:text="@string/buttonPrevious"
         tools:layout_editor_absoluteX="47dp"
+        android:background="@drawable/transparent_bg_bordered_button"
         tools:layout_editor_absoluteY="502dp" />
 
     <Button
@@ -90,5 +92,6 @@
         android:layout_toRightOf="@id/S2PreviousButton"
         android:text="@string/buttonNext"
         tools:layout_editor_absoluteX="291dp"
+        android:background="@drawable/transparent_bg_bordered_button"
         tools:layout_editor_absoluteY="502dp" />
 </RelativeLayout>

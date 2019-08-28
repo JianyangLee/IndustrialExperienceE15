@@ -138,8 +138,8 @@ public class OnBoard_UserInfo_S4 extends AppCompatActivity {
 
     private boolean validateName(String name, EditText nameType) {
         //Ensuring the field is within the limit of the Database Field
-        if (!(name.matches("^[a-zA-Z]{3,35}$"))) {
-            nameType.setError("Name can have only alphabets and must be of 3 to 35 characters.");
+        if (!(name.matches("^[a-zA-Z]{2,35}$"))) {
+            nameType.setError("Name can have only alphabets and must be of 2 to 35 characters.");
             nameType.requestFocus();
             return false;
         }

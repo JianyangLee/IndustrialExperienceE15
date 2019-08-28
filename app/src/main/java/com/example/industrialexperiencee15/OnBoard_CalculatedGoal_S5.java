@@ -27,7 +27,7 @@ public class OnBoard_CalculatedGoal_S5 extends AppCompatActivity {
 
                 SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
                 SharedPreferences.Editor userSharedPreferenceEditor = userSharedPreferenceDetails.edit();
-                userSharedPreferenceEditor.putInt("CalorieLimit",2500);
+                userSharedPreferenceEditor.putInt("calorieLimit",2500);
                 userSharedPreferenceEditor.putInt("fatGoal", 10);
                 userSharedPreferenceEditor.putInt("proteinGoal", 15);
                 userSharedPreferenceEditor.apply();

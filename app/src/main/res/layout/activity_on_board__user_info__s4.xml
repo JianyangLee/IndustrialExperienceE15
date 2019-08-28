@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
+    android:background="@drawable/bgapp"
     android:orientation="vertical">
 
 
@@ -171,6 +172,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="58dp"
         android:paddingRight="10dp"
+        android:background="@drawable/transparent_bg_bordered_button"
         android:text="@string/buttonPrevious" />
 
     <Button
@@ -181,6 +183,7 @@
         android:layout_marginLeft="63dp"
         android:layout_marginTop="60dp"
         android:layout_marginRight="20dp"
+        android:background="@drawable/transparent_bg_bordered_button"
         android:layout_toRightOf="@id/S4PreviousButton"
         android:text="@string/buttonNext" />
 

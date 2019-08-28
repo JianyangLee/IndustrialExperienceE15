@@ -155,7 +155,7 @@ public class Tracker extends AppCompatActivity {
                     foodName.startAnimation(shake);
                     foodName.setError("Please enter numeric value and it cannot be empty");
                     amount.setError("Please enter numeric value and it cannot be empty");
-                    vibrate();
+                    vibrateField();
                     return;
                 }
                 if (amount.getText().toString().equals("")) {
@@ -163,7 +163,7 @@ public class Tracker extends AppCompatActivity {
                     Animation shake = AnimationUtils.loadAnimation(Tracker.this, R.anim.shake);
                     amount.startAnimation(shake);
                     amount.setError("Please enter numeric value and it cannot be empty");
-                    vibrate();
+                    vibrateField();
                     return;
                 }
                 if (foodName.getText().toString().equals("")) {
@@ -171,7 +171,7 @@ public class Tracker extends AppCompatActivity {
                     Animation shake = AnimationUtils.loadAnimation(Tracker.this, R.anim.shake);
                     foodName.startAnimation(shake);
                     foodName.setError("Please enter numeric value and it cannot be empty");
-                    vibrate();
+                    vibrateField();
                     return;
                 }
 
@@ -195,85 +195,23 @@ public class Tracker extends AppCompatActivity {
                         Log.e("test", "get test");
                     }
                 }
+                DBInAsyncTask databaseAsync = new DBInAsyncTask();
+                databaseAsync.execute(foodSugar,foodFat, foodCal );
+
+            }
+        });
+    }
 
 //                DBInAsyncTask database = new DBInAsyncTask();
 //                database.execute();
 
 
-                db.collection("consumption").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        double sugar = 0;
-                        double fat = 0;
-                        double cal = 0;
-                        if (! queryDocumentSnapshots.isEmpty()) {
-                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-
-                            for (DocumentSnapshot d : list) {
-                                Consumption con = d.toObject(Consumption.class);
-                                sugar = sugar + (con.getSugar() * con.getAmount());
-                                fat = fat + (con.getFat() * con.getAmount());
-                                cal = cal + (con.getCalorie() * con.getAmount());
-                            }
-
-                            currentSugar = sugar;
-                            currentFat = fat;
-                            currentCal = cal;
-                        }
-                    }
-                });
-
-                double a = currentSugar;
-                double b = currentFat;
-                double cd = currentCal;
-
-
-//                if (currentSugar > 67){
-//                    RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
-//                    anim.setInterpolator(new LinearInterpolator());
-//                    anim.setRepeatCount(Animation.INFINITE);
-//                    anim.setDuration(700);
-//                    image.setImageResource(R.drawable.sad);
-//                    image.startAnimation(anim);
-//                    anim.setRepeatCount(1);
-//                    vibrate();
-//                    hello.setText("Sugar intake surpasses health level!");
-//                    hello.setTextColor(getResources().getColor(R.color.colorAccent));
-//                    v.setVisibility(View.GONE);
-//                }
-
-                if (!foodName.getText().toString().equals("") && !amount.getText().toString().equals("") && isInteger(amount.getText().toString())){
-                    CollectionReference dbConsumption = db.collection("consumption");
-                    Calendar c = Calendar.getInstance();
-                    SimpleDateFormat currentDate = new SimpleDateFormat("dd-MM-yyyy");
-                    String today = currentDate.format(c.getTime());
-                    String name = foodName.getText().toString();
-                    int foodAmount = Integer.parseInt(amount.getText().toString());
-
-                    Consumption consumption = new Consumption(name, today, foodSugar,foodFat, foodCal, foodAmount);
-                    dbConsumption.add(consumption).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            Toast.makeText(Tracker.this,"Add food successfully!",Toast.LENGTH_LONG).show();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(Tracker.this,"Error! Try again!",Toast.LENGTH_LONG).show();
-                        }
-                    });
-                }
-            }
-        });
-
-    }
-
-//    private class DBInAsyncTask extends AsyncTask<String, Void, String> {
-//        @Override
-//        protected String doInBackground(String... params) {
-//               db.collection("consumption").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                db.collection("consumption").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
 //                    @Override
 //                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                        Calendar c = Calendar.getInstance();
+//                        SimpleDateFormat currentDate = new SimpleDateFormat("dd-MM-yyyy");
+//                        String todayDate = currentDate.format(c.getTime());
 //                        double sugar = 0;
 //                        double fat = 0;
 //                        double cal = 0;
@@ -282,25 +220,283 @@ public class Tracker extends AppCompatActivity {
 //
 //                            for (DocumentSnapshot d : list) {
 //                                Consumption con = d.toObject(Consumption.class);
-//                                sugar = sugar + (con.getSugar() * con.getAmount());
-//                                fat = fat + (con.getFat() * con.getAmount());
-//                                cal = cal + (con.getCalorie() * con.getAmount());
+//                                if (todayDate.equals(con.getCon_date())) {
+//                                    sugar = sugar + (con.getSugar() * con.getAmount());
+//                                    fat = fat + (con.getFat() * con.getAmount());
+//                                    cal = cal + (con.getCalorie() * con.getAmount());
+//                                }
 //                            }
-//
-//                            currentSugar = sugar;
-//                            currentFat = fat;
-//                            currentCal = cal;
+//                            //Get sharedPreference
+//                            if (sugar > 100){
+//                                if (fat > 100){
+//                                    if (cal > 100){
+//                                        RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+//                                        anim.setInterpolator(new LinearInterpolator());
+//                                        anim.setRepeatCount(Animation.INFINITE);
+//                                        anim.setDuration(700);
+//                                        image.setImageResource(R.drawable.sad);
+//                                        image.startAnimation(anim);
+//                                        anim.setRepeatCount(1);
+//                                        vibrate();
+//                                        hello.setText("All surpass health level!");
+//                                        hello.setTextColor(getResources().getColor(R.color.colorAccent));
+//                                    }
+//                                    else {
+//                                        RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+//                                        anim.setInterpolator(new LinearInterpolator());
+//                                        anim.setRepeatCount(Animation.INFINITE);
+//                                        anim.setDuration(700);
+//                                        image.setImageResource(R.drawable.sad);
+//                                        image.startAnimation(anim);
+//                                        anim.setRepeatCount(1);
+//                                        vibrate();
+//                                        hello.setText("Sugar and Fat surpass health level!");
+//                                        hello.setTextColor(getResources().getColor(R.color.colorAccent));
+//                                    }
+//                                }else{
+//                                    if (cal > 100){
+//                                        RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+//                                        anim.setInterpolator(new LinearInterpolator());
+//                                        anim.setRepeatCount(Animation.INFINITE);
+//                                        anim.setDuration(700);
+//                                        image.setImageResource(R.drawable.sad);
+//                                        image.startAnimation(anim);
+//                                        anim.setRepeatCount(1);
+//                                        vibrate();
+//                                        hello.setText("Sugar and Cal surpass health level!");
+//                                        hello.setTextColor(getResources().getColor(R.color.colorAccent));
+//                                    }
+//                                    else {
+//                                        RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+//                                        anim.setInterpolator(new LinearInterpolator());
+//                                        anim.setRepeatCount(Animation.INFINITE);
+//                                        anim.setDuration(700);
+//                                        image.setImageResource(R.drawable.sad);
+//                                        image.startAnimation(anim);
+//                                        anim.setRepeatCount(1);
+//                                        vibrate();
+//                                        hello.setText("Sugar surpasses health level!");
+//                                        hello.setTextColor(getResources().getColor(R.color.colorAccent));
+//                                    }
+//                                }
+//                            }
+//                            else if (fat > 100){
+//                                if (cal > 100){
+//                                    RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+//                                    anim.setInterpolator(new LinearInterpolator());
+//                                    anim.setRepeatCount(Animation.INFINITE);
+//                                    anim.setDuration(700);
+//                                    image.setImageResource(R.drawable.sad);
+//                                    image.startAnimation(anim);
+//                                    anim.setRepeatCount(1);
+//                                    vibrate();
+//                                    hello.setText("Cal and Fat surpass health level!");
+//                                    hello.setTextColor(getResources().getColor(R.color.colorAccent));
+//                                }
+//                                else{
+//                                    RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+//                                    anim.setInterpolator(new LinearInterpolator());
+//                                    anim.setRepeatCount(Animation.INFINITE);
+//                                    anim.setDuration(700);
+//                                    image.setImageResource(R.drawable.sad);
+//                                    image.startAnimation(anim);
+//                                    anim.setRepeatCount(1);
+//                                    vibrate();
+//                                    hello.setText("Fat surpasses health level!");
+//                                    hello.setTextColor(getResources().getColor(R.color.colorAccent));
+//                                }
+//                            }
+//                            else if (cal > 100){
+//                                RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+//                                anim.setInterpolator(new LinearInterpolator());
+//                                anim.setRepeatCount(Animation.INFINITE);
+//                                anim.setDuration(700);
+//                                image.setImageResource(R.drawable.sad);
+//                                image.startAnimation(anim);
+//                                anim.setRepeatCount(1);
+//                                vibrate();
+//                                hello.setText("Calorie surpasses health level!");
+//                                hello.setTextColor(getResources().getColor(R.color.colorAccent));
+//                            }
 //                        }
 //                    }
 //                });
-//            return "";
-//        }
+
+//                if (!foodName.getText().toString().equals("") && !amount.getText().toString().equals("") && isInteger(amount.getText().toString())){
+//                    CollectionReference dbConsumption = db.collection("consumption");
+//                    Calendar c = Calendar.getInstance();
+//                    SimpleDateFormat currentDate = new SimpleDateFormat("dd-MM-yyyy");
+//                    String today = currentDate.format(c.getTime());
+//                    String name = foodName.getText().toString();
+//                    int foodAmount = Integer.parseInt(amount.getText().toString());
 //
-//        @Override
-//        protected void onPostExecute(String response) {
-//
-//        }
-//    }
+//                    Consumption consumption = new Consumption(name, today, foodSugar,foodFat, foodCal, foodAmount);
+//                    dbConsumption.add(consumption).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                        @Override
+//                        public void onSuccess(DocumentReference documentReference) {
+//                            Toast.makeText(Tracker.this,"Add food successfully!",Toast.LENGTH_LONG).show();
+//                        }
+//                    }).addOnFailureListener(new OnFailureListener() {
+//                        @Override
+//                        public void onFailure(@NonNull Exception e) {
+//                            Toast.makeText(Tracker.this,"Error! Try again!",Toast.LENGTH_LONG).show();
+//                        }
+//                    });
+//                }
+
+
+    private class DBInAsyncTask extends AsyncTask<Double, Void, String> {
+        @Override
+        protected String doInBackground(Double... params) {
+               db.collection("consumption").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Calendar c = Calendar.getInstance();
+                        SimpleDateFormat currentDate = new SimpleDateFormat("dd-MM-yyyy");
+                        String todayDate = currentDate.format(c.getTime());
+                        double sugar = 0;
+                        double fat = 0;
+                        double cal = 0;
+                        if (! queryDocumentSnapshots.isEmpty()) {
+                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+
+                            for (DocumentSnapshot d : list) {
+                                Consumption con = d.toObject(Consumption.class);
+                                if (todayDate.equals(con.getCon_date())) {
+                                    sugar = sugar + (con.getSugar() * con.getAmount());
+                                    fat = fat + (con.getFat() * con.getAmount());
+                                    cal = cal + (con.getCalorie() * con.getAmount());
+                                }
+                            }
+                            //Get sharedPreference
+                            if (sugar > 100){
+                                if (fat > 100){
+                                    if (cal > 100){
+                                        RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+                                        anim.setInterpolator(new LinearInterpolator());
+                                        anim.setRepeatCount(Animation.INFINITE);
+                                        anim.setDuration(700);
+                                        image.setImageResource(R.drawable.sad);
+                                        image.startAnimation(anim);
+                                        anim.setRepeatCount(1);
+                                        vibrate();
+                                        hello.setText("All surpass health level!");
+                                        hello.setTextColor(getResources().getColor(R.color.colorAccent));
+                                    }
+                                    else {
+                                        RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+                                        anim.setInterpolator(new LinearInterpolator());
+                                        anim.setRepeatCount(Animation.INFINITE);
+                                        anim.setDuration(700);
+                                        image.setImageResource(R.drawable.sad);
+                                        image.startAnimation(anim);
+                                        anim.setRepeatCount(1);
+                                        vibrate();
+                                        hello.setText("Sugar and Fat surpass health level!");
+                                        hello.setTextColor(getResources().getColor(R.color.colorAccent));
+                                    }
+                                }else{
+                                    if (cal > 100){
+                                        RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+                                        anim.setInterpolator(new LinearInterpolator());
+                                        anim.setRepeatCount(Animation.INFINITE);
+                                        anim.setDuration(700);
+                                        image.setImageResource(R.drawable.sad);
+                                        image.startAnimation(anim);
+                                        anim.setRepeatCount(1);
+                                        vibrate();
+                                        hello.setText("Sugar and Cal surpass health level!");
+                                        hello.setTextColor(getResources().getColor(R.color.colorAccent));
+                                    }
+                                    else {
+                                        RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+                                        anim.setInterpolator(new LinearInterpolator());
+                                        anim.setRepeatCount(Animation.INFINITE);
+                                        anim.setDuration(700);
+                                        image.setImageResource(R.drawable.sad);
+                                        image.startAnimation(anim);
+                                        anim.setRepeatCount(1);
+                                        vibrate();
+                                        hello.setText("Sugar surpasses health level!");
+                                        hello.setTextColor(getResources().getColor(R.color.colorAccent));
+                                    }
+                                }
+                            }
+                            else if (fat > 100){
+                                if (cal > 100){
+                                    RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+                                    anim.setInterpolator(new LinearInterpolator());
+                                    anim.setRepeatCount(Animation.INFINITE);
+                                    anim.setDuration(700);
+                                    image.setImageResource(R.drawable.sad);
+                                    image.startAnimation(anim);
+                                    anim.setRepeatCount(1);
+                                    vibrate();
+                                    hello.setText("Cal and Fat surpass health level!");
+                                    hello.setTextColor(getResources().getColor(R.color.colorAccent));
+                                }
+                                else{
+                                    RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+                                    anim.setInterpolator(new LinearInterpolator());
+                                    anim.setRepeatCount(Animation.INFINITE);
+                                    anim.setDuration(700);
+                                    image.setImageResource(R.drawable.sad);
+                                    image.startAnimation(anim);
+                                    anim.setRepeatCount(1);
+                                    vibrate();
+                                    hello.setText("Fat surpasses health level!");
+                                    hello.setTextColor(getResources().getColor(R.color.colorAccent));
+                                }
+                            }
+                            else if (cal > 100){
+                                RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+                                anim.setInterpolator(new LinearInterpolator());
+                                anim.setRepeatCount(Animation.INFINITE);
+                                anim.setDuration(700);
+                                image.setImageResource(R.drawable.sad);
+                                image.startAnimation(anim);
+                                anim.setRepeatCount(1);
+                                vibrate();
+                                hello.setText("Calorie surpasses health level!");
+                                hello.setTextColor(getResources().getColor(R.color.colorAccent));
+                            }
+                        }
+                    }
+                });
+
+            if (!foodName.getText().toString().equals("") && !amount.getText().toString().equals("") && isInteger(amount.getText().toString())){
+                CollectionReference dbConsumption = db.collection("consumption");
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat currentDate = new SimpleDateFormat("dd-MM-yyyy");
+                String today = currentDate.format(c.getTime());
+                String name = foodName.getText().toString();
+                int foodAmount = Integer.parseInt(amount.getText().toString());
+
+                double foodF = (foodAmount/100) * params[0];
+                double foodS = (foodAmount/100) * params[1];
+                double foodC = (foodAmount/100)*params[2];
+
+                Consumption consumption = new Consumption(name, today, foodF,foodS, foodC, foodAmount);
+                dbConsumption.add(consumption).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(Tracker.this,"Add food successfully!",Toast.LENGTH_LONG).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(Tracker.this,"Error! Try again!",Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+               return "";
+        }
+
+        @Override
+        protected void onPostExecute(String response) {
+
+        }
+    }
 
 
     private void searchItem(String textSearch) {
@@ -377,6 +573,16 @@ public class Tracker extends AppCompatActivity {
         Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             v.vibrate(VibrationEffect.createOneShot(1000, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+            //deprecated in API 26
+            v.vibrate(500);
+        }
+    }
+
+    private void vibrateField(){
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            v.vibrate(VibrationEffect.createOneShot(400, VibrationEffect.DEFAULT_AMPLITUDE));
         } else {
             //deprecated in API 26
             v.vibrate(500);
