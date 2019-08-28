@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,14 +24,30 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.os.AsyncTask;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class Tracker extends AppCompatActivity {
     ArrayList<String> listItems;
@@ -42,13 +59,22 @@ public class Tracker extends AppCompatActivity {
     TextView unit;
     ImageView image;
     TextView hello;
-    Button back;
-
+    Button back;;
+    FirebaseFirestore db;
+    private double currentSugar;
+    private double currentFat;
+    private double currentCal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracker);
+
+        currentSugar = 0;
+        currentFat = 0;
+        currentCal = 0;
+
+        db = FirebaseFirestore.getInstance();
 
         listView = (ListView) findViewById(R.id.listView);
 
@@ -99,7 +125,7 @@ public class Tracker extends AppCompatActivity {
                 for(int i = 0; i < jsonArr.length(); i++) {
                     try {
                         JSONObject obj = jsonArr.getJSONObject(i);
-                        String name = obj.getString("name");
+                        String name = obj.getString("Food");
                         if (name.equals(value)) {
                             unit.setText(obj.getString("unit"));
                         } else {
@@ -124,48 +150,158 @@ public class Tracker extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                int sugar = 10;//test value
-                if (sugar > 5){
-                    //Animation for sugar intake. we also need the similar thing is calorie and fat.
-                    //If user consumed value >= the standared value, run this code.
-                    RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
-                    anim.setInterpolator(new LinearInterpolator());
-                    anim.setRepeatCount(Animation.INFINITE);
-                    anim.setDuration(700);
-                    image.setImageResource(R.drawable.sad);
-                    image.startAnimation(anim);
-                    anim.setRepeatCount(1);
-                    vibrate();
-                    hello.setText("Sugar intake surpasses health level!");
-                    hello.setTextColor(getResources().getColor(R.color.colorAccent));
-                    v.setVisibility(View.GONE);
-                    return;
-                }//test code
-                //On click listener.
-
-
-
-                if (!foodName.getText().toString().equals("") && !amount.getText().toString().equals("") && isInteger(amount.getText().toString())){
-                    Intent goToDashboard = new Intent(Tracker.this, Dashboard.class);
-                    Tracker.this.startActivity(goToDashboard);
-                }else if (amount.getText().toString().equals("")) {
-
-                    Animation shake = AnimationUtils.loadAnimation(Tracker.this, R.anim.shake);
-                    amount.startAnimation(shake);
-                    amount.setError("Please enter numeric value and it cannot be empty");
-                    vibrate();
-                }
-                else {
+                if(amount.getText().toString().equals("") && foodName.getText().toString().equals("") ) {
                     Animation shake = AnimationUtils.loadAnimation(Tracker.this, R.anim.shake);
                     foodName.startAnimation(shake);
                     foodName.setError("Please enter numeric value and it cannot be empty");
                     amount.setError("Please enter numeric value and it cannot be empty");
                     vibrate();
+                    return;
+                }
+                if (amount.getText().toString().equals("")) {
+
+                    Animation shake = AnimationUtils.loadAnimation(Tracker.this, R.anim.shake);
+                    amount.startAnimation(shake);
+                    amount.setError("Please enter numeric value and it cannot be empty");
+                    vibrate();
+                    return;
+                }
+                if (foodName.getText().toString().equals("")) {
+
+                    Animation shake = AnimationUtils.loadAnimation(Tracker.this, R.anim.shake);
+                    foodName.startAnimation(shake);
+                    foodName.setError("Please enter numeric value and it cannot be empty");
+                    vibrate();
+                    return;
+                }
+
+
+                double foodSugar = 0;
+                double foodFat = 0;
+                double foodCal = 0;
+                JSONArray jsonArr = loadJSONFromAsset("food.json");
+                for(int i = 0; i < jsonArr.length(); i++) {
+                    try {
+                        JSONObject obj = jsonArr.getJSONObject(i);
+                        String name = obj.getString("Food");
+                        if (name.equals(foodName.getText().toString())) {
+                            foodSugar = obj.getDouble("sugar");
+                            foodFat = obj.getDouble("Fat");
+                            foodCal = obj.getDouble("Energy(KJ)") * 0.239006;
+                        } else {
+
+                        }
+                    } catch (Exception e) {
+                        Log.e("test", "get test");
+                    }
+                }
+
+//                DBInAsyncTask database = new DBInAsyncTask();
+//                database.execute();
+
+
+                db.collection("consumption").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        double sugar = 0;
+                        double fat = 0;
+                        double cal = 0;
+                        if (! queryDocumentSnapshots.isEmpty()) {
+                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+
+                            for (DocumentSnapshot d : list) {
+                                Consumption con = d.toObject(Consumption.class);
+                                sugar = sugar + (con.getSugar() * con.getAmount());
+                                fat = fat + (con.getFat() * con.getAmount());
+                                cal = cal + (con.getCalorie() * con.getAmount());
+                            }
+
+                            currentSugar = sugar;
+                            currentFat = fat;
+                            currentCal = cal;
+                        }
+                    }
+                });
+
+                double a = currentSugar;
+                double b = currentFat;
+                double cd = currentCal;
+
+
+//                if (currentSugar > 67){
+//                    RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+//                    anim.setInterpolator(new LinearInterpolator());
+//                    anim.setRepeatCount(Animation.INFINITE);
+//                    anim.setDuration(700);
+//                    image.setImageResource(R.drawable.sad);
+//                    image.startAnimation(anim);
+//                    anim.setRepeatCount(1);
+//                    vibrate();
+//                    hello.setText("Sugar intake surpasses health level!");
+//                    hello.setTextColor(getResources().getColor(R.color.colorAccent));
+//                    v.setVisibility(View.GONE);
+//                }
+
+                if (!foodName.getText().toString().equals("") && !amount.getText().toString().equals("") && isInteger(amount.getText().toString())){
+                    CollectionReference dbConsumption = db.collection("consumption");
+                    Calendar c = Calendar.getInstance();
+                    SimpleDateFormat currentDate = new SimpleDateFormat("dd-MM-yyyy");
+                    String today = currentDate.format(c.getTime());
+                    String name = foodName.getText().toString();
+                    int foodAmount = Integer.parseInt(amount.getText().toString());
+
+                    Consumption consumption = new Consumption(name, today, foodSugar,foodFat, foodCal, foodAmount);
+                    dbConsumption.add(consumption).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Toast.makeText(Tracker.this,"Add food successfully!",Toast.LENGTH_LONG).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(Tracker.this,"Error! Try again!",Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
             }
         });
 
     }
+
+//    private class DBInAsyncTask extends AsyncTask<String, Void, String> {
+//        @Override
+//        protected String doInBackground(String... params) {
+//               db.collection("consumption").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                        double sugar = 0;
+//                        double fat = 0;
+//                        double cal = 0;
+//                        if (! queryDocumentSnapshots.isEmpty()) {
+//                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+//
+//                            for (DocumentSnapshot d : list) {
+//                                Consumption con = d.toObject(Consumption.class);
+//                                sugar = sugar + (con.getSugar() * con.getAmount());
+//                                fat = fat + (con.getFat() * con.getAmount());
+//                                cal = cal + (con.getCalorie() * con.getAmount());
+//                            }
+//
+//                            currentSugar = sugar;
+//                            currentFat = fat;
+//                            currentCal = cal;
+//                        }
+//                    }
+//                });
+//            return "";
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String response) {
+//
+//        }
+//    }
+
 
     private void searchItem(String textSearch) {
         for (String food:foodList){
@@ -186,7 +322,7 @@ public class Tracker extends AppCompatActivity {
         {
             try {
                 JSONObject obj = jsonArr.getJSONObject(i);
-                String name = obj.getString("name");
+                String name = obj.getString("Food");
                 foodList[i] = name;
             }
             catch (Exception e) {

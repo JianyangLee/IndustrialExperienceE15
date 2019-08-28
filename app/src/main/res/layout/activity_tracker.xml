@@ -84,7 +84,7 @@
                 android:hint="Search food name"
                 android:textColor="#121413"
                 android:textColorHint="#737774"
-                android:layout_weight="1"/>
+                android:layout_weight="0.5"/>
             <EditText
                 android:id="@+id/amount"
                 android:layout_width="fill_parent"
@@ -111,6 +111,7 @@
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
             >
 
         </ListView>
