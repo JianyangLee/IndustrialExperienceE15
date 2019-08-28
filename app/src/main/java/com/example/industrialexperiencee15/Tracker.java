@@ -2,6 +2,7 @@ package com.example.industrialexperiencee15;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
@@ -141,7 +142,8 @@ public class Tracker extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Tracker.super.onBackPressed();
+                Intent dashboard = new Intent(Tracker.this, Dashboard.class);
+                Tracker.this.startActivity(dashboard);
             }
         });
 
@@ -368,62 +370,15 @@ public class Tracker extends AppCompatActivity {
                                     cal = cal + (con.getCalorie() * con.getAmount());
                                 }
                             }
+                        }
+                        SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+                        int userCalorieLimitForTheDay =userSharedPreferenceDetails.getInt("calorieLimit",0);
+                        int userFatLimitForTheDay =userSharedPreferenceDetails.getInt("fatGoal",0);
+                        int userSugarLimitForTheDay =userSharedPreferenceDetails.getInt("sugarGoal",0);
                             //Get sharedPreference
-                            if (sugar > 100){
-                                if (fat > 100){
-                                    if (cal > 100){
-                                        RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
-                                        anim.setInterpolator(new LinearInterpolator());
-                                        anim.setRepeatCount(Animation.INFINITE);
-                                        anim.setDuration(700);
-                                        image.setImageResource(R.drawable.sad);
-                                        image.startAnimation(anim);
-                                        anim.setRepeatCount(1);
-                                        vibrate();
-                                        hello.setText("All surpass health level!");
-                                        hello.setTextColor(getResources().getColor(R.color.colorAccent));
-                                    }
-                                    else {
-                                        RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
-                                        anim.setInterpolator(new LinearInterpolator());
-                                        anim.setRepeatCount(Animation.INFINITE);
-                                        anim.setDuration(700);
-                                        image.setImageResource(R.drawable.sad);
-                                        image.startAnimation(anim);
-                                        anim.setRepeatCount(1);
-                                        vibrate();
-                                        hello.setText("Sugar and Fat surpass health level!");
-                                        hello.setTextColor(getResources().getColor(R.color.colorAccent));
-                                    }
-                                }else{
-                                    if (cal > 100){
-                                        RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
-                                        anim.setInterpolator(new LinearInterpolator());
-                                        anim.setRepeatCount(Animation.INFINITE);
-                                        anim.setDuration(700);
-                                        image.setImageResource(R.drawable.sad);
-                                        image.startAnimation(anim);
-                                        anim.setRepeatCount(1);
-                                        vibrate();
-                                        hello.setText("Sugar and Cal surpass health level!");
-                                        hello.setTextColor(getResources().getColor(R.color.colorAccent));
-                                    }
-                                    else {
-                                        RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
-                                        anim.setInterpolator(new LinearInterpolator());
-                                        anim.setRepeatCount(Animation.INFINITE);
-                                        anim.setDuration(700);
-                                        image.setImageResource(R.drawable.sad);
-                                        image.startAnimation(anim);
-                                        anim.setRepeatCount(1);
-                                        vibrate();
-                                        hello.setText("Sugar surpasses health level!");
-                                        hello.setTextColor(getResources().getColor(R.color.colorAccent));
-                                    }
-                                }
-                            }
-                            else if (fat > 100){
-                                if (cal > 100){
+                        if (sugar > userSugarLimitForTheDay){
+                            if (fat > userFatLimitForTheDay){
+                                if (cal > userCalorieLimitForTheDay){
                                     RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
                                     anim.setInterpolator(new LinearInterpolator());
                                     anim.setRepeatCount(Animation.INFINITE);
@@ -432,10 +387,10 @@ public class Tracker extends AppCompatActivity {
                                     image.startAnimation(anim);
                                     anim.setRepeatCount(1);
                                     vibrate();
-                                    hello.setText("Cal and Fat surpass health level!");
+                                    hello.setText("All surpass health level!");
                                     hello.setTextColor(getResources().getColor(R.color.colorAccent));
                                 }
-                                else{
+                                else {
                                     RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
                                     anim.setInterpolator(new LinearInterpolator());
                                     anim.setRepeatCount(Animation.INFINITE);
@@ -444,11 +399,38 @@ public class Tracker extends AppCompatActivity {
                                     image.startAnimation(anim);
                                     anim.setRepeatCount(1);
                                     vibrate();
-                                    hello.setText("Fat surpasses health level!");
+                                    hello.setText("Sugar and Fat surpass health level!");
+                                    hello.setTextColor(getResources().getColor(R.color.colorAccent));
+                                }
+                            }else{
+                                if (cal > userCalorieLimitForTheDay){
+                                    RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+                                    anim.setInterpolator(new LinearInterpolator());
+                                    anim.setRepeatCount(Animation.INFINITE);
+                                    anim.setDuration(700);
+                                    image.setImageResource(R.drawable.sad);
+                                    image.startAnimation(anim);
+                                    anim.setRepeatCount(1);
+                                    vibrate();
+                                    hello.setText("Sugar and Cal surpass health level!");
+                                    hello.setTextColor(getResources().getColor(R.color.colorAccent));
+                                }
+                                else {
+                                    RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+                                    anim.setInterpolator(new LinearInterpolator());
+                                    anim.setRepeatCount(Animation.INFINITE);
+                                    anim.setDuration(700);
+                                    image.setImageResource(R.drawable.sad);
+                                    image.startAnimation(anim);
+                                    anim.setRepeatCount(1);
+                                    vibrate();
+                                    hello.setText("Sugar surpasses health level!");
                                     hello.setTextColor(getResources().getColor(R.color.colorAccent));
                                 }
                             }
-                            else if (cal > 100){
+                        }
+                        else if (fat > userFatLimitForTheDay){
+                            if (cal > userCalorieLimitForTheDay){
                                 RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
                                 anim.setInterpolator(new LinearInterpolator());
                                 anim.setRepeatCount(Animation.INFINITE);
@@ -457,12 +439,36 @@ public class Tracker extends AppCompatActivity {
                                 image.startAnimation(anim);
                                 anim.setRepeatCount(1);
                                 vibrate();
-                                hello.setText("Calorie surpasses health level!");
+                                hello.setText("Cal and Fat surpass health level!");
+                                hello.setTextColor(getResources().getColor(R.color.colorAccent));
+                            }
+                            else{
+                                RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+                                anim.setInterpolator(new LinearInterpolator());
+                                anim.setRepeatCount(Animation.INFINITE);
+                                anim.setDuration(700);
+                                image.setImageResource(R.drawable.sad);
+                                image.startAnimation(anim);
+                                anim.setRepeatCount(1);
+                                vibrate();
+                                hello.setText("Fat surpasses health level!");
                                 hello.setTextColor(getResources().getColor(R.color.colorAccent));
                             }
                         }
-                    }
-                });
+                        else if (cal > userCalorieLimitForTheDay){
+                            RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+                            anim.setInterpolator(new LinearInterpolator());
+                            anim.setRepeatCount(Animation.INFINITE);
+                            anim.setDuration(700);
+                            image.setImageResource(R.drawable.sad);
+                            image.startAnimation(anim);
+                            anim.setRepeatCount(1);
+                            vibrate();
+                            hello.setText("Calorie surpasses health level!");
+                            hello.setTextColor(getResources().getColor(R.color.colorAccent));
+                            }
+                        }
+                    });
 
             if (!foodName.getText().toString().equals("") && !amount.getText().toString().equals("") && isInteger(amount.getText().toString())){
                 CollectionReference dbConsumption = db.collection("consumption");

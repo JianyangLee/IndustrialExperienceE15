@@ -173,7 +173,7 @@
                         android:layout_height="150dp"
                         android:layout_marginBottom="10dp"
                         android:orientation="horizontal">
-
+                        <!--height should be 150dp later-->
                         <android.support.v7.widget.CardView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -241,7 +241,7 @@
                                     android:layout_centerHorizontal="true"
                                     android:layout_marginTop="10dp"
                                     android:layout_marginBottom="10dp"
-                                    android:text="Plan Your Diet"
+                                    android:text="Track your food"
                                     android:textSize="16sp" />
 
                                 <Button
@@ -253,93 +253,91 @@
 
                             </RelativeLayout>
                         </android.support.v7.widget.CardView>
-
-
                     </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="horizontal">
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="150dp"-->
+                        <!--android:layout_marginBottom="10dp"-->
+                        <!--android:orientation="horizontal">-->
 
-                        <android.support.v7.widget.CardView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            >
+                        <!--<android.support.v7.widget.CardView-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:layout_marginRight="5dp"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:orientation="vertical"-->
+                            <!--&gt;-->
 
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                            <!--<RelativeLayout-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="match_parent">-->
 
-                                <ImageView
-                                    android:id="@+id/tile3"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
-                                    android:layout_centerInParent="true"
-                                    android:src="@drawable/c" />
+                                <!--<ImageView-->
+                                    <!--android:id="@+id/tile3"-->
+                                    <!--android:layout_width="50dp"-->
+                                    <!--android:layout_height="50dp"-->
+                                    <!--android:layout_centerInParent="true"-->
+                                    <!--android:src="@drawable/c" />-->
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/tile3"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:text="Go For Sport"
-                                    android:textSize="16sp" />
+                                <!--<TextView-->
+                                    <!--android:layout_width="wrap_content"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:layout_below="@+id/tile3"-->
+                                    <!--android:layout_centerHorizontal="true"-->
+                                    <!--android:layout_marginTop="10dp"-->
+                                    <!--android:layout_marginBottom="10dp"-->
+                                    <!--android:text="Go For Sport"-->
+                                    <!--android:textSize="16sp" />-->
 
-                                <Button
-                                    android:id="@+id/btnTile3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@android:color/transparent" />
+                                <!--<Button-->
+                                    <!--android:id="@+id/btnTile3"-->
+                                    <!--android:layout_width="match_parent"-->
+                                    <!--android:layout_height="match_parent"-->
+                                    <!--android:background="@android:color/transparent" />-->
 
 
-                            </RelativeLayout>
-                        </android.support.v7.widget.CardView>
+                            <!--</RelativeLayout>-->
+                        <!--</android.support.v7.widget.CardView>-->
 
-                        <android.support.v7.widget.CardView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="5dp"
-                            android:layout_weight="1"
-                            android:foregroundGravity="center"
-                            android:orientation="vertical">
+                        <!--<android.support.v7.widget.CardView-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:layout_marginLeft="5dp"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:foregroundGravity="center"-->
+                            <!--android:orientation="vertical">-->
 
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                            <!--<RelativeLayout-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="match_parent">-->
 
-                                <ImageView
-                                    android:id="@+id/tile4"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
-                                    android:layout_centerInParent="true"
-                                    android:src="@drawable/d" />
+                                <!--<ImageView-->
+                                    <!--android:id="@+id/tile4"-->
+                                    <!--android:layout_width="50dp"-->
+                                    <!--android:layout_height="50dp"-->
+                                    <!--android:layout_centerInParent="true"-->
+                                    <!--android:src="@drawable/d" />-->
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/tile4"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:text="Get your report"
-                                    android:textSize="16sp" />
+                                <!--<TextView-->
+                                    <!--android:layout_width="wrap_content"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:layout_below="@+id/tile4"-->
+                                    <!--android:layout_centerHorizontal="true"-->
+                                    <!--android:layout_marginTop="10dp"-->
+                                    <!--android:layout_marginBottom="10dp"-->
+                                    <!--android:text="Get your report"-->
+                                    <!--android:textSize="16sp" />-->
 
-                                <Button
-                                    android:id="@+id/btnTile4"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@android:color/transparent" />
-                            </RelativeLayout>
-                        </android.support.v7.widget.CardView>
-                    </LinearLayout>
+                                <!--<Button-->
+                                    <!--android:id="@+id/btnTile4"-->
+                                    <!--android:layout_width="match_parent"-->
+                                    <!--android:layout_height="match_parent"-->
+                                    <!--android:background="@android:color/transparent" />-->
+                            <!--</RelativeLayout>-->
+                        <!--</android.support.v7.widget.CardView>-->
+                    <!--</LinearLayout>-->
                 </LinearLayout>
                 <!--<Button-->
                     <!--android:id="@+id/logout"-->
@@ -355,6 +353,21 @@
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!--<LinearLayout-->
 <!--android:layout_width="match_parent"-->

@@ -46,6 +46,7 @@ public class Dashboard extends AppCompatActivity {
 
 
         final Button Insert = (Button) findViewById(R.id.btnTile1);
+        final Button TrackFood = (Button) findViewById(R.id.btnTile2);
         //final Button logout = (Button) findViewById(R.id.logout);
 
 
@@ -66,6 +67,14 @@ public class Dashboard extends AppCompatActivity {
                 Intent insert = new Intent(Dashboard.this, Tracker.class);
                 String test = FirebaseAuth.getInstance().getCurrentUser().getUid();//Get user id from firebase
                 Dashboard.this.startActivity(insert);
+            }
+        });
+
+        TrackFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent trackFood = new Intent(Dashboard.this, TrackFood.class);
+                Dashboard.this.startActivity(trackFood);
             }
         });
     }
