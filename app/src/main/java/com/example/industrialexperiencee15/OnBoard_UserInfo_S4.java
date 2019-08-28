@@ -33,6 +33,7 @@ public class OnBoard_UserInfo_S4 extends AppCompatActivity {
     private EditText height;
     private EditText weight;
     private String userAge;
+    private static int userAgeInt;
 
     //Radio Buttons
     private RadioGroup radioGroup;
@@ -131,6 +132,10 @@ public class OnBoard_UserInfo_S4 extends AppCompatActivity {
             isdataValidInUserRegistrationForm = false;
         } else if (!validateWeight(weight.getText().toString(), weight)) {
             isdataValidInUserRegistrationForm = false;
+        } else if (userAgeInt <= 0) {
+            isdataValidInUserRegistrationForm = false;
+            dateOfBirth.setError("Age cannot be Zero.");
+            dateOfBirth.requestFocus();
         }
         return isdataValidInUserRegistrationForm;
     }
@@ -162,6 +167,7 @@ public class OnBoard_UserInfo_S4 extends AppCompatActivity {
                 age--;
             }
         }
+        userAgeInt=age;
         return age + "";
     }
 
@@ -192,8 +198,8 @@ public class OnBoard_UserInfo_S4 extends AppCompatActivity {
         SharedPreferences.Editor userSharedPreferenceEditor = userSharedPreferenceDetails.edit();
         userSharedPreferenceEditor.putString("firstName", firstName.getText().toString());
         userSharedPreferenceEditor.putString("lastName", lastName.getText().toString());
-        userSharedPreferenceEditor.putFloat("height", Float.valueOf(height.getText().toString()));
-        userSharedPreferenceEditor.putFloat("weight", Float.valueOf(weight.getText().toString()));
+        userSharedPreferenceEditor.putInt("height", Integer.valueOf(height.getText().toString()));
+        userSharedPreferenceEditor.putInt("weight", Integer.valueOf(weight.getText().toString()));
         if (getString(R.string.radio_male).equals(gender.getText())) {
             userSharedPreferenceEditor.putBoolean("isUserMale", true);
         } else {

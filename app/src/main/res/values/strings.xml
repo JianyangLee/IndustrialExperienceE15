@@ -36,7 +36,9 @@
     <string name="prompt_lastname">Last Name</string>
     <string name="prompt_firstname">First Name</string>
     <!-- Uesr Calculation Page -->
-    <string name="almoast_There">Almost There !! </string>
+    <string name="almoast_There">Almost There !! ,\n\n
+
+    As per your goals , the recommended intake value are </string>
     <string name="lets_Start">Lets Start</string>
 
 </resources>

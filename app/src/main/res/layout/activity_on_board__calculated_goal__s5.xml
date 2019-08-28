@@ -9,23 +9,105 @@
 
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/almoast_There"
-        android:textSize="25dp"
-        android:gravity="center"/>
+    android:id="@+id/textView5"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
+    android:text="@string/almoast_There"
+    android:textSize="25dp"
+        android:inputType="textMultiLine"
+    android:gravity="left"/>
 
     <TextView
-        android:id="@+id/displayCalorieGoal"
-        android:layout_width="match_parent"
-        android:layout_height="186dp"
+        android:id="@+id/displayCalorieGoalprompt"
+        android:layout_width="150dp"
+        android:layout_height="57dp"
         android:layout_below="@+id/textView5"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="131dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="63dp"
         android:layout_marginRight="20dp"
+        android:ems="10"
+        android:text="Calories :"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/displayCalorieGoalvalue"
+        android:layout_width="120dp"
+        android:layout_height="57dp"
+        android:layout_below="@+id/textView5"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="51dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginRight="20dp"
+        android:layout_toRightOf="@id/displayCalorieGoalprompt"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:textSize="25dp" />
+
+
+    //2nd Row
+
+    <TextView
+        android:id="@+id/displayfatGoalprompt"
+        android:layout_width="150dp"
+        android:layout_height="57dp"
+        android:layout_below="@+id/displayCalorieGoalprompt"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginRight="20dp"
+        android:ems="10"
+        android:text="Fat limit :"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/displayfatGoalvalue"
+        android:layout_width="120dp"
+        android:layout_height="57dp"
+        android:layout_below="@+id/displayCalorieGoalvalue"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="51dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginRight="20dp"
+        android:layout_toRightOf="@id/displayfatGoalprompt"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:textSize="25dp" />
+
+    //3rd Row
+
+    <TextView
+        android:id="@+id/displaySugarGoalprompt"
+        android:layout_width="150dp"
+        android:layout_height="57dp"
+        android:layout_below="@+id/displayfatGoalprompt"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginRight="20dp"
+        android:ems="10"
+        android:text="Sugar limit :"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/displaySugarGoalvalue"
+        android:layout_width="120dp"
+        android:layout_height="57dp"
+        android:layout_below="@+id/displayfatGoalvalue"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="51dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginRight="20dp"
+        android:layout_toRightOf="@id/displayCalorieGoalprompt"
         android:ems="10"
         android:gravity="center_horizontal"
         android:inputType="textMultiLine"
@@ -36,10 +118,11 @@
         android:id="@+id/lets_Start_now"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/displayCalorieGoal"
-        android:background="@drawable/transparent_bg_bordered_button"
-        android:layout_marginTop="120dp"
         android:layout_centerInParent="true"
+        android:layout_below="@+id/displaySugarGoalvalue"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="74dp"
+        android:background="@drawable/transparent_bg_bordered_button"
         android:text="@string/lets_Start" />
 
 </RelativeLayout>
