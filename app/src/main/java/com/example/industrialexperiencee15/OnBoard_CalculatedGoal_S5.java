@@ -1,6 +1,8 @@
 package com.example.industrialexperiencee15;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +22,17 @@ public class OnBoard_CalculatedGoal_S5 extends AppCompatActivity {
         btnNextToDashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
+                SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+                SharedPreferences.Editor userSharedPreferenceEditor = userSharedPreferenceDetails.edit();
+                userSharedPreferenceEditor.putInt("CalorieLimit",2500);
+                userSharedPreferenceEditor.putInt("fatGoal", 10);
+                userSharedPreferenceEditor.putInt("proteinGoal", 15);
+                userSharedPreferenceEditor.apply();
+
+
                 //Redirect
                 Intent intent = new Intent(OnBoard_CalculatedGoal_S5.this, Dashboard.class);
                 startActivity(intent);
