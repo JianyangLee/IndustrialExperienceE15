@@ -26,7 +26,7 @@ public class Dashboard extends AppCompatActivity {
     FirebaseAuth mFirebaseAuth;
     FirebaseFirestore db;
     TextView  sugarCon, fatCon,calShow;
-    private String test;
+
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
     @Override
@@ -72,6 +72,7 @@ public class Dashboard extends AppCompatActivity {
 
 
     private class DBInAsyncTask extends AsyncTask<Void, Void, String> {
+
         @Override
         protected String doInBackground(Void... params) {
 
@@ -88,7 +89,7 @@ public class Dashboard extends AppCompatActivity {
                     SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
                     int userCalorieLimitForTheDay =userSharedPreferenceDetails.getInt("calorieLimit",0);
                     //int userFatLimitForTheDay =userSharedPreferenceDetails.getInt("fatGoal",0);
-                   // int userProteinLimitForTheDay =userSharedPreferenceDetails.getInt("proteinGoal",0);
+                    // int userProteinLimitForTheDay =userSharedPreferenceDetails.getInt("proteinGoal",0);
 
                     if (!queryDocumentSnapshots.isEmpty()) {
                         List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
@@ -96,35 +97,39 @@ public class Dashboard extends AppCompatActivity {
                         for (DocumentSnapshot d : list) {
                             Consumption con = d.toObject(Consumption.class);
                             if (todayDate.equals(con.getCon_date())) {
-                                sugar = sugar + (con.getSugar() * con.getAmount());
-                                fat = fat + (con.getFat() * con.getAmount());
-                                cal = cal + (con.getCalorie() * con.getAmount());
+                                sugar = sugar + con.getSugar();
+                                fat = fat + con.getFat();
+                                cal = cal + con.getCalorie();
                             }
                         }
-                        BigDecimal sugarDecimal = new BigDecimal(sugar);
-                        BigDecimal fatDecimal = new BigDecimal(fat);
-                        BigDecimal calDecimal = new BigDecimal(cal);
-                        BigDecimal sugarFinal = sugarDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
-                        BigDecimal fatFinal = fatDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
-                        BigDecimal calFinal = calDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
-
-                        Integer calorieToShowInScreeen = userCalorieLimitForTheDay - calFinal.intValue();
-
-//                        test = Double.toString(sugarFinal.doubleValue()) + "g";
-//                        post[1] = Double.toString(fatFinal.doubleValue())+ "g";
-                        test = calorieToShowInScreeen.toString();
-                        Log.e("test", test);
                     }
+
+                    BigDecimal sugarDecimal = new BigDecimal(sugar);
+                    BigDecimal fatDecimal = new BigDecimal(fat);
+                    BigDecimal calDecimal = new BigDecimal(cal);
+                    BigDecimal sugarFinal = sugarDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
+                    BigDecimal fatFinal = fatDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
+                    BigDecimal calFinal = calDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
+
+                    Integer calorieToShowInScreeen = userCalorieLimitForTheDay - calFinal.intValue();
+
+                    sugarCon.setText(Double.toString(sugarFinal.doubleValue()) + "g");
+                    fatCon.setText(Double.toString(fatFinal.doubleValue()) + "g");
+                    calShow.setText(calorieToShowInScreeen.toString());
                 }
             });
-            return test ;
+
+            return "" ;
         }
+
 
         @Override
         protected void onPostExecute(String response) {
-//            sugarCon.setText(response[0]);
-//            fatCon.setText(response[1]);
-                calShow.setText(test);
+
+
         }
     }
 }
+
+
+

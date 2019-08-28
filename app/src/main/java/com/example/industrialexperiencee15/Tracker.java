@@ -472,9 +472,9 @@ public class Tracker extends AppCompatActivity {
                 String name = foodName.getText().toString();
                 int foodAmount = Integer.parseInt(amount.getText().toString());
 
-                double foodF = (foodAmount/100) * params[0];
-                double foodS = (foodAmount/100) * params[1];
-                double foodC = (foodAmount/100)*params[2];
+                double foodF = (foodAmount/100.0) * params[0];
+                double foodS = (foodAmount/100.0) * params[1];
+                double foodC = (foodAmount/100.0) * params[2];
 
                 Consumption consumption = new Consumption(name, today, foodF,foodS, foodC, foodAmount);
                 dbConsumption.add(consumption).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
