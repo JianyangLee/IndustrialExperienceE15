@@ -22,8 +22,8 @@ public class OnBoard_CalculatedGoal_S5 extends AppCompatActivity {
     private Boolean isUserLightlyActive;
     private Boolean isUserActive;
     private Boolean isUserVeryActive;
-    private String firstName;
-    private String lastName;
+//    private String firstName;
+//    private String lastName;
     private Integer height;
     private Integer weight;
     private Boolean isUserMale;
@@ -74,8 +74,8 @@ public class OnBoard_CalculatedGoal_S5 extends AppCompatActivity {
         isUserLightlyActive = userSharedPreferenceDetails.getBoolean("isUserLightlyActive", false);
         isUserActive = userSharedPreferenceDetails.getBoolean("isUserActive", false);
         isUserVeryActive = userSharedPreferenceDetails.getBoolean("isUserVeryActive", false);
-        firstName = userSharedPreferenceDetails.getString("firstName", "");
-        lastName = userSharedPreferenceDetails.getString("lastName", "");
+//        firstName = userSharedPreferenceDetails.getString("firstName", "");
+//        lastName = userSharedPreferenceDetails.getString("lastName", "");
         height = userSharedPreferenceDetails.getInt("height", 0);
         weight = userSharedPreferenceDetails.getInt("weight", 0);
         isUserMale = userSharedPreferenceDetails.getBoolean("isUserMale", false);

@@ -25,8 +25,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -74,12 +76,17 @@ public class TrackFood extends AppCompatActivity {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                     String result = "";
+                    Calendar c = Calendar.getInstance();
+                    SimpleDateFormat currentDate = new SimpleDateFormat("dd-MM-yyyy");
+                    String todayDate = currentDate.format(c.getTime());
                     if (! queryDocumentSnapshots.isEmpty()) {
                         List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
 
                         for (DocumentSnapshot d : list) {
                             Consumption con = d.toObject(Consumption.class);
-                            result = result + con.getName() + "\n" + "\n";
+                            if (todayDate.equals(con.getCon_date())) {
+                                result = result + con.getName() + "\n" + "\n";
+                            }
                         }
                         trackText.setText(result);
                         }

@@ -65,7 +65,7 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent insert = new Intent(Dashboard.this, Tracker.class);
-                String test = FirebaseAuth.getInstance().getCurrentUser().getUid();//Get user id from firebase
+//                String test = FirebaseAuth.getInstance().getCurrentUser().getUid();//Get user id from firebase
                 Dashboard.this.startActivity(insert);
             }
         });

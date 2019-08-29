@@ -365,9 +365,9 @@ public class Tracker extends AppCompatActivity {
                             for (DocumentSnapshot d : list) {
                                 Consumption con = d.toObject(Consumption.class);
                                 if (todayDate.equals(con.getCon_date())) {
-                                    sugar = sugar + (con.getSugar() * con.getAmount());
-                                    fat = fat + (con.getFat() * con.getAmount());
-                                    cal = cal + (con.getCalorie() * con.getAmount());
+                                    sugar = sugar + (con.getSugar());
+                                    fat = fat + (con.getFat());
+                                    cal = cal + (con.getCalorie());
                                 }
                             }
                         }
@@ -429,7 +429,7 @@ public class Tracker extends AppCompatActivity {
                                 }
                             }
                         }
-                        else if (fat > userFatLimitForTheDay){
+                        if (fat > userFatLimitForTheDay){
                             if (cal > userCalorieLimitForTheDay){
                                 RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
                                 anim.setInterpolator(new LinearInterpolator());
@@ -455,7 +455,7 @@ public class Tracker extends AppCompatActivity {
                                 hello.setTextColor(getResources().getColor(R.color.colorAccent));
                             }
                         }
-                        else if (cal > userCalorieLimitForTheDay){
+                        if (cal > userCalorieLimitForTheDay){
                             RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
                             anim.setInterpolator(new LinearInterpolator());
                             anim.setRepeatCount(Animation.INFINITE);
