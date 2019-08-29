@@ -172,6 +172,7 @@
         android:layout_below="@+id/radio_gender"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="58dp"
+        android:textColor="#FFFFFF"
         android:paddingRight="10dp"
         android:background="@drawable/transparent_bg_bordered_button"
         android:text="@string/buttonPrevious" />
@@ -183,6 +184,7 @@
         android:layout_below="@+id/radio_gender"
         android:layout_marginLeft="63dp"
         android:layout_marginTop="60dp"
+        android:textColor="#FFFFFF"
         android:layout_marginRight="20dp"
         android:background="@drawable/transparent_bg_bordered_button"
         android:layout_toRightOf="@id/S4PreviousButton"

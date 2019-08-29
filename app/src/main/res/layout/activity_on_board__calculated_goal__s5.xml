@@ -120,6 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_below="@+id/displaySugarGoalvalue"
+        android:textColor="#FFFFFF"
         android:layout_centerVertical="true"
         android:layout_marginTop="74dp"
         android:background="@drawable/transparent_bg_bordered_button"

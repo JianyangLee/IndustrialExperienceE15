@@ -97,6 +97,7 @@
         android:layout_marginRight="20dp"
         android:paddingRight="10dp"
         android:text="@string/buttonPrevious"
+        android:textColor="#FFFFFF"
         tools:layout_editor_absoluteX="47dp"
         android:background="@drawable/transparent_bg_bordered_button"
         tools:layout_editor_absoluteY="502dp" />
@@ -107,6 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/radio_actvityLevel"
         android:layout_marginLeft="48dp"
+        android:textColor="#FFFFFF"
         android:layout_marginTop="60dp"
         android:background="@drawable/transparent_bg_bordered_button"
         android:layout_marginRight="20dp"

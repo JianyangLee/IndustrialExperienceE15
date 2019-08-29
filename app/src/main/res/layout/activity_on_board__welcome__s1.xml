@@ -42,6 +42,7 @@
         android:layout_marginTop="131dp"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="130dp"
+        android:textColor="#FFFFFF"
         android:background="@drawable/transparent_bg_bordered_button"
         android:text="@string/lets_get_started" />
 
