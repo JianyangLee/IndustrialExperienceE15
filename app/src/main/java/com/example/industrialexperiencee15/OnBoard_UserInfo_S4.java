@@ -49,8 +49,8 @@ public class OnBoard_UserInfo_S4 extends AppCompatActivity {
         btnNextToUserComputedGoal = (Button) findViewById(R.id.S4Nextbutton);
         dateOfBirth = (EditText) findViewById(R.id.dob);
         radioGroup = (RadioGroup) findViewById(R.id.radio_gender);
-        firstName = (EditText) findViewById(R.id.firstname);
-        lastName = (EditText) findViewById(R.id.lastname);
+//        firstName = (EditText) findViewById(R.id.firstname);
+//        lastName = (EditText) findViewById(R.id.lastname);
         height = (EditText) findViewById(R.id.height);
         weight = (EditText) findViewById(R.id.weight);
 
@@ -124,11 +124,11 @@ public class OnBoard_UserInfo_S4 extends AppCompatActivity {
 
     private boolean validateRegisterFormValues() {
         boolean isdataValidInUserRegistrationForm = true;
-        if (!validateName(firstName.getText().toString(), firstName)) {
-            isdataValidInUserRegistrationForm = false;
-        } else if (!validateName(lastName.getText().toString(), lastName)) {
-            isdataValidInUserRegistrationForm = false;
-        } else if (!validateHeight(height.getText().toString(), height)) {
+//        if (!validateName(firstName.getText().toString(), firstName)) {
+//            isdataValidInUserRegistrationForm = false;
+//        } else if (!validateName(lastName.getText().toString(), lastName)) {
+//            isdataValidInUserRegistrationForm = false;
+        if (!validateHeight(height.getText().toString(), height)) {
             isdataValidInUserRegistrationForm = false;
         } else if (!validateWeight(weight.getText().toString(), weight)) {
             isdataValidInUserRegistrationForm = false;
@@ -196,8 +196,8 @@ public class OnBoard_UserInfo_S4 extends AppCompatActivity {
     private void writeUserInformationtoSharedPreferences() {
         SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
         SharedPreferences.Editor userSharedPreferenceEditor = userSharedPreferenceDetails.edit();
-        userSharedPreferenceEditor.putString("firstName", firstName.getText().toString());
-        userSharedPreferenceEditor.putString("lastName", lastName.getText().toString());
+//        userSharedPreferenceEditor.putString("firstName", firstName.getText().toString());
+//        userSharedPreferenceEditor.putString("lastName", lastName.getText().toString());
         userSharedPreferenceEditor.putInt("height", Integer.valueOf(height.getText().toString()));
         userSharedPreferenceEditor.putInt("weight", Integer.valueOf(weight.getText().toString()));
         if (getString(R.string.radio_male).equals(gender.getText())) {

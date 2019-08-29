@@ -11,80 +11,62 @@
     android:orientation="vertical">
 
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/firstnametext"
-        android:layout_width="match_parent"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_height="wrap_content">
+    <!--<android.support.design.widget.TextInputLayout-->
+        <!--android:id="@+id/firstnametext"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_marginTop="50dp"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:layout_height="wrap_content">-->
 
-        <EditText
-            android:id="@+id/firstname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/prompt_firstname"
-            android:imeActionId="6"
-            android:imeOptions="actionUnspecified"
-            android:inputType="textPersonName"
-            android:maxLines="1"
-            android:singleLine="true" />
+        <!--<EditText-->
+            <!--android:id="@+id/firstname"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="@string/prompt_firstname"-->
+            <!--android:imeActionId="6"-->
+            <!--android:imeOptions="actionUnspecified"-->
+            <!--android:inputType="textPersonName"-->
+            <!--android:maxLines="1"-->
+            <!--android:singleLine="true" />-->
 
-    </android.support.design.widget.TextInputLayout>
+    <!--</android.support.design.widget.TextInputLayout>-->
 
-    <!-- -->
+    <!--&lt;!&ndash; &ndash;&gt;-->
 
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/lastnametext"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/firstnametext"
-        android:layout_marginLeft="20dp"
-        android:layout_height="wrap_content">
+    <!--<android.support.design.widget.TextInputLayout-->
+        <!--android:id="@+id/lastnametext"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_below="@+id/firstnametext"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:layout_height="wrap_content">-->
 
-        <EditText
-            android:id="@+id/lastname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/prompt_lastname"
-            android:imeActionId="6"
+        <!--<EditText-->
+            <!--android:id="@+id/lastname"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="@string/prompt_lastname"-->
+            <!--android:imeActionId="6"-->
 
-            android:imeOptions="actionUnspecified"
-            android:inputType="textPersonName"
-            android:maxLines="1"
-            android:singleLine="true" />
+            <!--android:imeOptions="actionUnspecified"-->
+            <!--android:inputType="textPersonName"-->
+            <!--android:maxLines="1"-->
+            <!--android:singleLine="true" />-->
 
-    </android.support.design.widget.TextInputLayout>
+    <!--</android.support.design.widget.TextInputLayout>-->
 
 
 
     <!--Date of Birth Label -->
 
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/dobtext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lastnametext"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="8dp">
 
-        <EditText
-            android:id="@+id/dob"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:layout_below="@+id/lastname"
-            android:hint="Date of Birth" />
-        <!-- android:onClick="showDatePicker" -->
-    </android.support.design.widget.TextInputLayout>
 
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/heighttext"
         android:layout_width="match_parent"
-        android:layout_below="@+id/dobtext"
+        android:layout_marginTop="100dp"
         android:layout_marginLeft="20dp"
 
         android:layout_height="wrap_content">
@@ -120,6 +102,25 @@
 
     </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/dobtext"
+        android:layout_below="@+id/weighttext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="8dp">
+
+        <EditText
+            android:id="@+id/dob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_below="@+id/radio_gender"
+            android:hint="Date of Birth" />
+        <!-- android:onClick="showDatePicker" -->
+    </android.support.design.widget.TextInputLayout>
+
     <!--Ref: https://www.mkyong.com/android/android-radio-buttons-example/ -->
     <!--Ref: https://developer.android.com/guide/topics/ui/controls/radiobutton-->
     <TextView
@@ -127,7 +128,7 @@
         android:layout_marginLeft="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/weighttext"
+        android:layout_below="@+id/dobtext"
         android:layout_marginTop="25dp"
         android:text="Gender:"
         android:textSize="18sp" />

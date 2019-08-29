@@ -13,23 +13,32 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 public class TrackFood extends AppCompatActivity {
 
     FirebaseFirestore db;
     Button backbtn;
     TextView trackText;
+    String testValue;
+    String b;
+    String a;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +56,10 @@ public class TrackFood extends AppCompatActivity {
                 TrackFood.this.startActivity(goTodash);
             }
         });
+
+
+
+
 
         ReadingAsyncTask readingasync = new ReadingAsyncTask();
         readingasync.execute();
@@ -76,15 +89,34 @@ public class TrackFood extends AppCompatActivity {
                     }
                 }
             );
+
             return "";
         }
 
         @Override
         protected void onPostExecute(String response) {
 
-
         }
     }
 }
 
 
+
+
+
+
+//db.collection("consumption").addSnapshotListener(new EventListener<QuerySnapshot>() {
+//@Override
+//public void onEvent(@Nullable QuerySnapshot DocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+//        for (DocumentChange doc: DocumentSnapshots.getDocumentChanges()) {
+//        if (doc.getType() == DocumentChange.Type.ADDED) {
+//        Consumption cons = doc.getDocument().toObject(Consumption.class);
+//
+//        a = a + cons.getName();
+//        }
+//        }
+//        b = a;
+//        }
+//        });
+//        b = a;
+//        Log.e("b",b);
