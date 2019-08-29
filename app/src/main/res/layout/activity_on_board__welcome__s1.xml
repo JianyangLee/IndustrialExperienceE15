@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgapp"
+    android:background="@drawable/onboard2"
     tools:context=".OnBoard_Welcome_S1">
 
 
@@ -26,6 +26,7 @@
         android:layout_marginTop="131dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:textColor="#2E2424"
         android:ems="10"
         android:gravity="center_horizontal"
         android:inputType="textMultiLine"
