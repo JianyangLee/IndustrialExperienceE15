@@ -3,11 +3,21 @@ package com.example.industrialexperiencee15;
         import android.content.Context;
         import android.content.Intent;
         import android.content.SharedPreferences;
+        import android.support.annotation.NonNull;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
+        import android.util.Log;
         import android.view.View;
         import android.widget.Button;
         import android.widget.TextView;
+        import android.widget.Toast;
+
+        import com.google.android.gms.tasks.OnFailureListener;
+        import com.google.android.gms.tasks.OnSuccessListener;
+        import com.google.firebase.auth.FirebaseAuth;
+        import com.google.firebase.firestore.CollectionReference;
+        import com.google.firebase.firestore.DocumentReference;
+        import com.google.firebase.firestore.FirebaseFirestore;
 
         import java.math.BigDecimal;
 
@@ -35,6 +45,9 @@ public class OnBoard_CalculatedGoal_S5 extends AppCompatActivity {
     private TextView displayCalorieGoal;
     private TextView displayfatGoalvalue;
     private TextView displaySugarGoalvalue;
+    FirebaseFirestore db;
+    FirebaseAuth mFirebaseAuth;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,22 +55,38 @@ public class OnBoard_CalculatedGoal_S5 extends AppCompatActivity {
         setContentView(R.layout.activity_on_board__calculated_goal__s5);
         createCalorieGoalForTheUser();
 
+        userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        db = FirebaseFirestore.getInstance();
         btnNextToDashboard = (Button) findViewById(R.id.lets_Start_now);
 
         btnNextToDashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+//                SharedPreferences.Editor userSharedPreferenceEditor = userSharedPreferenceDetails.edit();
+//                userSharedPreferenceEditor.putInt("calorieLimit", computedCalorieLimit.intValue());
+//                userSharedPreferenceEditor.putInt("fatGoal", computedFatGoal.intValue());
+//                userSharedPreferenceEditor.putInt("sugarGoal", coputedSugarGoal.intValue());
+//                userSharedPreferenceEditor.apply();
+                CollectionReference dbCalculation = db.collection("calculation");
+                Calculation calculation = new Calculation(userID, (double) computedCalorieLimit.intValue(),(double)computedFatGoal.intValue(), (double)coputedSugarGoal.intValue());
 
-                SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
-                SharedPreferences.Editor userSharedPreferenceEditor = userSharedPreferenceDetails.edit();
-                userSharedPreferenceEditor.putInt("calorieLimit", computedCalorieLimit.intValue());
-                userSharedPreferenceEditor.putInt("fatGoal", computedFatGoal.intValue());
-                userSharedPreferenceEditor.putInt("sugarGoal", coputedSugarGoal.intValue());
-                userSharedPreferenceEditor.apply();
+                dbCalculation.add(calculation).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(OnBoard_CalculatedGoal_S5.this,"Calculation is done",Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(OnBoard_CalculatedGoal_S5.this, Dashboard.class);
+                        startActivity(intent);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(OnBoard_CalculatedGoal_S5.this,"Error! Try again!",Toast.LENGTH_LONG).show();
+                    }
+                });
+//                //Redirect
 
-                //Redirect
-                Intent intent = new Intent(OnBoard_CalculatedGoal_S5.this, Dashboard.class);
-                startActivity(intent);
             }
         });
 

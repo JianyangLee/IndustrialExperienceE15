@@ -22,17 +22,24 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
+
 public class Dashboard extends AppCompatActivity {
     FirebaseAuth mFirebaseAuth;
     FirebaseFirestore db;
     TextView  sugarCon, fatCon,calShow;
-
+    private BigDecimal sugarFinal;
+    private BigDecimal fatFinal;
+    BigDecimal calFinal;
+    String userID;
+    double calInShow;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         db = FirebaseFirestore.getInstance();
 
@@ -84,7 +91,6 @@ public class Dashboard extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... params) {
-
             db.collection("consumption").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -95,8 +101,8 @@ public class Dashboard extends AppCompatActivity {
                     double fat = 0;
                     double cal = 0;
 
-                    SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
-                    int userCalorieLimitForTheDay =userSharedPreferenceDetails.getInt("calorieLimit",0);
+//                    SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+//                    int userCalorieLimitForTheDay =userSharedPreferenceDetails.getInt("calorieLimit",0);
                     //int userFatLimitForTheDay =userSharedPreferenceDetails.getInt("fatGoal",0);
                     // int userProteinLimitForTheDay =userSharedPreferenceDetails.getInt("proteinGoal",0);
 
@@ -105,7 +111,7 @@ public class Dashboard extends AppCompatActivity {
 
                         for (DocumentSnapshot d : list) {
                             Consumption con = d.toObject(Consumption.class);
-                            if (todayDate.equals(con.getCon_date())) {
+                            if (todayDate.equals(con.getCon_date()) && userID.equals(con.getUID())) {
                                 sugar = sugar + con.getSugar();
                                 fat = fat + con.getFat();
                                 cal = cal + con.getCalorie();
@@ -116,21 +122,52 @@ public class Dashboard extends AppCompatActivity {
                     BigDecimal sugarDecimal = new BigDecimal(sugar);
                     BigDecimal fatDecimal = new BigDecimal(fat);
                     BigDecimal calDecimal = new BigDecimal(cal);
-                    BigDecimal sugarFinal = sugarDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
-                    BigDecimal fatFinal = fatDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
-                    BigDecimal calFinal = calDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
+                    sugarFinal = sugarDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
+                    fatFinal = fatDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
+                    calFinal = calDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
 
-                    Integer calorieToShowInScreeen = userCalorieLimitForTheDay - calFinal.intValue();
-
-                    sugarCon.setText(Double.toString(sugarFinal.doubleValue()) + "g");
                     fatCon.setText(Double.toString(fatFinal.doubleValue()) + "g");
-                    calShow.setText(calorieToShowInScreeen.toString());
+                    sugarCon.setText(Double.toString(sugarFinal.doubleValue()) + "g");
+                    ShowAsyncTask show = new ShowAsyncTask();
+                    show.execute(calFinal.doubleValue());
                 }
             });
 
             return "" ;
         }
 
+
+        @Override
+        protected void onPostExecute(String response) {
+
+
+        }
+    }
+
+
+    private class ShowAsyncTask extends AsyncTask<Double, Void, String> {
+        @Override
+        protected String doInBackground(Double... params) {
+            calInShow = params[0];
+            db.collection("calculation").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    if (!queryDocumentSnapshots.isEmpty()) {
+                        List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+
+                        for (DocumentSnapshot d : list) {
+                            Calculation calculation = d.toObject(Calculation.class);
+                            if (userID.equals(calculation.getUID())) {
+
+                                Integer calorieToShowInScreeen = (int)(calculation.getCalorieLimit() - (int)calInShow);
+                                calShow.setText(calorieToShowInScreeen.toString());
+                            }
+                        }
+                    }
+                }
+            });
+            return "";
+        }
 
         @Override
         protected void onPostExecute(String response) {

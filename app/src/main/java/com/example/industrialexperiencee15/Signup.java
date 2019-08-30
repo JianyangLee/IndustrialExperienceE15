@@ -54,8 +54,8 @@ public class Signup extends AppCompatActivity {
                                 Toast.makeText(Signup.this,"Unsuccessful register, your password is too short (more than 6) or you cannot have space in username, try again!",Toast.LENGTH_LONG).show();
                             }
                             else{
-                                Intent goToHome = new Intent(Signup.this, Dashboard.class);
-                                Signup.this.startActivity(goToHome);
+                                Intent goToOnBoardS1 = new Intent(Signup.this, OnBoard_Welcome_S1.class);
+                                Signup.this.startActivity(goToOnBoardS1);
                             }
                         }
                     });

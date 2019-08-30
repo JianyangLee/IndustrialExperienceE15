@@ -2,24 +2,26 @@ package com.example.industrialexperiencee15;
 
 public class Consumption {
 
+    String uid;
     String name;
     String con_date;
     double fat;
     double sugar;
     double calorie;
     int amount;
+    String type;
 
-    public Consumption(){
 
-    }
 
-    public Consumption(String name, String date, double fat, double sugar, double calorie, int amount){
+    public Consumption(String id, String name, String date, double fat, double sugar, double calorie, int amount,String type){
+        this.uid = id;
         this.name = name;
         this.con_date = date;
         this.fat = fat;
         this.sugar = sugar;
         this.calorie = calorie;
         this.amount = amount;
+        this.type = type;
     }
 
     public String getName() {
@@ -70,6 +72,25 @@ public class Consumption {
 
     public double getCalorie() {
         return calorie;
+    }
+    public String getUID() {
+        return uid;
+    }
+
+    public void setUID(String UID) {
+        this.uid = UID;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public Consumption(){
+
     }
 }
 

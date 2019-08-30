@@ -57,6 +57,27 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+
+
+        videoBG = (VideoView) findViewById(R.id.videoView);
+        Uri uri = Uri.parse("android.resource://"+ getPackageName() + "/" + R.raw.v1);
+
+
+
+
+        videoBG.setVideoURI(uri);
+
+        videoBG.start();
+
+        videoBG.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                mediaPlayer.setLooping(true);
+            }
+        });
+
+
+
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,26 +115,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        videoBG = (VideoView) findViewById(R.id.videoView);
-        Uri uri = Uri.parse("android.resource://"+ getPackageName() + "/" + R.raw.v1);
-
-
-
-
-        videoBG.setVideoURI(uri);
-
-        videoBG.start();
-
-        videoBG.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                mediaPlayer.setLooping(true);
-            }
-        });
-
-
-
 
         SignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override

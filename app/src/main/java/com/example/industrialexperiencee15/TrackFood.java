@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -75,6 +76,7 @@ public class TrackFood extends AppCompatActivity {
             db.collection("consumption").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
                     String result = "";
                     Calendar c = Calendar.getInstance();
                     SimpleDateFormat currentDate = new SimpleDateFormat("dd-MM-yyyy");
@@ -84,8 +86,8 @@ public class TrackFood extends AppCompatActivity {
 
                         for (DocumentSnapshot d : list) {
                             Consumption con = d.toObject(Consumption.class);
-                            if (todayDate.equals(con.getCon_date())) {
-                                result = result + con.getName() + "\n" + "\n";
+                            if (todayDate.equals(con.getCon_date()) && userID.equals(con.getUID())) {
+                                result = result + con.getName() + ":    " +con.getType() + "\n" + "\n";
                             }
                         }
                         trackText.setText(result);
