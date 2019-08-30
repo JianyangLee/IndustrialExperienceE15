@@ -339,16 +339,16 @@
                         <!--</android.support.v7.widget.CardView>-->
                     <!--</LinearLayout>-->
                 </LinearLayout>
-                <!--<Button-->
-                    <!--android:id="@+id/logout"-->
-                    <!--android:layout_width="300dp"-->
-                    <!--android:layout_height="45dp"-->
-                    <!--android:text="LOG OUT"-->
-                    <!--android:background="@drawable/transparent_bg_bordered_button"-->
-                    <!--android:textColor="#2A772D"-->
-                    <!--android:layout_gravity="center_vertical|center_horizontal"-->
-                    <!--android:textSize="20sp"-->
-                    <!--/>-->
+                <Button
+                    android:id="@+id/logout"
+                    android:layout_width="300dp"
+                    android:layout_height="45dp"
+                    android:text="LOG OUT"
+                    android:background="@drawable/transparent_bg_bordered_button"
+                    android:textColor="#FFFFFF"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:textSize="20sp"
+                    />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

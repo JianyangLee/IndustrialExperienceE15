@@ -54,18 +54,18 @@ public class Dashboard extends AppCompatActivity {
 
         final Button Insert = (Button) findViewById(R.id.btnTile1);
         final Button TrackFood = (Button) findViewById(R.id.btnTile2);
-        //final Button logout = (Button) findViewById(R.id.logout);
+        final Button logout = (Button) findViewById(R.id.logout);
 
 
-//
-//        logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseAuth.getInstance().signOut();
-//                Intent out = new Intent(Dashboard.this, MainActivity.class);
-//                Dashboard.this.startActivity(out);
-//            }
-//        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent out = new Intent(Dashboard.this, MainActivity.class);
+                Dashboard.this.startActivity(out);
+            }
+        });
 
 
         Insert.setOnClickListener(new View.OnClickListener() {
