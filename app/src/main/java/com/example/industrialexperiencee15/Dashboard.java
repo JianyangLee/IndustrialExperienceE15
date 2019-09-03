@@ -3,6 +3,7 @@ package com.example.industrialexperiencee15;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,7 +27,7 @@ import java.util.List;
 public class Dashboard extends AppCompatActivity {
     FirebaseAuth mFirebaseAuth;
     FirebaseFirestore db;
-    TextView  sugarCon, fatCon,calShow;
+    TextView  sugarCon, fatCon,calShow, remainedTextView, goalToday, takenToday;
     private BigDecimal sugarFinal;
     private BigDecimal fatFinal;
     BigDecimal calFinal;
@@ -43,9 +44,14 @@ public class Dashboard extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
+
+
         sugarCon = (TextView) findViewById(R.id.sugarAmount);
         fatCon = (TextView) findViewById(R.id.fatAmount);
         calShow = (TextView) findViewById(R.id.calShow);
+        remainedTextView = (TextView) findViewById(R.id.remained);
+        goalToday = (TextView) findViewById(R.id.goalToday);
+        takenToday = (TextView) findViewById(R.id.takenToday);
 
         DBInAsyncTask dbReadin = new DBInAsyncTask();
         dbReadin.execute();
@@ -159,8 +165,21 @@ public class Dashboard extends AppCompatActivity {
                             Calculation calculation = d.toObject(Calculation.class);
                             if (userID.equals(calculation.getUID())) {
 
-                                Integer calorieToShowInScreeen = (int)(calculation.getCalorieLimit() - (int)calInShow);
+                                Integer calorieToShowInScreeen = (int)(calculation.getCalorieLimit() - (int)calInShow);//need to wait exercise data.
+                                Integer calLimit = (int)(calculation.getCalorieLimit());
+                                Integer calTaken = (int)(calInShow);
+                                if (calorieToShowInScreeen >= 0){
+
+                                }
+                                else{
+                                    calorieToShowInScreeen = calorieToShowInScreeen * -1;
+                                    remainedTextView.setText("Over");
+                                    calShow.setTextColor(getResources().getColor(R.color.red));
+                                    remainedTextView.setTextColor(getResources().getColor(R.color.red));
+                                }
                                 calShow.setText(calorieToShowInScreeen.toString());
+                                goalToday.setText(calLimit.toString() + " Cal");
+                                takenToday.setText(calTaken.toString() + " Cal");
                             }
                         }
                     }

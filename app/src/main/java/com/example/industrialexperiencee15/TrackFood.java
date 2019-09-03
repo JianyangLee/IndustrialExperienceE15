@@ -87,13 +87,13 @@ public class TrackFood extends AppCompatActivity {
                         for (DocumentSnapshot d : list) {
                             Consumption con = d.toObject(Consumption.class);
                             if (todayDate.equals(con.getCon_date()) && userID.equals(con.getUID())) {
-                                result = result + con.getName() + ":    " +con.getType() + "\n" + "\n";
+                                result = result + con.getName() + ":  ->  " +con.getType() + "\n" + "\n";
                             }
                         }
                         trackText.setText(result);
                         }
                     else{
-
+                        trackText.setText(result);
                     }
                     }
                 }

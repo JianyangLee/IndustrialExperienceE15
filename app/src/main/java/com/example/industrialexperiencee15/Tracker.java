@@ -17,6 +17,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -103,7 +104,6 @@ public class Tracker extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.toString().equals("")){
                     initialList();
-                    Toast.makeText(Tracker.this,"Search your food and add it.",Toast.LENGTH_LONG).show();
                 }
                 else{
                     searchItem(s.toString());
@@ -120,6 +120,7 @@ public class Tracker extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                hideKeyboard();
                 Object item = parent.getItemAtPosition(position);
                 String value = item.toString();
                 foodName.setText(value);
@@ -155,7 +156,6 @@ public class Tracker extends AppCompatActivity {
         addFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if(amount.getText().toString().equals("") && foodName.getText().toString().equals("") ) {
                     Animation shake = AnimationUtils.loadAnimation(Tracker.this, R.anim.shake);
                     foodName.startAnimation(shake);
@@ -180,7 +180,6 @@ public class Tracker extends AppCompatActivity {
                     vibrateField();
                     return;
                 }
-
 
                 double foodSugar = 0;
                 double foodFat = 0;
@@ -384,9 +383,12 @@ public class Tracker extends AppCompatActivity {
                 double foodC = (foodAmount/100.0) * params[2];
                 String type;
                 if (params[3] == 0) {
-                   type  = "Recommended food";
+                   type  = "Recommended";
                 }else{
-                    type = "Not Recommended Food";
+                    type = "Not Recommended";
+                }
+                if (foodAmount > 500){
+                    type = "too much amount, decrease please";
                 }
                 Consumption consumption = new Consumption(userID, name, today, foodF,foodS, foodC, foodAmount,type);
                 dbConsumption.add(consumption).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -401,12 +403,25 @@ public class Tracker extends AppCompatActivity {
                     }
                 });
             }
+
                return "";
         }
 
         @Override
         protected void onPostExecute(String response) {
 
+            foodName.setText("");
+            amount.setText("");
+
+        }
+    }
+
+    private void hideKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            view.clearFocus();
+            InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
 
