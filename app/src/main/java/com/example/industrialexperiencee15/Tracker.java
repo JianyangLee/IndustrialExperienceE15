@@ -159,7 +159,7 @@ public class Tracker extends AppCompatActivity {
                 if(amount.getText().toString().equals("") && foodName.getText().toString().equals("") ) {
                     Animation shake = AnimationUtils.loadAnimation(Tracker.this, R.anim.shake);
                     foodName.startAnimation(shake);
-                    foodName.setError("Please enter numeric value and it cannot be empty");
+                    foodName.setError("Please choose an item");
                     amount.setError("Please enter numeric value and it cannot be empty");
                     vibrateField();
                     return;

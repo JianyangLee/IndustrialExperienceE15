@@ -61,7 +61,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="0px"
-                            android:text="Remained"
+                            android:text="KJ Left"
                             android:textColor="#36242B"
                             android:textSize="25sp"
                             android:textStyle="bold" />
