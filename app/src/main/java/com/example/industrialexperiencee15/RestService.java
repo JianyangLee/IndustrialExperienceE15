@@ -11,14 +11,13 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class RestService {
-    private static final String BASE_URL = "";
     private static String goal = "0";
 
 
 
     public static void createUser(User user){
         Log.i("create user","message");
-        final String methodPath = "";
+        final String methodPath = "https://2q13dirdtf.execute-api.ap-southeast-2.amazonaws.com/insertnewuser";
         //initialise
         URL url = null;
         HttpURLConnection conn = null;
@@ -26,7 +25,7 @@ public class RestService {
         try {
             Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").create();
             String jsonUser = gson.toJson(user);
-            url = new URL(BASE_URL + methodPath);
+            url = new URL(methodPath);
             //open the connection
             conn = (HttpURLConnection) url.openConnection();
             //set the timeout
@@ -52,15 +51,51 @@ public class RestService {
         }
     }
 
+    public static void createWorkout(Workout workout){
+        Log.i("create workout","message");
+        final String methodPath = "https://1r6vx6xa47.execute-api.ap-southeast-2.amazonaws.com/insertnewworkout";
+        //initialise
+        URL url = null;
+        HttpURLConnection conn = null;
+        //making HTTP request
+        try {
+            Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").create();
+            String jsonWorkout = gson.toJson(workout);
+            url = new URL(methodPath);
+            //open the connection
+            conn = (HttpURLConnection) url.openConnection();
+            //set the timeout
+            conn.setReadTimeout(10000);
+            conn.setConnectTimeout(15000);
+            //set the connection method to POST
+            conn.setRequestMethod("POST"); //set the output to true
+            conn.setDoOutput(true);
+            //set length of the data you want to send
+            conn.setFixedLengthStreamingMode(jsonWorkout.getBytes().length); //add HTTP headers
+            Log.i("jsonWorkout",jsonWorkout);
+            conn.setRequestProperty("Content-Type", "application/json");
+            Log.i("pass",url.toString());
+            //Send the POST out
+            PrintWriter out= new PrintWriter(conn.getOutputStream());
+            out.print(jsonWorkout);
+            out.close();
+            Log.i("error",new Integer(conn.getResponseCode()).toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            conn.disconnect();
+        }
+    }
+
     public static String getAllExercise(){
-        final String methodPath = "";
+        final String methodPath = "https://22niilhgg9.execute-api.ap-southeast-2.amazonaws.com/allExercise";
         //initialise
         URL url = null;
         HttpURLConnection conn = null;
         String textResult = "";
         //making HTTP request
         try {
-            url = new URL(BASE_URL + methodPath);
+            url = new URL(methodPath);
             //open connection
             conn = (HttpURLConnection) url.openConnection();
             //set the timeout
@@ -68,13 +103,19 @@ public class RestService {
             conn.setConnectTimeout(15000);
             //set the connection method to GET
             conn.setRequestMethod("GET");
-            conn.setRequestProperty("Content-Type", "TEXT/PLAIN");
-            conn.setRequestProperty("Accept", "TEXT/PLAIN");
+            //add http headers to set your response type to json
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            //Read the response
             Scanner inStream = new Scanner(conn.getInputStream());
             //READ the input stream and store it as string
-            textResult = inStream.next();
+            while (inStream.hasNextLine()) {
+                textResult += inStream.nextLine();
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
+
         } finally {
             conn.disconnect();
         }

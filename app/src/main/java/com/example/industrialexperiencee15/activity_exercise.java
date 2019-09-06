@@ -60,7 +60,7 @@ public class activity_exercise extends AppCompatActivity {
 
         GetAllExerciseAsync getAllExerciseAsync = new GetAllExerciseAsync();
         getAllExerciseAsync.execute();
-        initialList();
+
 
         exerciseName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -137,7 +137,6 @@ public class activity_exercise extends AppCompatActivity {
                 String userid = userID;
                 int exerciseid = 0;
                 String date = todayDate;
-                double CAL_BURNED_MULTIPLY_FACTOR = 0.0;
                 int CAL_BURNED_PER_HOUR = 0;
                 for(int i = 0; i < jsonArr.length(); i++) {
                     try {
@@ -145,8 +144,7 @@ public class activity_exercise extends AppCompatActivity {
                         String name = obj.getString("EXERCISE_NAME");
                         if (name.equals(exerciseName.getText().toString())) {
                             exerciseid = obj.getInt("EXERCISEID");
-                            CAL_BURNED_MULTIPLY_FACTOR = obj.getDouble("CAL_BURNED_MULTIPLY_FACTOR");
-                            CAL_BURNED_PER_HOUR = obj.getInt("CAL_BURNED_PER_HOUR");
+                            CAL_BURNED_PER_HOUR = obj.getInt("CALORIES_PER_HOUR");
                         } else {
 
                         }
@@ -155,12 +153,15 @@ public class activity_exercise extends AppCompatActivity {
                     }
                 }
                 int burned = 0;
-                burned = (int)(CAL_BURNED_PER_HOUR / 60.0) * Integer.parseInt(time.getText().toString()) ;
+                burned = (int)((CAL_BURNED_PER_HOUR / 60.0) * Integer.parseInt(time.getText().toString()));
                 Workout workout = new Workout(userid, exerciseid, date, Integer.parseInt(time.getText().toString()),burned);
-
-
-
-
+                if (isInteger(time.getText().toString())) {
+                    InsertWorkout insertWorkout = new InsertWorkout();
+                    insertWorkout.execute(workout);
+                }
+                else{
+                    time.setError("Time should be a numeric value.");
+                }
 
             }
         });
@@ -202,13 +203,27 @@ public class activity_exercise extends AppCompatActivity {
 
             }
 
-
             return "";
         }
 
         @Override
         protected void onPostExecute(String response) {
+            initialList();
+        }
+    }
 
+    private class InsertWorkout extends AsyncTask<Workout, Void, String> {
+        @Override
+        protected String doInBackground(Workout... params) {
+            RestService.createWorkout(params[0]);
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String response) {
+            initialList();
+            exerciseName.setText("");
+            time.setText("");
         }
     }
 
@@ -236,5 +251,17 @@ public class activity_exercise extends AppCompatActivity {
             InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
+    }
+
+    public static boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch(NumberFormatException e) {
+            return false;
+        } catch(NullPointerException e) {
+            return false;
+        }
+        // only got here if we didn't return false
+        return true;
     }
 }
