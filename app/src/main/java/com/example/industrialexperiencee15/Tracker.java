@@ -201,7 +201,7 @@ public class Tracker extends AppCompatActivity {
                         Log.e("test", "get test");
                     }
                 }
-                if (foodCal > 550){
+                if (foodCal > 500){
                     foodType = 1; //not recommended.
                 }
                 else{
@@ -427,8 +427,9 @@ public class Tracker extends AppCompatActivity {
 
 
     private void searchItem(String textSearch) {
+        initialList();
         for (String food:foodList){
-            if(!food.contains(textSearch)){
+            if(!food.toLowerCase().contains(textSearch.toLowerCase())){
                 listItems.remove(food);
             }
         }
