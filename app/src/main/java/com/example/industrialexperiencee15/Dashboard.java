@@ -18,6 +18,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,9 +30,10 @@ import java.util.List;
 public class Dashboard extends AppCompatActivity {
     FirebaseAuth mFirebaseAuth;
     FirebaseFirestore db;
-    TextView  sugarCon, fatCon,calShow, remainedTextView, goalToday, takenToday;
+    TextView  sugarCon, fatCon,calShow, remainedTextView, goalToday, takenToday, burnedToday;
     private BigDecimal sugarFinal;
     private BigDecimal fatFinal;
+    private Integer burnedFinal;
     BigDecimal calFinal;
     String userID;
     double calInShow;
@@ -45,13 +49,14 @@ public class Dashboard extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
 
-
+        burnedFinal = 0;
         sugarCon = (TextView) findViewById(R.id.sugarAmount);
         fatCon = (TextView) findViewById(R.id.fatAmount);
         calShow = (TextView) findViewById(R.id.calShow);
         remainedTextView = (TextView) findViewById(R.id.remained);
         goalToday = (TextView) findViewById(R.id.goalToday);
         takenToday = (TextView) findViewById(R.id.takenToday);
+        burnedToday = (TextView) findViewById(R.id.burnedToday);
 
         DBInAsyncTask dbReadin = new DBInAsyncTask();
         dbReadin.execute();
@@ -163,7 +168,33 @@ public class Dashboard extends AppCompatActivity {
     private class ShowAsyncTask extends AsyncTask<Double, Void, String> {
         @Override
         protected String doInBackground(Double... params) {
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat currentDate = new SimpleDateFormat("dd-MM-yyyy");
+            String todayDate = currentDate.format(c.getTime());
             calInShow = params[0];
+
+            String returnValue = RestService.findByUsernameAndPassword(userID,todayDate );
+            try {
+                JSONObject jsnobject = new JSONObject(returnValue);
+                JSONArray jsonArr = jsnobject.getJSONArray("data");
+                for(int i = 0; i < jsonArr.length(); i++)
+                {
+                    try {
+                        JSONObject obj = jsonArr.getJSONObject(i);
+                        int energy = obj.getInt("ENERGY_BURNED");
+                        burnedFinal = burnedFinal + energy;
+                    }
+                    catch (Exception e) {
+                        Log.e("test","get test");
+                    }
+                }
+
+            }
+            catch(Exception e){
+
+            }
+
+
             db.collection("calculation").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -174,7 +205,7 @@ public class Dashboard extends AppCompatActivity {
                             Calculation calculation = d.toObject(Calculation.class);
                             if (userID.equals(calculation.getUID())) {
 
-                                Integer calorieToShowInScreeen = (int)(calculation.getCalorieLimit() - (int)calInShow);//need to wait exercise data.
+                                Integer calorieToShowInScreeen = (int)(calculation.getCalorieLimit() - (int)calInShow + burnedFinal);
                                 Integer calLimit = (int)(calculation.getCalorieLimit());
                                 Integer calTaken = (int)(calInShow);
                                 if (calorieToShowInScreeen >= 0){
@@ -189,6 +220,7 @@ public class Dashboard extends AppCompatActivity {
                                 calShow.setText(calorieToShowInScreeen.toString());
                                 goalToday.setText(calLimit.toString() + " Cal");
                                 takenToday.setText(calTaken.toString() + " Cal");
+                                burnedToday.setText(burnedFinal.toString() + " Cal");
                             }
                         }
                     }

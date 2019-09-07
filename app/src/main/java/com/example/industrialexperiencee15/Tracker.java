@@ -69,6 +69,7 @@ public class Tracker extends AppCompatActivity {
     private double currentCal;
     FirebaseAuth mFirebaseAuth;
     String userID;
+    Integer burnedFinal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +79,7 @@ public class Tracker extends AppCompatActivity {
         currentSugar = 0;
         currentFat = 0;
         currentCal = 0;
+        burnedFinal = 0;
 
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         db = FirebaseFirestore.getInstance();
@@ -227,7 +229,33 @@ public class Tracker extends AppCompatActivity {
             addedSugar = params[0];
             addedFat = params[1];
             addedCal = params[2];
-               db.collection("consumption").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
+            Calendar cd = Calendar.getInstance();
+            SimpleDateFormat cdString = new SimpleDateFormat("dd-MM-yyyy");
+            String todayDate = cdString.format(cd.getTime());
+
+            String returnValue = RestService.findByUsernameAndPassword(userID,todayDate );
+            try {
+                JSONObject jsnobject = new JSONObject(returnValue);
+                JSONArray jsonArr = jsnobject.getJSONArray("data");
+                for(int i = 0; i < jsonArr.length(); i++)
+                {
+                    try {
+                        JSONObject obj = jsonArr.getJSONObject(i);
+                        int energy = obj.getInt("ENERGY_BURNED");
+                        burnedFinal = burnedFinal + energy;
+                    }
+                    catch (Exception e) {
+                        Log.e("test","get test");
+                    }
+                }
+
+            }
+            catch(Exception e){
+
+            }
+
+            db.collection("consumption").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         Calendar c = Calendar.getInstance();
@@ -266,7 +294,7 @@ public class Tracker extends AppCompatActivity {
 
                                             if (sugar + addedSugar> userSugarLimitForTheDay){
                                                 if (fat  + addedFat> userFatLimitForTheDay){
-                                                    if (cal + addedCal> userCalorieLimitForTheDay){
+                                                    if (cal + addedCal - burnedFinal> userCalorieLimitForTheDay){
                                                         RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
                                                         anim.setInterpolator(new LinearInterpolator());
                                                         anim.setRepeatCount(Animation.INFINITE);
@@ -293,7 +321,7 @@ public class Tracker extends AppCompatActivity {
                                                         addFood.setVisibility(View.GONE);
                                                     }
                                                 }else{
-                                                    if (cal + addedCal > userCalorieLimitForTheDay){
+                                                    if (cal + addedCal - burnedFinal> userCalorieLimitForTheDay){
                                                         RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
                                                         anim.setInterpolator(new LinearInterpolator());
                                                         anim.setRepeatCount(Animation.INFINITE);
@@ -322,7 +350,7 @@ public class Tracker extends AppCompatActivity {
                                                 }
                                             }
                                             if (fat + addedFat > userFatLimitForTheDay){
-                                                if (cal + addedCal > userCalorieLimitForTheDay){
+                                                if (cal + addedCal - burnedFinal > userCalorieLimitForTheDay){
                                                     RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
                                                     anim.setInterpolator(new LinearInterpolator());
                                                     anim.setRepeatCount(Animation.INFINITE);
@@ -349,7 +377,7 @@ public class Tracker extends AppCompatActivity {
                                                     addFood.setVisibility(View.GONE);
                                                 }
                                             }
-                                            if (cal + addedCal> userCalorieLimitForTheDay){
+                                            if (cal + addedCal - burnedFinal> userCalorieLimitForTheDay){
                                                 RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
                                                 anim.setInterpolator(new LinearInterpolator());
                                                 anim.setRepeatCount(Animation.INFINITE);
@@ -388,7 +416,7 @@ public class Tracker extends AppCompatActivity {
                     type = "Not Recommended";
                 }
                 if (foodAmount > 500){
-                    type = "too much amount, decrease please";
+                    type = "too much amount, please decrease";
                 }
                 Consumption consumption = new Consumption(userID, name, today, foodF,foodS, foodC, foodAmount,type);
                 dbConsumption.add(consumption).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

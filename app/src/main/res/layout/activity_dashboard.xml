@@ -149,11 +149,12 @@
                             android:layout_weight="1"
                             />
                         <TextView
+                            android:id="@+id/burnedToday"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:textColor="#376B72"
-                            android:text="Cal"
+                            android:text="0 Cal"
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:textSize="15sp"/>

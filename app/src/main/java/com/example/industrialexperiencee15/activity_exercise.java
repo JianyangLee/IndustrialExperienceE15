@@ -216,11 +216,12 @@ public class activity_exercise extends AppCompatActivity {
         @Override
         protected String doInBackground(Workout... params) {
             RestService.createWorkout(params[0]);
-            return "";
+            return "Added Successfully!";
         }
 
         @Override
         protected void onPostExecute(String response) {
+            Toast.makeText(activity_exercise.this,response,Toast.LENGTH_LONG).show();
             initialList();
             exerciseName.setText("");
             time.setText("");
