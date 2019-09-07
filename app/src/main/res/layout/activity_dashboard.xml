@@ -25,7 +25,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="230dp"
+                    android:layout_height="190dp"
                     android:alpha="0.8"
                     android:background="@drawable/homepage"
                     android:gravity="center"
@@ -61,7 +61,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="0px"
-                            android:text="KJ Left"
+                            android:text="Cal Left"
                             android:textColor="#36242B"
                             android:textSize="25sp"
                             android:textStyle="bold" />
@@ -100,7 +100,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:textColor="#376B72"
-                            android:text="Cal"
+                            android:text="0 Cal"
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:textSize="15sp"/>
@@ -127,7 +127,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:textColor="#376B72"
-                            android:text="Cal"
+                            android:text="0 Cal"
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:textSize="15sp"/>
@@ -243,7 +243,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
+                        android:layout_height="135dp"
                         android:layout_marginBottom="10dp"
                         android:orientation="horizontal">
                         <!--height should be 150dp later-->
@@ -329,7 +329,7 @@
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
+                        android:layout_height="135dp"
                         android:layout_marginBottom="10dp"
                         android:orientation="horizontal">
 
@@ -411,6 +411,91 @@
                             </RelativeLayout>
                         </android.support.v7.widget.CardView>
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="135dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            >
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/tile5"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/c" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/tile5"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:text="Get your report"
+                                    android:textSize="16sp" />
+
+                                <Button
+                                    android:id="@+id/btnTile5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/transparent" />
+
+
+                            </RelativeLayout>
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:foregroundGravity="center"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/tile6"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/d" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/tile6"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:text="Get your diet"
+                                    android:textSize="16sp" />
+
+                                <Button
+                                    android:id="@+id/btnTile6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/transparent" />
+                            </RelativeLayout>
+                        </android.support.v7.widget.CardView>
+                    </LinearLayout>
+
                 </LinearLayout>
                 <Button
                     android:id="@+id/logout"
