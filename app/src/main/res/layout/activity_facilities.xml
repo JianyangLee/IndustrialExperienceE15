@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <android.support.v7.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/search_area_of_interest"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:hint="Enter your Intereseted Sports here .." />
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/startNavigation"
+        android:layout_below="@id/search_area_of_interest"
+        tools:context=".MapsActivity" />
+
+    <Button
+        android:id="@+id/startNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="2dp"
+        android:text="Lets Head there"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
+
+

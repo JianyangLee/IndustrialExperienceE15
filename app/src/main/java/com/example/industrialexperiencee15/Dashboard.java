@@ -67,6 +67,7 @@ public class Dashboard extends AppCompatActivity {
         final Button TrackFood = (Button) findViewById(R.id.btnTile2);
         final Button logout = (Button) findViewById(R.id.logout);
         final Button exercise = (Button) findViewById(R.id.btnTile3);
+        final Button findFacilitiesNearby = (Button) findViewById(R.id.btnTile4);
 
 
 
@@ -101,6 +102,15 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent exercise = new Intent(Dashboard.this, activity_exercise.class);
+                Dashboard.this.startActivity(exercise);
+            }
+        });
+
+
+        findFacilitiesNearby.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent exercise = new Intent(Dashboard.this, Facilities.class);
                 Dashboard.this.startActivity(exercise);
             }
         });
