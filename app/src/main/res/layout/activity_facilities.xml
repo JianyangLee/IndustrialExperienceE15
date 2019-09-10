@@ -5,6 +5,7 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp">
 
+<!--text search view to enter the sports that the user is interested in  -->
     <android.support.v7.widget.AppCompatAutoCompleteTextView
         android:id="@+id/search_area_of_interest"
         android:layout_width="match_parent"
@@ -12,6 +13,8 @@
 
         android:hint="Enter your Intereseted Sports here .." />
 
+
+<!-- -->
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:map="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
