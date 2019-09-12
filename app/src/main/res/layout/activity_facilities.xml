@@ -5,15 +5,25 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp">
 
-<!--text search view to enter the sports that the user is interested in  -->
+<!--text search view to enter the sports that the user is interested in
     <android.support.v7.widget.AppCompatAutoCompleteTextView
         android:id="@+id/search_area_of_interest"
         android:layout_width="match_parent"
         android:layout_height="50dp"
 
-        android:hint="Enter your Intereseted Sports here .." />
+        android:hint="Enter your Intereseted Sports here .." /> -->
 
-
+    <EditText
+        android:id="@+id/search_area_of_interest"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:backgroundTint="@android:color/white"
+        android:hint="Enter your Intereseted Sports here .."
+        android:textColor="#121413"
+        android:textColorHint="#737774"
+        android:layout_weight="0.5"/>
 <!-- -->
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:map="http://schemas.android.com/apk/res-auto"
