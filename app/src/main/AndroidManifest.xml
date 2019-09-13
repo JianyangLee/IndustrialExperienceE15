@@ -39,9 +39,9 @@
             android:label="@string/title_activity_facilities" />
         <activity
             android:name=".activity_exercise"
-            android:windowSoftInputMode="stateVisible|adjustPan" />
-            android:windowSoftInputMode="stateVisible|adjustPan"></activity>
-            android:windowSoftInputMode="stateVisible|adjustPan" />
+            android:windowSoftInputMode="stateVisible|adjustPan" >
+       </activity>
+
         <activity android:name=".TrackFood" />
         <activity android:name=".OnBoard_CalculatedGoal_S5" />
         <activity android:name=".OnBoard_UserInfo_S4" />
