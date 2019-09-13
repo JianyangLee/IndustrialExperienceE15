@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -36,7 +39,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class DataVisual extends AppCompatActivity {
-    private static TextView dateView;
+    private static TextView dateView, underText;
     private static Button getButton;
     String userID;
     FirebaseFirestore db;
@@ -58,6 +61,7 @@ public class DataVisual extends AppCompatActivity {
 
         dateView = (TextView) findViewById(R.id.DateView);
         getButton = (Button) findViewById(R.id.btnGet);
+        underText = (TextView) findViewById(R.id.underpi);
 
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
@@ -89,10 +93,12 @@ public class DataVisual extends AppCompatActivity {
             public void onClick(View view) {
                 if (dateView.getText().toString().equals("")){
                     dateView.setError("Please pick a date befor clicking button");
+                    vibrate();
                 }
                 else {
                     GetAsyncTask getAsyncTask = new GetAsyncTask();
                     getAsyncTask.execute(dateView.getText().toString());
+                    underText.setText("This is your daily consumption result with percentage value.");
                 }
             }
         });
@@ -201,6 +207,16 @@ public class DataVisual extends AppCompatActivity {
         @Override
         protected void onPostExecute(String response) {
             
+        }
+    }
+
+    private void vibrate(){
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            v.vibrate(VibrationEffect.createOneShot(1000, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+            //deprecated in API 26
+            v.vibrate(500);
         }
     }
 

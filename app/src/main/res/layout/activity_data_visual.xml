@@ -21,7 +21,7 @@
         android:id="@+id/btnGet"
         android:textColor="#FFFFFF"
         android:background="@drawable/transparent_bg_bordered_button"
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text=" Get daily calorie result "/>
@@ -41,9 +41,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
+        android:id="@+id/underpi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is Your daily consumption result."
         android:layout_gravity="center"
         android:textSize="20dp"
         android:textStyle="italic"/>

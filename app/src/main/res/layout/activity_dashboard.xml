@@ -5,15 +5,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Dashboard">
-    <!--<Button-->
-        <!--android:id="@+id/logout"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="out"-->
-        <!--android:textColor="#FFFFFF"-->
-        <!--android:textSize="20sp"-->
-        <!--/>-->
-
     <!--<ScrollView-->
         <!--android:layout_width="fill_parent"-->
         <!--android:layout_height="fill_parent"-->
@@ -184,7 +175,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10px"
                         android:layout_marginRight="10px"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="0dp"
                         android:orientation="horizontal">
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -247,8 +238,9 @@
                     android:layout_height="wrap_content"
                     android:weightSum="3"
                     android:layout_marginLeft="10px"
-                    android:layout_marginRight="10px"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20px"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
                     android:orientation="vertical">
 
 
@@ -274,8 +266,8 @@
 
                                 <ImageView
                                     android:id="@+id/tile1"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:layout_centerInParent="true"
                                     android:layout_alignParentTop="true"
                                     android:layout_marginTop="25dp"
@@ -286,7 +278,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_below="@+id/tile1"
                                     android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="10dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginBottom="10dp"
                                     android:text="Add Food"
                                     android:textSize="16sp" />
@@ -316,8 +308,8 @@
 
                                 <ImageView
                                     android:id="@+id/tile2"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:layout_centerInParent="true"
                                     android:layout_alignParentTop="true"
                                     android:layout_marginTop="25dp"
@@ -328,7 +320,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_below="@+id/tile2"
                                     android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="10dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginBottom="10dp"
                                     android:text="Track your food"
                                     android:textSize="16sp" />
@@ -365,8 +357,8 @@
 
                                 <ImageView
                                     android:id="@+id/tile3"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:layout_centerInParent="true"
                                     android:layout_alignParentTop="true"
                                     android:layout_marginTop="25dp"
@@ -377,7 +369,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_below="@+id/tile3"
                                     android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="10dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginBottom="10dp"
                                     android:text="Exercising"
                                     android:textSize="16sp" />
@@ -407,8 +399,8 @@
 
                                 <ImageView
                                     android:id="@+id/tile4"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:layout_centerInParent="true"
                                     android:layout_alignParentTop="true"
                                     android:layout_marginTop="25dp"
@@ -419,7 +411,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_below="@+id/tile4"
                                     android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="10dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginBottom="10dp"
                                     android:text="Get Sports Area"
                                     android:textSize="16sp" />
@@ -454,8 +446,8 @@
 
                                 <ImageView
                                     android:id="@+id/tile5"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:layout_centerInParent="true"
                                     android:layout_alignParentTop="true"
                                     android:layout_marginTop="25dp"
@@ -466,7 +458,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_below="@+id/tile5"
                                     android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="10dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginBottom="10dp"
                                     android:text="Get your report"
                                     android:textSize="16sp" />
@@ -496,8 +488,8 @@
 
                                 <ImageView
                                     android:id="@+id/tile6"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:layout_centerInParent="true"
                                     android:layout_alignParentTop="true"
                                     android:layout_marginTop="25dp"
@@ -508,9 +500,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_below="@+id/tile6"
                                     android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="10dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginBottom="10dp"
-                                    android:text="Get your diet"
+                                    android:text="Coming soon..."
                                     android:textSize="16sp" />
 
                                 <Button

@@ -60,14 +60,8 @@ public class TrackFood extends AppCompatActivity {
             }
         });
 
-
-
-
-
         ReadingAsyncTask readingasync = new ReadingAsyncTask();
         readingasync.execute();
-
-
     }
 
     private class ReadingAsyncTask extends AsyncTask<Void, Void, String> {
