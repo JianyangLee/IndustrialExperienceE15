@@ -15,34 +15,41 @@
 
     <EditText
         android:id="@+id/search_area_of_interest"
-        android:layout_width="fill_parent"
+        android:layout_width="292dp"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
+        android:layout_marginTop="200dp"
+        android:layout_weight="0.5"
         android:backgroundTint="@android:color/white"
+        android:ems="10"
         android:hint="Enter your Intereseted Sports here .."
+        android:inputType="textPersonName"
         android:textColor="#121413"
-        android:textColorHint="#737774"
-        android:layout_weight="0.5"/>
+        android:textColorHint="#737774" />
 <!-- -->
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/startNavigation"
-        android:layout_below="@id/search_area_of_interest"
-        tools:context=".MapsActivity" />
-
     <Button
         android:id="@+id/startNavigation"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+
+        android:layout_marginTop="200dp"
         android:layout_marginBottom="2dp"
-        android:text="Lets Head there"
-        android:layout_alignParentBottom="true"/>
+        android:text="Search"
+        android:textAllCaps="true"
+        android:textColor="#685C5C"
+        android:background="@drawable/logandreg"
+        android:textSize="22sp"
+        android:layout_toRightOf="@id/search_area_of_interest"
+        android:layout_alignParentBottom="false"/>
+
+    <ListView
+        android:id="@+id/exerciseList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="15dp"
+        android:layout_below="@id/search_area_of_interest"
+        >
+
+    </ListView>
 
 </RelativeLayout>
 
