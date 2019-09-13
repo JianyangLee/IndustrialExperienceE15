@@ -20,6 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".DataVisual" />
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -38,6 +39,7 @@
             android:label="@string/title_activity_facilities"></activity>
         <activity
             android:name=".activity_exercise"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
             android:windowSoftInputMode="stateVisible|adjustPan"></activity>
         <activity android:name=".TrackFood" />
         <activity android:name=".OnBoard_CalculatedGoal_S5" />

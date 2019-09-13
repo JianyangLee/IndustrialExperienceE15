@@ -234,7 +234,7 @@ public class Tracker extends AppCompatActivity {
             SimpleDateFormat cdString = new SimpleDateFormat("dd-MM-yyyy");
             String todayDate = cdString.format(cd.getTime());
 
-            String returnValue = RestService.findByUsernameAndPassword(userID,todayDate );
+            String returnValue = RestService.findByUseridAndDate(userID,todayDate );
             try {
                 JSONObject jsnobject = new JSONObject(returnValue);
                 JSONArray jsonArr = jsnobject.getJSONArray("data");

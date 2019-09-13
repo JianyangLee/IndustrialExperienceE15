@@ -67,6 +67,8 @@ public class Dashboard extends AppCompatActivity {
         final Button TrackFood = (Button) findViewById(R.id.btnTile2);
         final Button logout = (Button) findViewById(R.id.logout);
         final Button exercise = (Button) findViewById(R.id.btnTile3);
+        final Button report = (Button) findViewById(R.id.btnTile5);
+        final Button dietRec = (Button) findViewById(R.id.btnTile6);
         final Button findFacilitiesNearby = (Button) findViewById(R.id.btnTile4);
 
 
@@ -103,6 +105,14 @@ public class Dashboard extends AppCompatActivity {
             public void onClick(View v) {
                 Intent exercise = new Intent(Dashboard.this, activity_exercise.class);
                 Dashboard.this.startActivity(exercise);
+            }
+        });
+
+        report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent dataVisual = new Intent(Dashboard.this, DataVisual.class);
+                Dashboard.this.startActivity(dataVisual);
             }
         });
 
@@ -183,7 +193,7 @@ public class Dashboard extends AppCompatActivity {
             String todayDate = currentDate.format(c.getTime());
             calInShow = params[0];
 
-            String returnValue = RestService.findByUsernameAndPassword(userID,todayDate );
+            String returnValue = RestService.findByUseridAndDate(userID,todayDate );
             try {
                 JSONObject jsnobject = new JSONObject(returnValue);
                 JSONArray jsonArr = jsnobject.getJSONArray("data");
@@ -231,6 +241,12 @@ public class Dashboard extends AppCompatActivity {
                                 goalToday.setText(calLimit.toString() + " Cal");
                                 takenToday.setText(calTaken.toString() + " Cal");
                                 burnedToday.setText(burnedFinal.toString() + " Cal");
+
+
+                                SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userLeft", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor userSharedPreferenceEditor = userSharedPreferenceDetails.edit();
+                                userSharedPreferenceEditor.putInt("Left",(int)(calculation.getCalorieLimit() - (int)calInShow + burnedFinal));
+                                userSharedPreferenceEditor.apply();
                             }
                         }
                     }

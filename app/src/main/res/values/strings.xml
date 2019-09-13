@@ -40,6 +40,10 @@
 
     As per your goals , the recommended intake value are </string>
     <string name="lets_Start">Lets Start</string>
+    <string name="title_activity_bottom">Bottom</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
     <string name="title_activity_facilities">Map</string>
 
 </resources>

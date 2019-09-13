@@ -3,18 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Dashboard">
+    <!--<Button-->
+        <!--android:id="@+id/logout"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="out"-->
+        <!--android:textColor="#FFFFFF"-->
+        <!--android:textSize="20sp"-->
+        <!--/>-->
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        >
+    <!--<ScrollView-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--&gt;-->
 
         <LinearLayout
+            android:id="@+id/whole"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_above="@+id/bottom"
             android:orientation="vertical">
 
             <LinearLayout
@@ -25,7 +36,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="190dp"
+                    android:layout_height="170dp"
                     android:alpha="0.8"
                     android:background="@drawable/homepage"
                     android:gravity="center"
@@ -33,11 +44,10 @@
 
 
                     <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:layout_centerVertical="true"
-                            android:background="@drawable/transparent_bg_border_center"/>
+                        android:layout_width="127dp"
+                        android:layout_height="127dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/transparent_bg_border_center" />
                     <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -235,6 +245,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:weightSum="3"
                     android:layout_marginLeft="10px"
                     android:layout_marginRight="10px"
                     android:layout_marginTop="10dp"
@@ -243,7 +254,8 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="135dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
                         android:layout_marginBottom="10dp"
                         android:orientation="horizontal">
                         <!--height should be 150dp later-->
@@ -265,6 +277,8 @@
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     android:layout_centerInParent="true"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_marginTop="25dp"
                                     android:src="@drawable/a" />
 
                                 <TextView
@@ -305,6 +319,8 @@
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     android:layout_centerInParent="true"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_marginTop="25dp"
                                     android:src="@drawable/b" />
 
                                 <TextView
@@ -329,8 +345,9 @@
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="135dp"
+                        android:layout_height="0dp"
                         android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
                         android:orientation="horizontal">
 
                         <android.support.v7.widget.CardView
@@ -351,6 +368,8 @@
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     android:layout_centerInParent="true"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_marginTop="25dp"
                                     android:src="@drawable/c" />
 
                                 <TextView
@@ -391,6 +410,8 @@
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     android:layout_centerInParent="true"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_marginTop="25dp"
                                     android:src="@drawable/d" />
 
                                 <TextView
@@ -413,8 +434,9 @@
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="135dp"
+                        android:layout_height="0dp"
                         android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
                         android:orientation="horizontal">
 
                         <android.support.v7.widget.CardView
@@ -435,7 +457,9 @@
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     android:layout_centerInParent="true"
-                                    android:src="@drawable/c" />
+                                    android:layout_alignParentTop="true"
+                                    android:layout_marginTop="25dp"
+                                    android:src="@drawable/e" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -475,7 +499,9 @@
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     android:layout_centerInParent="true"
-                                    android:src="@drawable/d" />
+                                    android:layout_alignParentTop="true"
+                                    android:layout_marginTop="25dp"
+                                    android:src="@drawable/f" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -497,115 +523,55 @@
                     </LinearLayout>
 
                 </LinearLayout>
-                <Button
-                    android:id="@+id/logout"
-                    android:layout_width="300dp"
-                    android:layout_height="45dp"
-                    android:text="LOG OUT"
-                    android:background="@drawable/transparent_bg_bordered_button"
-                    android:textColor="#FFFFFF"
-                    android:layout_gravity="center_vertical|center_horizontal"
-                    android:textSize="20sp"
-                    />
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+    <!--</ScrollView>-->
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:weightSum="2"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/dashicon"
+                android:layout_marginLeft="15dp"
+                android:layout_centerVertical="true"/>
+            <Button
+                android:id="@+id/dashbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="#00FFFFFF"
+                android:text="Dashboard"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/logouticon"
+                android:layout_marginLeft="30dp"
+                android:layout_centerVertical="true"/>
+            <Button
+                android:id="@+id/logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="#00FFFFFF"
+                android:text="Log out" />
+    </RelativeLayout>
+    </LinearLayout>
 </RelativeLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<LinearLayout-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="150dp"-->
-<!--android:layout_marginBottom="10dp"-->
-<!--android:orientation="horizontal">-->
-
-<!--<android.support.v7.widget.CardView-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_gravity="center"-->
-    <!--android:layout_marginRight="5dp"-->
-    <!--android:layout_weight="1"-->
-    <!--android:orientation="vertical"-->
-    <!--&gt;-->
-
-    <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
-
-        <!--<ImageView-->
-            <!--android:id="@+id/tile5"-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="50dp"-->
-            <!--android:layout_centerInParent="true"-->
-            <!--android:src="@drawable/e" />-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@+id/tile5"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:layout_marginBottom="10dp"-->
-            <!--android:text="Insert Food"-->
-            <!--android:textSize="16sp" />-->
-
-        <!--<Button-->
-            <!--android:id="@+id/btnTile5"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:background="@android:color/transparent" />-->
-    <!--</RelativeLayout>-->
-<!--</android.support.v7.widget.CardView>-->
-
-<!--<android.support.v7.widget.CardView-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_gravity="center"-->
-    <!--android:layout_marginLeft="5dp"-->
-    <!--android:layout_weight="1"-->
-    <!--android:foregroundGravity="center"-->
-    <!--android:orientation="vertical">-->
-
-    <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
-
-        <!--<ImageView-->
-            <!--android:id="@+id/tile6"-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="50dp"-->
-            <!--android:layout_centerInParent="true"-->
-            <!--android:src="@drawable/f" />-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@+id/tile6"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:layout_marginBottom="10dp"-->
-            <!--android:text="Get your report"-->
-            <!--android:textSize="16sp" />-->
-
-        <!--<Button-->
-            <!--android:id="@+id/btnTile6"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:background="@android:color/transparent" />-->
-    <!--</RelativeLayout>-->
-<!--</android.support.v7.widget.CardView>-->
-<!--</LinearLayout>-->
