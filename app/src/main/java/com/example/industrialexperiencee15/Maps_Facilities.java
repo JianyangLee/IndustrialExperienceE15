@@ -19,6 +19,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -46,20 +47,28 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //Instantiate the Maps in to the Content View
         facilitiesList = new ArrayList<>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps__facilities);
 
+        // get the sport value from previous values
         SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
         sportsPlayedByuser = userSharedPreferenceDetails.getString("sportsPlayedByUser", "");
 
+        // fetch from the AWS Server related to the users area of iterest
         Maps_Facilities.GetAllFacilitiesLocationAsync AllFacilitiesLocationAsync = new Maps_Facilities.GetAllFacilitiesLocationAsync();
         AllFacilitiesLocationAsync.execute();
 
-
+        // Map ASync Method
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.Facilities_Map);
         mapFragment.getMapAsync(this);
 
+        //Plot the Locations Fetched from Server
+        plotUsersAreasOfInterestInMaps();
+
+        //Get the user Current Location and Plot the same
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         if (ActivityCompat.checkSelfPermission(Maps_Facilities.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(Maps_Facilities.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
@@ -159,6 +168,7 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
 
     }
 
+    // this Method take care of placing a  marker in the maps screen once the user long click on any area of the maps
     @Override
     public void onMapLongClick(LatLng point) {
 
@@ -172,6 +182,7 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
 
     }
 
+    // this Method handles the Permission Request Result from the user in order to plot the current user location
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResult) {
         switch (requestCode) {
@@ -185,7 +196,17 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
         }
     }
 
+    //Method to PLot the places in the graph that is of interest to the user
+    private void plotUsersAreasOfInterestInMaps(){
 
+        for (SportsActivitesPOJO eachFacilityLocation : facilitiesList) {
+            mMap.addMarker(new MarkerOptions().position(eachFacilityLocation.getLatLangOfFacility()).title(eachFacilityLocation.getNameOfFacility()).snippet(eachFacilityLocation.getDescription()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+
+        }
+
+    }
+
+    // this get all the facilites that the user is intersted in from the Cloud Server
     private class GetAllFacilitiesLocationAsync extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
