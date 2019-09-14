@@ -162,7 +162,7 @@ public class Facilities extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             try {
-                String returnValue = RestService.getAllExercise();
+                String returnValue = RestService.getAllFaciliites();
                 JSONObject jsnobject = new JSONObject(returnValue);
                 jsonArr = jsnobject.getJSONArray("data");
                 facilitiesList = new String[jsonArr.length()];
@@ -170,7 +170,7 @@ public class Facilities extends AppCompatActivity {
                 for (int i = 0; i < jsonArr.length(); i++) {
                     try {
                         JSONObject obj = jsonArr.getJSONObject(i);
-                        String name = obj.getString("EXERCISE_NAME");
+                        String name = obj.getString("SPORTS_PLAYED");
                         facilitiesList[i] = name;
                     } catch (Exception e) {
                         Log.e("test", "get test");
