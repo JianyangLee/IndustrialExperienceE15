@@ -3,6 +3,7 @@ package com.example.industrialexperiencee15;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -105,6 +106,16 @@ public class Facilities extends AppCompatActivity {
                     facilitiesName.setError("Please choose an item");
                     vibrateField();
                     return;
+                }else{
+                    //Place the information in the shared Preferences
+                    SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor userSharedPreferenceEditor = userSharedPreferenceDetails.edit();
+                    userSharedPreferenceEditor.putString("sportsPlayedByUser", facilitiesName.getText().toString());
+                    userSharedPreferenceEditor.apply();
+
+                    // Moving to the Next Intent
+                    Intent buttonToMaps = new Intent(Facilities.this, Maps_Facilities.class);
+                    Facilities.this.startActivity(buttonToMaps);
                 }
             }
         });

@@ -1,11 +1,15 @@
 package com.example.industrialexperiencee15;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +26,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
     private Location currentLocation;
@@ -29,11 +39,24 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
     private static final int LOCATION_REQUEST_CODE = 101;
     private GoogleMap mMap;
     TextView tvLocInfo;
+    private String sportsPlayedByuser;
+    private List<SportsActivitesPOJO> facilitiesList;
+    String[] JsonListOfFacilites;
+    JSONArray jsonArr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        facilitiesList = new ArrayList<>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps__facilities);
+
+        SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+        sportsPlayedByuser = userSharedPreferenceDetails.getString("sportsPlayedByUser", "");
+
+        Maps_Facilities.GetAllFacilitiesLocationAsync AllFacilitiesLocationAsync = new Maps_Facilities.GetAllFacilitiesLocationAsync();
+        AllFacilitiesLocationAsync.execute();
+
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.Facilities_Map);
         mapFragment.getMapAsync(this);
 
@@ -101,65 +124,106 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
         }
         mMap.setMyLocationEnabled(true);
 
-            mMap.getUiSettings().setMyLocationButtonEnabled(true);
-            //googleMap.setTrafficEnabled(true);
+        mMap.getUiSettings().setMyLocationButtonEnabled(true);
+        //googleMap.setTrafficEnabled(true);
 
-            //googleMap.setOnMapLongClickListener();
+        //googleMap.setOnMapLongClickListener();
 
-            //googleMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
+        //googleMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
 
 
-
-           // LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+        // LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
 
         LatLng latLng = new LatLng(37.8136, 144.9631);
-            //MarkerOptions are used to create a new Marker.You can specify location, title etc with MarkerOptions
-            MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("You are Here");
-            googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-            //Adding the created the marker on the map
-            googleMap.addMarker(markerOptions);
+        //MarkerOptions are used to create a new Marker.You can specify location, title etc with MarkerOptions
+        MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("You are Here");
+        googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+        //Adding the created the marker on the map
+        googleMap.addMarker(markerOptions);
 
-            // For zooming automatically to the location of the marker
-            CameraPosition cameraPosition = new CameraPosition.Builder().target(latLng).zoom(16).build();
-            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-
-
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
-
-            //googleMap.setMyLocationEnabled(true);
-            //Location currentLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-
-            googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-            //googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-            //googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-            //googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+        // For zooming automatically to the location of the marker
+        CameraPosition cameraPosition = new CameraPosition.Builder().target(latLng).zoom(16).build();
+        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
 
-        }
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
 
-        @Override
-        public void onMapLongClick(LatLng point) {
+        //googleMap.setMyLocationEnabled(true);
+        //Location currentLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
 
-            tvLocInfo.setText("New marker added@" + point.toString());
+        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        //googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        //googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        //googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
 
-            Marker newMarker = mMap.addMarker(new MarkerOptions()
-                    .position(point)
-                    .snippet(point.toString()));
 
-            newMarker.setTitle(newMarker.getId());
+    }
 
-        }
+    @Override
+    public void onMapLongClick(LatLng point) {
 
-        @Override
-        public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResult) {
-            switch (requestCode) {
-                case LOCATION_REQUEST_CODE:
-                    if (grantResult.length > 0 && grantResult[0] == PackageManager.PERMISSION_GRANTED) {
-                        fetchLastLocation();
-                    } else {
-                        Toast.makeText(Maps_Facilities.this, "Location permission missing", Toast.LENGTH_SHORT).show();
-                    }
-                    break;
-            }
+        tvLocInfo.setText("New marker added@" + point.toString());
+
+        Marker newMarker = mMap.addMarker(new MarkerOptions()
+                .position(point)
+                .snippet(point.toString()));
+
+        newMarker.setTitle(newMarker.getId());
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResult) {
+        switch (requestCode) {
+            case LOCATION_REQUEST_CODE:
+                if (grantResult.length > 0 && grantResult[0] == PackageManager.PERMISSION_GRANTED) {
+                    fetchLastLocation();
+                } else {
+                    Toast.makeText(Maps_Facilities.this, "Location permission missing", Toast.LENGTH_SHORT).show();
+                }
+                break;
         }
     }
+
+
+    private class GetAllFacilitiesLocationAsync extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+
+            try {
+                String returnValue = RestService.getBySportPlayed(sportsPlayedByuser);
+                JSONObject jsnobject = new JSONObject(returnValue);
+                jsonArr = jsnobject.getJSONArray("data");
+                JsonListOfFacilites = new String[jsonArr.length()];
+
+                for (int i = 0; i < jsonArr.length(); i++) {
+                    try {
+                        SportsActivitesPOJO EachFaciltyLocation = new SportsActivitesPOJO();
+                        JSONObject obj = (JSONObject) jsonArr.getJSONObject(i);
+                        EachFaciltyLocation.setNameOfFacility(obj.getString("FACILITY_NAME"));
+                        EachFaciltyLocation.setStreet(obj.getString("STREET_NAME"));
+                        EachFaciltyLocation.setSuburb(obj.getString("SUBURB"));
+                        EachFaciltyLocation.setPostcode(Integer.parseInt(obj.getString("POSTCODE")));
+                        Double eachFacilitylatitude = Double.parseDouble(obj.getString("LATTITUDE"));
+                        Double eachFacilitylongitude = Double.parseDouble(obj.getString("LONGITUDE"));
+                        EachFaciltyLocation.setLatLangOfFacility(new LatLng(eachFacilitylatitude, eachFacilitylongitude));
+                        facilitiesList.add(EachFaciltyLocation);
+                    } catch (Exception e) {
+                        Log.e("JSONERROR", "parsing of JSON Response");
+                    }
+                }
+
+            } catch (Exception e) {
+
+            }
+
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String response) {
+
+        }
+    }
+
+}
