@@ -34,6 +34,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDVBtM1lQMcxHakdl_lmVq4w_7vjdpS6jA"/>
 
+
         <activity
             android:name=".Facilities"
             android:label="@string/title_activity_facilities"></activity>
@@ -60,6 +61,9 @@
              <!--<action android:name="android.intent.action.MAIN" />-->
              <!--<category android:name="android.intent.category.LAUNCHER" />-->
              <!--</intent-filter>-->
+        </activity>
+        <activity android:name=".Maps_Facilities">
+
         </activity>
         <activity
             android:name=".Tracker"

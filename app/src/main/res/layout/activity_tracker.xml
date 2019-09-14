@@ -93,7 +93,8 @@
                 android:textColorHint="#737774"
                 android:backgroundTint="@android:color/white"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="numberDecimal"
+
                 android:hint="Amount"
                 android:layout_weight="1"/>
             <TextView
