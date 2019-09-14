@@ -10,6 +10,7 @@ import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -99,6 +100,7 @@ public class DataVisual extends AppCompatActivity {
                     GetAsyncTask getAsyncTask = new GetAsyncTask();
                     getAsyncTask.execute(dateView.getText().toString());
                     underText.setText("This is your daily consumption result with percentage value.");
+                    underText.setGravity(Gravity.CENTER_HORIZONTAL);
                 }
             }
         });
