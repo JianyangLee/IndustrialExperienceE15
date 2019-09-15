@@ -30,15 +30,15 @@
     <string name="radio_male">Male</string>
     <string name="radio_female">Female</string>
     <string name="prompt_dob">Date of Birth</string>
-    <string name="prompt_height">Height</string>
-    <string name="prompt_weight">Weight</string>
+    <string name="prompt_height">Height (cm)</string>
+    <string name="prompt_weight">Weight (kg)</string>
     <string name="prompt_gender">Gender</string>
     <string name="prompt_lastname">Last Name</string>
     <string name="prompt_firstname">First Name</string>
     <!-- Uesr Calculation Page -->
-    <string name="almoast_There">Almost There !! ,\n\n
+    <string name="almoast_There">Almost There \n\n
 
-    As per your goals , the recommended intake value are </string>
+    As per your goals , the recommended intake values are </string>
     <string name="lets_Start">Lets Start</string>
     <string name="title_activity_bottom">Bottom</string>
     <string name="title_home">Home</string>

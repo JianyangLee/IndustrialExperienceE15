@@ -70,6 +70,7 @@ public class Tracker extends AppCompatActivity {
     FirebaseAuth mFirebaseAuth;
     String userID;
     Integer burnedFinal;
+    String foodUnit = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,7 +136,12 @@ public class Tracker extends AppCompatActivity {
                         JSONObject obj = jsonArr.getJSONObject(i);
                         String name = obj.getString("Food");
                         if (name.equals(value)) {
-                            unit.setText(obj.getString("unit"));
+                            String unitName = obj.getString("unit");
+                            if (unitName.equals("per serve")){
+                                unit.setText("Quantity");
+                            }else {
+                                unit.setText(obj.getString("unit"));
+                            }
                         } else {
 
                         }
@@ -187,6 +193,7 @@ public class Tracker extends AppCompatActivity {
                 double foodFat = 0;
                 double foodCal = 0;
                 double foodType = 0;
+
                 JSONArray jsonArr = loadJSONFromAsset("food.json");
                 for(int i = 0; i < jsonArr.length(); i++) {
                     try {
@@ -196,6 +203,7 @@ public class Tracker extends AppCompatActivity {
                             foodSugar = obj.getDouble("sugar");
                             foodFat = obj.getDouble("Fat");
                             foodCal = obj.getDouble("Energy(KJ)") * 0.239006;
+                            foodUnit = obj.getString("unit");
                         } else {
 
                         }
@@ -406,9 +414,20 @@ public class Tracker extends AppCompatActivity {
                 String name = foodName.getText().toString();
                 int foodAmount = Integer.parseInt(amount.getText().toString());
 
-                double foodS = (foodAmount/100.0) * params[0];
-                double foodF = (foodAmount/100.0) * params[1];
-                double foodC = (foodAmount/100.0) * params[2];
+                double foodS = 0.0;
+                double foodF = 0.0;
+                double foodC = 0.0;
+
+                if (foodUnit.equals("per serve")){
+                    foodS = params[0];
+                    foodF = params[1];
+                    foodC = params[2];
+
+                }else {
+                    foodS = (foodAmount / 100.0) * params[0];
+                    foodF = (foodAmount / 100.0) * params[1];
+                    foodC = (foodAmount / 100.0) * params[2];
+                }
                 String type;
                 if (params[3] == 0) {
                    type  = "Recommended";
@@ -431,7 +450,6 @@ public class Tracker extends AppCompatActivity {
                     }
                 });
             }
-
                return "";
         }
 

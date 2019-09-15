@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/pi"
     android:orientation="vertical">
 
     <TextView
@@ -19,8 +20,10 @@
         android:layout_gravity="center"/>
     <Button
         android:id="@+id/btnGet"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/transparent_bg_bordered_button"
+        android:textColor="#685C5C"
+        android:textAllCaps="false"
+        android:background="@drawable/logandreg"
+        android:textSize="22sp"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
