@@ -103,6 +103,13 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
                     Toast.makeText(Maps_Facilities.this, currentLocation.getLatitude() + " " + currentLocation.getLongitude(), Toast.LENGTH_SHORT).show();
                     SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.Facilities_Map);
                     supportMapFragment.getMapAsync(Maps_Facilities.this);
+
+                    // For zooming automatically to the location of the marker
+                    LatLng currentLocationLatLang = new LatLng(currentLocation.getLatitude(),currentLocation.getLongitude());
+                    CameraPosition cameraPosition = new CameraPosition.Builder().target(currentLocationLatLang).zoom(16).build();
+                    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocationLatLang, 15));
+
                 } else {
                     Toast.makeText(Maps_Facilities.this, "No Location recorded", Toast.LENGTH_SHORT).show();
                 }
@@ -150,26 +157,23 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
 
         // LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
 
-        LatLng latLng = new LatLng(37.8770, 145.0449);
+       // LatLng latLng = new LatLng(37.8770, 145.0449);
         //MarkerOptions are used to create a new Marker.You can specify location, title etc with MarkerOptions
-        MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("You are Here");
-        googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+        //MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("You are Here");
+       // googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
         //Adding the created the marker on the map
-        googleMap.addMarker(markerOptions);
+       // googleMap.addMarker(markerOptions);
 
 
-        // For zooming automatically to the location of the marker
-        CameraPosition cameraPosition = new CameraPosition.Builder().target(latLng).zoom(16).build();
-        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
 
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+
 
         //googleMap.setMyLocationEnabled(true);
         //Location currentLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
 
-        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-        //googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        //googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         //googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         //googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
 
