@@ -17,6 +17,7 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -48,12 +49,8 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //Instantiate the Maps in to the Content View
-        facilitiesList = new ArrayList<>();
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps__facilities);
-
         // get the sport value from previous values
+        facilitiesList = new ArrayList<>();
         SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
         sportsPlayedByuser = userSharedPreferenceDetails.getString("sportsPlayedByUser", "");
 
@@ -61,12 +58,18 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
         Maps_Facilities.GetAllFacilitiesLocationAsync AllFacilitiesLocationAsync = new Maps_Facilities.GetAllFacilitiesLocationAsync();
         AllFacilitiesLocationAsync.execute();
 
+        //Instantiate the Maps in to the Content View
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_maps__facilities);
+
+        //Plot the Locations Fetched from Server
+        //plotUsersAreasOfInterestInMaps();
+
         // Map ASync Method
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.Facilities_Map);
         mapFragment.getMapAsync(this);
 
-        //Plot the Locations Fetched from Server
-        plotUsersAreasOfInterestInMaps();
+
 
         //Get the user Current Location and Plot the same
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -107,6 +110,7 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
         });
     }
 
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
@@ -120,6 +124,9 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
         mMap.getUiSettings().setZoomGesturesEnabled(true);
         mMap.getUiSettings().setAllGesturesEnabled(true);
 
+        for (SportsActivitesPOJO eachFacilityLocation : facilitiesList) {
+            mMap.addMarker(new MarkerOptions().position(eachFacilityLocation.getLatLangOfFacility()).title(eachFacilityLocation.getNameOfFacility()).snippet(eachFacilityLocation.getNameOfFacility()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+        }
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -143,12 +150,13 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
 
         // LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
 
-        LatLng latLng = new LatLng(37.8136, 144.9631);
+        LatLng latLng = new LatLng(37.8770, 145.0449);
         //MarkerOptions are used to create a new Marker.You can specify location, title etc with MarkerOptions
         MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("You are Here");
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
         //Adding the created the marker on the map
         googleMap.addMarker(markerOptions);
+
 
         // For zooming automatically to the location of the marker
         CameraPosition cameraPosition = new CameraPosition.Builder().target(latLng).zoom(16).build();
@@ -167,6 +175,7 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
 
 
     }
+
 
     // this Method take care of placing a  marker in the maps screen once the user long click on any area of the maps
     @Override
@@ -197,10 +206,10 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
     }
 
     //Method to PLot the places in the graph that is of interest to the user
-    private void plotUsersAreasOfInterestInMaps(){
+    private void plotUsersAreasOfInterestInMaps() {
 
         for (SportsActivitesPOJO eachFacilityLocation : facilitiesList) {
-            mMap.addMarker(new MarkerOptions().position(eachFacilityLocation.getLatLangOfFacility()).title(eachFacilityLocation.getNameOfFacility()).snippet(eachFacilityLocation.getDescription()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+            mMap.addMarker(new MarkerOptions().position(eachFacilityLocation.getLatLangOfFacility()).title(eachFacilityLocation.getNameOfFacility()).snippet(eachFacilityLocation.getNameOfFacility()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
         }
 
