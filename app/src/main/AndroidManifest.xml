@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.industrialexperiencee15">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -13,7 +12,6 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,9 +19,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
-        <activity android:name=".DataVisual" />
+        <activity android:name=".Graph"></activity>
 
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity android:name=".DataVisual" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -34,16 +36,14 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDVBtM1lQMcxHakdl_lmVq4w_7vjdpS6jA"/>
-
+            android:value="AIzaSyDVBtM1lQMcxHakdl_lmVq4w_7vjdpS6jA" />
 
         <activity
             android:name=".Facilities"
-            android:label="@string/title_activity_facilities"></activity>
+            android:label="@string/title_activity_facilities" />
         <activity
             android:name=".activity_exercise"
             android:windowSoftInputMode="stateVisible|adjustPan" />
-
         <activity android:name=".TrackFood" />
         <activity android:name=".OnBoard_CalculatedGoal_S5" />
         <activity android:name=".OnBoard_UserInfo_S4" />
@@ -53,20 +53,20 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Dashboard"
             android:label="@string/Dashboard">
-             <!--<intent-filter>-->
-             <!--<action android:name="android.intent.action.MAIN" />-->
-             <!--<category android:name="android.intent.category.LAUNCHER" />-->
-             <!--</intent-filter>-->
-        </activity>
-        <activity android:name=".Maps_Facilities">
 
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
+        <activity android:name=".Maps_Facilities"></activity>
         <activity
             android:name=".Tracker"
             android:label="@string/Tracker"

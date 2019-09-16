@@ -438,6 +438,9 @@ public class Tracker extends AppCompatActivity {
                     type = "too much amount, please decrease";
                 }
                 Consumption consumption = new Consumption(userID, name, today, foodF,foodS, foodC, foodAmount,type);
+
+                RestService.createConsumption(consumption);
+
                 dbConsumption.add(consumption).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {

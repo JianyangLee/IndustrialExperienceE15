@@ -2,6 +2,7 @@ package com.example.industrialexperiencee15;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -41,7 +42,7 @@ import java.util.Locale;
 
 public class DataVisual extends AppCompatActivity {
     private static TextView dateView, underText;
-    private static Button getButton;
+    private static Button getButton, goToLine;
     String userID;
     FirebaseFirestore db;
     Integer[] data = new Integer[3];
@@ -63,6 +64,7 @@ public class DataVisual extends AppCompatActivity {
         dateView = (TextView) findViewById(R.id.DateView);
         getButton = (Button) findViewById(R.id.btnGet);
         underText = (TextView) findViewById(R.id.underpi);
+        goToLine = (Button) findViewById(R.id.btnGoToLine);
 
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
@@ -86,6 +88,14 @@ public class DataVisual extends AppCompatActivity {
                         calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
                 dialog.getDatePicker().setMaxDate(new Date().getTime());
                 dialog.show();
+            }
+        });
+
+        goToLine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent graph = new Intent(DataVisual.this, Graph.class);
+                DataVisual.this.startActivity(graph);
             }
         });
 
