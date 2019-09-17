@@ -11,41 +11,112 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_StepsCounted"
-        android:layout_width="match_parent"
+        android:id="@+id/textView5"
+        android:layout_width="371dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginTop="250dp"
-        android:text="0"
-        android:textColor="#1A1316"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        />
-
-    <Button
-        android:id="@+id/backToDashboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_StepsCounted"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="90dp"
-        android:textColor="#FFFFFF"
-        android:paddingRight="10dp"
-        android:text="Cancel" />
+        android:gravity="center"
+        android:inputType="textMultiLine"
+        android:text="@string/running_Acknowledgement"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/displayCalorieGoalprompt"
+        android:layout_width="200dp"
+        android:layout_height="57dp"
+        android:layout_below="@+id/textView5"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginRight="20dp"
+        android:ems="10"
+        android:text="Steps Taken:"
+        android:inputType="textMultiLine"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/tv_StepsCounted"
+        android:layout_width="120dp"
+        android:layout_height="57dp"
+        android:layout_below="@+id/textView5"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginRight="20dp"
+        android:textStyle="bold"
+        android:layout_toRightOf="@id/displayCalorieGoalprompt"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:textSize="25dp" />
+
+
+    //2nd Row
+
+    <TextView
+        android:id="@+id/displayCaloriesBurnedPrompt"
+        android:layout_width="200dp"
+        android:layout_height="57dp"
+        android:layout_below="@+id/displayCalorieGoalprompt"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp"
+        android:ems="10"
+        android:text="Calories burned:"
+        android:gravity=""
+        android:inputType="textMultiLine"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/displayCaloriesBurnedvalue"
+        android:layout_width="120dp"
+        android:layout_height="57dp"
+        android:layout_below="@+id/tv_StepsCounted"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp"
+        android:layout_toRightOf="@id/displayCaloriesBurnedPrompt"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:textSize="25dp" />
+
+
+
+
+
 
     <Button
         android:id="@+id/btnAddtoWorkout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/backToDashboard"
-        android:layout_marginTop="20dp"
+        android:layout_below="@id/displayCaloriesBurnedvalue"
+        android:layout_marginTop="70dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:gravity="center"
         android:text="Add to Workout"
         android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/backToDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnAddtoWorkout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:textColor="#FFFFFF"
+        android:paddingRight="10dp"
+        android:text="Cancel" />
+
+
 
     <!-- -->
 </RelativeLayout>

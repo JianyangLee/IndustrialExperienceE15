@@ -12,23 +12,23 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="265dp"
-        android:layout_marginTop="40dp"
-        app:srcCompat="@drawable/Fitness_Step_Counter" />
+        android:layout_width="394dp"
+        android:layout_height="171dp"
+        android:layout_marginTop="70dp"
+        app:srcCompat="@drawable/fitness_step_counter" />
+
     <TextView
         android:id="@+id/tv_steps"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView"
-        android:gravity="center"
         android:layout_gravity="center"
         android:layout_marginTop="70dp"
+        android:gravity="center"
         android:text="0"
         android:textColor="#1A1316"
         android:textSize="35sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_start"
@@ -37,11 +37,10 @@
         android:layout_below="@+id/tv_steps"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="60dp"
-        android:textColor="#FFFFFF"
-        android:paddingRight="10dp"
         android:layout_marginRight="20dp"
-
-        android:text="Start" />
+        android:paddingRight="10dp"
+        android:text="Start Run"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/btn_stop"
@@ -49,14 +48,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_start"
 
-        android:layout_marginTop="20dp"
-        android:textColor="#FFFFFF"
-        android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:text="Finish Run"
 
-        android:text="Stop" />
-
+        android:textColor="#FFFFFF" />
 
 
     <!-- -->

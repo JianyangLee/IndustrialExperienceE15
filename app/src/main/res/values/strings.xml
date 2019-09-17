@@ -39,6 +39,10 @@
     <string name="almoast_There">Almost There \n\n
 
     As per your goals , the recommended intake values are </string>
+
+    <string name="running_Acknowledgement">Great Run  \n\n
+
+    The details of your run are </string>
     <string name="lets_Start">Lets Start</string>
     <string name="title_activity_bottom">Bottom</string>
     <string name="title_home">Home</string>
