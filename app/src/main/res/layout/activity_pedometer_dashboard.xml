@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_StepsCounted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="250dp"
+        android:text="0"
+        android:textColor="#1A1316"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:id="@+id/backToDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_StepsCounted"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="90dp"
+        android:textColor="#FFFFFF"
+        android:paddingRight="10dp"
+        android:text="Cancel" />
+
+    <Button
+        android:id="@+id/btnAddtoWorkout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/backToDashboard"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:text="Add to Workout"
+        android:textColor="#FFFFFF" />
+
+    <!-- -->
+</RelativeLayout>
+

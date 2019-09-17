@@ -68,7 +68,7 @@ public class Dashboard extends AppCompatActivity {
         final Button logout = (Button) findViewById(R.id.logout);
         final Button exercise = (Button) findViewById(R.id.btnTile3);
         final Button report = (Button) findViewById(R.id.btnTile5);
-        final Button dietRec = (Button) findViewById(R.id.btnTile6);
+        final Button stepsCounter = (Button) findViewById(R.id.btnTile6);
         final Button findFacilitiesNearby = (Button) findViewById(R.id.btnTile4);
 
 
@@ -105,6 +105,14 @@ public class Dashboard extends AppCompatActivity {
             public void onClick(View v) {
                 Intent exercise = new Intent(Dashboard.this, activity_exercise.class);
                 Dashboard.this.startActivity(exercise);
+            }
+        });
+
+        stepsCounter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Pedometer = new Intent(Dashboard.this, Pedometer.class);
+                Dashboard.this.startActivity(Pedometer);
             }
         });
 

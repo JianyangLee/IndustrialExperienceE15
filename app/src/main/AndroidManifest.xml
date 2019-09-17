@@ -19,7 +19,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Graph"></activity>
+        <activity android:name=".PedometerDashboard"></activity>
+        <activity android:name=".Pedometer" />
+        <activity android:name=".Graph" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -66,7 +68,7 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".Maps_Facilities"></activity>
+        <activity android:name=".Maps_Facilities" />
         <activity
             android:name=".Tracker"
             android:label="@string/Tracker"
