@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 public class PedometerDashboard extends AppCompatActivity {
     TextView totalStepsTakenByUser;
+    TextView totalCaloriesBurnedByUser;
     Button BtnAddToTheWorkout;
     Button BtnBackToDashboard;
 
@@ -20,6 +21,7 @@ public class PedometerDashboard extends AppCompatActivity {
         setContentView(R.layout.activity_pedometer_dashboard);
 
         totalStepsTakenByUser = (TextView) findViewById(R.id.tv_StepsCounted);
+        totalCaloriesBurnedByUser = (TextView) findViewById(R.id.displayCaloriesBurnedvalue);
         BtnAddToTheWorkout = (Button) findViewById(R.id.btnAddtoWorkout);
         BtnBackToDashboard = (Button) findViewById(R.id.backToDashboard);
 
@@ -27,6 +29,12 @@ public class PedometerDashboard extends AppCompatActivity {
         Integer userSteps = userSharedPreferenceDetails.getInt("userSteps", 0);
 
         totalStepsTakenByUser.setText(userSteps.toString());
+        
+        // Calorie Calculation
+        Double caloriesBurnedByUser=0.0;
+        caloriesBurnedByUser=userSteps*0.05;
+
+        totalCaloriesBurnedByUser.setText(caloriesBurnedByUser.toString());
 
         BtnBackToDashboard.setOnClickListener(new View.OnClickListener() {
 

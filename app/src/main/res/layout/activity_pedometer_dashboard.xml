@@ -34,8 +34,8 @@
         android:layout_marginTop="63dp"
         android:layout_marginRight="20dp"
         android:ems="10"
-        android:text="Steps Taken:"
         android:inputType="textMultiLine"
+        android:text="Steps Taken:"
         android:textSize="25dp" />
 
     <TextView
@@ -47,12 +47,12 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="63dp"
         android:layout_marginRight="20dp"
-        android:textStyle="bold"
         android:layout_toRightOf="@id/displayCalorieGoalprompt"
         android:ems="10"
         android:gravity="center_horizontal"
         android:inputType="textMultiLine"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:textStyle="bold" />
 
 
     //2nd Row
@@ -67,9 +67,9 @@
         android:layout_marginTop="40dp"
         android:layout_marginRight="20dp"
         android:ems="10"
-        android:text="Calories burned:"
         android:gravity=""
         android:inputType="textMultiLine"
+        android:text="Calories burned:"
         android:textSize="25dp" />
 
     <TextView
@@ -88,17 +88,13 @@
         android:textSize="25dp" />
 
 
-
-
-
-
     <Button
         android:id="@+id/btnAddtoWorkout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/displayCaloriesBurnedvalue"
-        android:layout_marginTop="70dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="70dp"
         android:layout_marginRight="20dp"
         android:gravity="center"
         android:text="Add to Workout"
@@ -110,12 +106,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnAddtoWorkout"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-        android:textColor="#FFFFFF"
+        android:layout_marginRight="20dp"
         android:paddingRight="10dp"
-        android:text="Cancel" />
-
+        android:text="Cancel"
+        android:textColor="#FFFFFF" />
 
 
     <!-- -->
