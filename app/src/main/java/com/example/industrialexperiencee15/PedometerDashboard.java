@@ -39,7 +39,7 @@ public class PedometerDashboard extends AppCompatActivity {
         Integer userSteps = userSharedPreferenceDetails.getInt("userSteps", 0);
 
         totalStepsTakenByUser.setText(userSteps.toString());
-        
+
         // Calorie Calculation
         caloriesBurnedByUser=0.0;
         caloriesBurnedByUser=userSteps*0.05;

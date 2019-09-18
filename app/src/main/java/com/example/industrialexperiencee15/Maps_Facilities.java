@@ -1,7 +1,9 @@
 package com.example.industrialexperiencee15;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -50,11 +52,12 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
     protected void onCreate(Bundle savedInstanceState) {
 
         // get the sport value from previous values
-        facilitiesList = new ArrayList<>();
+
         SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
         sportsPlayedByuser = userSharedPreferenceDetails.getString("sportsPlayedByUser", "");
 
         // fetch from the AWS Server related to the users area of iterest
+        facilitiesList = new ArrayList<>();
         Maps_Facilities.GetAllFacilitiesLocationAsync AllFacilitiesLocationAsync = new Maps_Facilities.GetAllFacilitiesLocationAsync();
         AllFacilitiesLocationAsync.execute();
 
@@ -69,29 +72,20 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.Facilities_Map);
         mapFragment.getMapAsync(this);
 
-
-
         //Get the user Current Location and Plot the same
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         if (ActivityCompat.checkSelfPermission(Maps_Facilities.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(Maps_Facilities.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
             return;
         }
+
         fetchLastLocation();
 
-    }
+   }
 
     private void fetchLastLocation() {
-
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+
             return;
         }
         Task<Location> task = fusedLocationProviderClient.getLastLocation();
@@ -105,7 +99,7 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
                     supportMapFragment.getMapAsync(Maps_Facilities.this);
 
                     // For zooming automatically to the location of the marker
-                    LatLng currentLocationLatLang = new LatLng(currentLocation.getLatitude(),currentLocation.getLongitude());
+                    LatLng currentLocationLatLang = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
                     CameraPosition cameraPosition = new CameraPosition.Builder().target(currentLocationLatLang).zoom(10).build();
                     mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocationLatLang, 10));
@@ -131,18 +125,36 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
         mMap.getUiSettings().setZoomGesturesEnabled(true);
         mMap.getUiSettings().setAllGesturesEnabled(true);
 
-        for (SportsActivitesPOJO eachFacilityLocation : facilitiesList) {
-            mMap.addMarker(new MarkerOptions().position(eachFacilityLocation.getLatLangOfFacility()).title(eachFacilityLocation.getNameOfFacility()).snippet(eachFacilityLocation.getNameOfFacility()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-        }
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+                new AlertDialog.Builder(this)
+                        .setTitle("Location Permission Needed")
+                        .setMessage("This app needs the Location permission, please accept to use location functionality")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //Prompt the user once explanation has been shown
+                                ActivityCompat.requestPermissions(Maps_Facilities.this,
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                        99);
+                            }
+                        })
+                        .create()
+                        .show();
+
+
+            } else {
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        99);
+            }
             return;
         }
         mMap.setMyLocationEnabled(true);
@@ -157,17 +169,12 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
 
         // LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
 
-       // LatLng latLng = new LatLng(37.8770, 145.0449);
+        // LatLng latLng = new LatLng(37.8770, 145.0449);
         //MarkerOptions are used to create a new Marker.You can specify location, title etc with MarkerOptions
         //MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("You are Here");
-       // googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+        // googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
         //Adding the created the marker on the map
-       // googleMap.addMarker(markerOptions);
-
-
-
-
-
+        // googleMap.addMarker(markerOptions);
 
         //googleMap.setMyLocationEnabled(true);
         //Location currentLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
@@ -177,6 +184,7 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
         //googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         //googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
 
+       //plotUsersAreasOfInterestInMaps();
 
     }
 
@@ -213,7 +221,7 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
     private void plotUsersAreasOfInterestInMaps() {
 
         for (SportsActivitesPOJO eachFacilityLocation : facilitiesList) {
-            mMap.addMarker(new MarkerOptions().position(eachFacilityLocation.getLatLangOfFacility()).title(eachFacilityLocation.getNameOfFacility()).snippet(eachFacilityLocation.getNameOfFacility()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+            mMap.addMarker(new MarkerOptions().position(eachFacilityLocation.getLatLangOfFacility()).title(eachFacilityLocation.getNameOfFacility()).snippet(eachFacilityLocation.getDescription()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
         }
 
@@ -241,6 +249,8 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
                         Double eachFacilitylatitude = Double.parseDouble(obj.getString("LATTITUDE"));
                         Double eachFacilitylongitude = Double.parseDouble(obj.getString("LONGITUDE"));
                         EachFaciltyLocation.setLatLangOfFacility(new LatLng(eachFacilitylatitude, eachFacilitylongitude));
+                        String Description = EachFaciltyLocation.getStreet()+" ,"+EachFaciltyLocation.getSuburb()+" ,"+EachFaciltyLocation.getPostcode();
+                        EachFaciltyLocation.setDescription(Description);
                         facilitiesList.add(EachFaciltyLocation);
                     } catch (Exception e) {
                         Log.e("JSONERROR", "parsing of JSON Response");
@@ -256,7 +266,7 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
 
         @Override
         protected void onPostExecute(String response) {
-
+plotUsersAreasOfInterestInMaps();
         }
     }
 
