@@ -451,7 +451,7 @@
                                     android:layout_centerInParent="true"
                                     android:layout_alignParentTop="true"
                                     android:layout_marginTop="25dp"
-                                    android:src="@drawable/e" />
+                                    android:src="@drawable/report" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
