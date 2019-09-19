@@ -1,12 +1,18 @@
 package com.example.industrialexperiencee15;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -141,11 +147,20 @@ public class Graph extends AppCompatActivity {
         get.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                GetAsyncTask getAsyncTask = new GetAsyncTask();
-                String startDate = start.getText().toString();
-                String endDate = end.getText().toString();
-                getAsyncTask.execute(startDate, endDate);
-                get.setVisibility(View.GONE);
+                if (start.getText().toString().equals("") || end.getText().toString().equals("")){
+                    Animation shake = AnimationUtils.loadAnimation(Graph.this, R.anim.shake);
+                    start.startAnimation(shake);
+                    end.startAnimation(shake);
+                    start.setError("Plear pick up a start date");
+                    end.setError("Please pick up an end date");
+                    vibrateField();
+                }else {
+                    GetAsyncTask getAsyncTask = new GetAsyncTask();
+                    String startDate = start.getText().toString();
+                    String endDate = end.getText().toString();
+                    getAsyncTask.execute(startDate, endDate);
+                    get.setVisibility(View.GONE);
+                }
             }
         });
     }
@@ -272,6 +287,16 @@ public class Graph extends AppCompatActivity {
         protected void onPostExecute(String response) {
 
 
+        }
+    }
+
+    private void vibrateField() {
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            v.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+            //deprecated in API 26
+            v.vibrate(100);
         }
     }
 }
