@@ -49,20 +49,20 @@
         android:id="@+id/startNavigation"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="350dp"
+        android:layout_below="@id/facilityName"
+        android:layout_alignParentBottom="false"
+        android:layout_marginTop="281dp"
         android:layout_marginBottom="2dp"
+        android:background="@drawable/transparent_bg_bordered_button"
         android:text="Search"
         android:textAllCaps="true"
         android:textColor="#FFFFFF"
-        android:background="@drawable/transparent_bg_bordered_button"
-        android:textSize="22sp"
-        android:layout_below="@id/facilityName"
-        android:layout_alignParentBottom="false"/>
+        android:textSize="22sp" />
 
     <ListView
         android:id="@+id/facilitiesListView"
-        android:layout_width="451dp"
-        android:layout_height="319dp"
+        android:layout_width="401dp"
+        android:layout_height="202dp"
         android:layout_below="@id/facilityName"
         android:layout_marginBottom="15dp">
 
