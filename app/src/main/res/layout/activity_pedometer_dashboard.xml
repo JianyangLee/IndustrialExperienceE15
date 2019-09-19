@@ -98,7 +98,8 @@
         android:layout_marginRight="20dp"
         android:gravity="center"
         android:text="Add to Workout"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:background="@drawable/transparent_bg_bordered_button"/>
 
     <Button
         android:id="@+id/backToDashboard"
@@ -110,7 +111,8 @@
         android:layout_marginRight="20dp"
         android:paddingRight="10dp"
         android:text="Dashboard"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:background="@drawable/transparent_bg_bordered_button"/>
 
 
 

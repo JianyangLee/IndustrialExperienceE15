@@ -75,6 +75,7 @@
             android:id="@+id/height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:nextFocusDown="@+id/weighttext"
             android:hint="@string/prompt_height"
             android:inputType="numberDecimal"
             android:maxLines="1"
@@ -97,6 +98,7 @@
             android:layout_alignStart="@+id/weighttext"
             android:hint="@string/prompt_weight"
             android:inputType="numberDecimal"
+            android:nextFocusDown="@+id/dob"
             android:maxLines="1"
             android:singleLine="true" />
 
@@ -184,8 +186,8 @@
         android:layout_below="@+id/radio_gender"
         android:layout_marginLeft="63dp"
         android:layout_marginTop="60dp"
-        android:textColor="#FFFFFF"
         android:layout_marginRight="20dp"
+        android:textColor="#FFFFFF"
         android:background="@drawable/transparent_bg_bordered_button"
         android:layout_toRightOf="@id/S4PreviousButton"
         android:text="@string/buttonNext" />

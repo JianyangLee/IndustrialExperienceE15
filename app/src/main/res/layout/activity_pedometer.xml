@@ -40,6 +40,8 @@
         android:layout_marginRight="20dp"
         android:paddingRight="10dp"
         android:text="Start Run"
+
+        android:background="@drawable/transparent_bg_bordered_button"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -47,14 +49,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_start"
-
+        android:textColor="#FFFFFF"
+        android:background="@drawable/transparent_bg_bordered_button"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:gravity="center"
         android:text="Finish Run"
 
-        android:textColor="#FFFFFF" />
+         />
 
 
     <!-- -->

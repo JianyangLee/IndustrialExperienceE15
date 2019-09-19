@@ -47,9 +47,9 @@
     </LinearLayout>
     <Button
         android:id="@+id/btnGraph"
-        android:textColor="#685C5C"
         android:textAllCaps="false"
-        android:background="@drawable/logandreg"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/transparent_bg_bordered_button"
         android:textSize="22sp"
         android:layout_width="350dp"
         android:layout_height="wrap_content"

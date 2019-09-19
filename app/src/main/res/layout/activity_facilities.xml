@@ -45,8 +45,8 @@
         android:layout_marginBottom="2dp"
         android:text="Search"
         android:textAllCaps="true"
-        android:textColor="#685C5C"
-        android:background="@drawable/logandreg"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/transparent_bg_bordered_button"
         android:textSize="22sp"
         android:layout_below="@id/facilityName"
         android:layout_alignParentBottom="false"/>
@@ -63,3 +63,5 @@
 </RelativeLayout>
 
 
+    <!--android:textColor="#685C5C"-->
+    <!--android:background="@drawable/logandreg"-->
