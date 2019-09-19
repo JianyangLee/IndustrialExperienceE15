@@ -100,9 +100,9 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
 
                     // For zooming automatically to the location of the marker
                     LatLng currentLocationLatLang = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-                    CameraPosition cameraPosition = new CameraPosition.Builder().target(currentLocationLatLang).zoom(10).build();
+                    CameraPosition cameraPosition = new CameraPosition.Builder().target(currentLocationLatLang).zoom(14).build();
                     mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocationLatLang, 10));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocationLatLang, 14));
 
                 } else {
                     Toast.makeText(Maps_Facilities.this, "No Location recorded", Toast.LENGTH_SHORT).show();
