@@ -43,8 +43,8 @@
 
     <ImageView
         android:id="@+id/fisrtView"
-        android:layout_width="270dp"
-        android:layout_height="270dp"
+        android:layout_width="290dp"
+        android:layout_height="290dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="5dp"
@@ -64,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="55dp"
         app:layout_constraintBottom_toBottomOf="@+id/btnAdd"
         >
         <LinearLayout
@@ -122,8 +122,8 @@
     <Button
         android:id="@+id/btnAdd"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginBottom="16dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:text="Add Food"
@@ -135,4 +135,60 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
+    <!--<LinearLayout-->
+        <!--android:id="@+id/nav"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:weightSum="2"-->
+        <!--android:orientation="horizontal"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="parent"-->
+        <!--android:layout_marginBottom="20dp">-->
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center">-->
+            <!--<ImageView-->
+                <!--android:layout_width="30dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:src="@drawable/dashicon"-->
+                <!--android:layout_marginLeft="15dp"-->
+                <!--android:layout_centerVertical="true"/>-->
+            <!--<Button-->
+                <!--android:id="@+id/dashbtn"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:background="#00FFFFFF"-->
+                <!--android:text="Dashboard"-->
+                <!--android:textStyle="bold"/>-->
+        <!--</RelativeLayout>-->
+
+        <!--<RelativeLayout-->
+
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center"-->
+            <!--&gt;-->
+            <!--<ImageView-->
+                <!--android:layout_width="30dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:src="@drawable/logouticon"-->
+                <!--android:layout_marginLeft="30dp"-->
+                <!--android:layout_centerVertical="true"/>-->
+            <!--<Button-->
+                <!--android:id="@+id/logout"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:background="#00FFFFFF"-->
+                <!--android:text="Log out" />-->
+        <!--</RelativeLayout>-->
+    <!--</LinearLayout>-->
+
+
 </android.support.constraint.ConstraintLayout>

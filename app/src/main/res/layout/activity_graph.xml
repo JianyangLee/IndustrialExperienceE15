@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/pi"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="bottom">
 
     <Button
         android:id="@+id/btnGraphBackToDash"
@@ -59,6 +60,58 @@
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/bargraph"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="510dp"
         />
+
+    <LinearLayout
+        android:id="@+id/bottom6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:weightSum="2"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/dashicon"
+                android:layout_marginLeft="15dp"
+                android:layout_centerVertical="true"/>
+            <Button
+                android:id="@+id/dashbtn6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="#00FFFFFF"
+                android:text="Dashboard" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/logouticon"
+                android:layout_marginLeft="30dp"
+                android:layout_centerVertical="true"/>
+            <Button
+                android:id="@+id/logout6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="#00FFFFFF"
+                android:text="Log out" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
 </LinearLayout>

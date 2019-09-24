@@ -229,9 +229,14 @@ public class activity_exercise extends AppCompatActivity {
     }
 
     private void initialList(){
-        listItems = new ArrayList<>(Arrays.asList(exerciseList));
-        adapter = new ArrayAdapter<String>(this, R.layout.list_item, R.id.textView,listItems);
-        listView.setAdapter(adapter);
+        try {
+            listItems = new ArrayList<>(Arrays.asList(exerciseList));
+            adapter = new ArrayAdapter<String>(this, R.layout.list_item, R.id.textView, listItems);
+            listView.setAdapter(adapter);
+        }
+        catch(Exception e){
+            Toast.makeText(activity_exercise.this,"Please check your network connection.",Toast.LENGTH_LONG).show();
+        }
     }
 
     private void searchItem(String textSearch) {

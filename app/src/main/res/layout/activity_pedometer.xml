@@ -58,7 +58,53 @@
         android:text="Finish Run"
 
          />
+    <LinearLayout
+        android:id="@+id/bottom7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:weightSum="2"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/dashicon"
+                android:layout_marginLeft="15dp"
+                android:layout_centerVertical="true"/>
+            <Button
+                android:id="@+id/dashbtn7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="#00FFFFFF"
+                android:text="Dashboard" />
+        </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/logouticon"
+                android:layout_marginLeft="30dp"
+                android:layout_centerVertical="true"/>
+            <Button
+                android:id="@+id/logout7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="#00FFFFFF"
+                android:text="Log out" />
+        </RelativeLayout>
+    </LinearLayout>
 
     <!-- -->
 </RelativeLayout>

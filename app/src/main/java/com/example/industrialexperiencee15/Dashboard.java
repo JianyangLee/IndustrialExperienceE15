@@ -70,6 +70,7 @@ public class Dashboard extends AppCompatActivity {
         final Button report = (Button) findViewById(R.id.btnTile5);
         final Button stepsCounter = (Button) findViewById(R.id.btnTile6);
         final Button findFacilitiesNearby = (Button) findViewById(R.id.btnTile4);
+        final Button reminder = (Button) findViewById(R.id.remider);
 
 
 
@@ -130,6 +131,14 @@ public class Dashboard extends AppCompatActivity {
             public void onClick(View v) {
                 Intent exercise = new Intent(Dashboard.this, Facilities.class);
                 Dashboard.this.startActivity(exercise);
+            }
+        });
+
+        reminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent reminder = new Intent(Dashboard.this, Notification.class);
+                Dashboard.this.startActivity(reminder);
             }
         });
     }
