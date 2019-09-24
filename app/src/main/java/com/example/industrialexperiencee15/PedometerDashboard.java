@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -42,8 +43,12 @@ public class PedometerDashboard extends AppCompatActivity {
 
         // Calorie Calculation
         caloriesBurnedByUser=0.0;
-        caloriesBurnedByUser=userSteps*0.05;
 
+        double caloriesBurned = userSteps*0.05;
+        DecimalFormat df1 = new DecimalFormat("##.00");
+        caloriesBurned = Double.valueOf(df1.format(caloriesBurned));
+
+        caloriesBurnedByUser=caloriesBurned;
         totalCaloriesBurnedByUser.setText(caloriesBurnedByUser.toString());
 
         BtnAddToTheWorkout.setOnClickListener(new View.OnClickListener() {
