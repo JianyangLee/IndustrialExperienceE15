@@ -9,10 +9,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -47,18 +50,20 @@ public class Facilities extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facilities);
 
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
         listView = (ListView) findViewById(R.id.facilitiesListView);
 
         // userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        Facilities.GetAllFacilitiesAsync AllFacilitiesAsync = new Facilities.GetAllFacilitiesAsync();
-        AllFacilitiesAsync.execute();
 
         facilitiesName = (EditText) findViewById(R.id.facilityName);
         final Button backToDash = (Button) findViewById(R.id.btnBacktoDashboard);
         final Button btnSearch = (Button) findViewById(R.id.startNavigation);
 
         facilitiesName.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -79,6 +84,7 @@ public class Facilities extends AppCompatActivity {
             }
         });
 
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -88,6 +94,8 @@ public class Facilities extends AppCompatActivity {
                 facilitiesName.setText(value);
             }
         });
+
+
 
         backToDash.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +114,7 @@ public class Facilities extends AppCompatActivity {
                     facilitiesName.setError("Please choose an item");
                     vibrateField();
                     return;
-                }else{
+                } else {
                     //Place the information in the shared Preferences
                     SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
                     SharedPreferences.Editor userSharedPreferenceEditor = userSharedPreferenceDetails.edit();
@@ -121,6 +129,33 @@ public class Facilities extends AppCompatActivity {
         });
     }
 
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_food:
+                    Intent intent_Tracker = new Intent(Facilities.this, Tracker.class);
+                    startActivity(intent_Tracker);
+                    return true;
+                case R.id.navigation_dashboard:
+                    Intent intent_activity_exercise = new Intent(Facilities.this, Dashboard.class);
+                    startActivity(intent_activity_exercise);
+                    ;
+                    return true;
+                case R.id.navigation_exercise:
+                    Intent intent_Dashboard = new Intent(Facilities.this, activity_exercise.class);
+                    startActivity(intent_Dashboard);
+                    return true;
+                case R.id.navigation_settings:
+                    Intent intent_Settings = new Intent(Facilities.this, activity_exercise.class);
+                    startActivity(intent_Settings);
+                    return true;
+            }
+            return false;
+        }
+    };
 
     private void initialList() {
         listItems = new ArrayList<>(Arrays.asList(facilitiesList));
