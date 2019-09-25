@@ -50,8 +50,8 @@ public class Facilities extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facilities);
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        //BottomNavigationView navView = findViewById(R.id.nav_view);
+        //navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         listView = (ListView) findViewById(R.id.facilitiesListView);
 
