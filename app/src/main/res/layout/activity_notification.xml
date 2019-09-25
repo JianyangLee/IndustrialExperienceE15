@@ -34,6 +34,12 @@
         android:layout_width="300dp"
         android:layout_height="342dp"
         android:layout_gravity="center_horizontal"/>
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Cancel Existing Notification"/>
 
     <Button
         android:id="@+id/setReminder"
@@ -45,4 +51,5 @@
         android:layout_gravity="center_horizontal"
         android:background="@drawable/transparent_bg_bordered_button"
         android:layout_marginTop="30dp"/>
+
 </LinearLayout>
