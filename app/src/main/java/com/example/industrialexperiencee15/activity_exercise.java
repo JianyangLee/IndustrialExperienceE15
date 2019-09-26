@@ -241,13 +241,18 @@ public class activity_exercise extends AppCompatActivity {
 
     private void searchItem(String textSearch) {
         initialList();
-        for (String exercise:exerciseList){
-            if(!exercise.toLowerCase().contains(textSearch.toLowerCase())){
+        try{
+        for (String exercise : exerciseList) {
+            if (!exercise.toLowerCase().contains(textSearch.toLowerCase())) {
                 listItems.remove(exercise);
             }
         }
 
         adapter.notifyDataSetChanged();
+        }
+        catch(Exception e){
+            Toast.makeText(activity_exercise.this,"Please check your network connection.",Toast.LENGTH_LONG).show();
+        }
     }
 
     private void hideKeyboard() {
