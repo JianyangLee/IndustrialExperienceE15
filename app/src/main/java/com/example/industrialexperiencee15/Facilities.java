@@ -25,6 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -158,19 +159,29 @@ public class Facilities extends AppCompatActivity {
     };
 
     private void initialList() {
-        listItems = new ArrayList<>(Arrays.asList(facilitiesList));
-        adapter = new ArrayAdapter<String>(this, R.layout.list_item, R.id.textView, listItems);
-        listView.setAdapter(adapter);
+        try {
+            listItems = new ArrayList<>(Arrays.asList(facilitiesList));
+            adapter = new ArrayAdapter<String>(this, R.layout.list_item, R.id.textView, listItems);
+            listView.setAdapter(adapter);
+        }
+        catch(Exception e){
+            Toast.makeText(Facilities.this,"Please check your network connection.",Toast.LENGTH_LONG).show();
+        }
     }
 
     private void searchItem(String textSearch) {
         initialList();
-        for (String exercise : facilitiesList) {
-            if (!exercise.toLowerCase().contains(textSearch.toLowerCase())) {
-                listItems.remove(exercise);
+        try {
+            for (String exercise : facilitiesList) {
+                if (!exercise.toLowerCase().contains(textSearch.toLowerCase())) {
+                    listItems.remove(exercise);
+                }
             }
+            adapter.notifyDataSetChanged();
         }
-        adapter.notifyDataSetChanged();
+        catch(Exception e){
+            Toast.makeText(Facilities.this,"Please check your network connection.",Toast.LENGTH_LONG).show();
+        }
     }
 
     private void hideKeyboard() {
