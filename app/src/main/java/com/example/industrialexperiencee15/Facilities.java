@@ -58,6 +58,8 @@ public class Facilities extends AppCompatActivity {
 
         // userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        Facilities.GetAllFacilitiesAsync AllFacilitiesAsync = new Facilities.GetAllFacilitiesAsync();
+        AllFacilitiesAsync.execute();
 
         facilitiesName = (EditText) findViewById(R.id.facilityName);
         final Button backToDash = (Button) findViewById(R.id.btnBacktoDashboard);
