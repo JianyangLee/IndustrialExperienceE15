@@ -392,10 +392,8 @@ public class RestService {
             while (inStream.hasNextLine()) {
                 textResult += inStream.nextLine();
             }
-
         } catch (Exception e) {
             e.printStackTrace();
-
         } finally {
             conn.disconnect();
         }
@@ -427,7 +425,6 @@ public class RestService {
             while (inStream.hasNextLine()) {
                 textResult += inStream.nextLine();
             }
-
         } catch (Exception e) {
             e.printStackTrace();
 
