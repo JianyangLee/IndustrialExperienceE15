@@ -331,4 +331,109 @@ public class RestService {
         }
         return textResult;
     }
+
+    public static String getAllWorkoutById(String id){
+        final String methodPath = "https://65hu4csdf7.execute-api.ap-southeast-2.amazonaws.com/getWorkoutByUID/" + id;
+        //initialise
+        URL url = null;
+        HttpURLConnection conn = null;
+        String textResult = "";
+        //making HTTP request
+        try {
+            url = new URL(methodPath);
+            //open connection
+            conn = (HttpURLConnection) url.openConnection();
+            //set the timeout
+            conn.setReadTimeout(10000);
+            conn.setConnectTimeout(15000);
+            //set the connection method to GET
+            conn.setRequestMethod("GET");
+            //add http headers to set your response type to json
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            //Read the response
+            Scanner inStream = new Scanner(conn.getInputStream());
+            //READ the input stream and store it as string
+            while (inStream.hasNextLine()) {
+                textResult += inStream.nextLine();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            conn.disconnect();
+        }
+        return textResult;
+    }
+
+    public static String getAllConsumptionyUId(String id){
+        final String methodPath = "https://2a6qwui660.execute-api.ap-southeast-2.amazonaws.com/getAllConByUID/" + id;
+        //initialise
+        URL url = null;
+        HttpURLConnection conn = null;
+        String textResult = "";
+        //making HTTP request
+        try {
+            url = new URL(methodPath);
+            //open connection
+            conn = (HttpURLConnection) url.openConnection();
+            //set the timeout
+            conn.setReadTimeout(10000);
+            conn.setConnectTimeout(15000);
+            //set the connection method to GET
+            conn.setRequestMethod("GET");
+            //add http headers to set your response type to json
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            //Read the response
+            Scanner inStream = new Scanner(conn.getInputStream());
+            //READ the input stream and store it as string
+            while (inStream.hasNextLine()) {
+                textResult += inStream.nextLine();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            conn.disconnect();
+        }
+        return textResult;
+    }
+
+    public static String getAllConsumptionyUIdAndDate(String id, String date){
+        final String methodPath = "https://78fiwcdx0c.execute-api.ap-southeast-2.amazonaws.com/getAllConByUIDAndDate/" + id + "/" + date;
+        //initialise
+        URL url = null;
+        HttpURLConnection conn = null;
+        String textResult = "";
+        //making HTTP request
+        try {
+            url = new URL(methodPath);
+            //open connection
+            conn = (HttpURLConnection) url.openConnection();
+            //set the timeout
+            conn.setReadTimeout(10000);
+            conn.setConnectTimeout(15000);
+            //set the connection method to GET
+            conn.setRequestMethod("GET");
+            //add http headers to set your response type to json
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            //Read the response
+            Scanner inStream = new Scanner(conn.getInputStream());
+            //READ the input stream and store it as string
+            while (inStream.hasNextLine()) {
+                textResult += inStream.nextLine();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            conn.disconnect();
+        }
+        return textResult;
+    }
 }
