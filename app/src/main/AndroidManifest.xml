@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RemindersHomeActivity"></activity>
+        <activity android:name=".userReportsHome"></activity>
+        <activity android:name=".RemindersHomeActivity" />
         <activity android:name=".setNewUserGoal" />
         <activity android:name=".UserSettingsHome" />
         <activity android:name=".Notification" />
