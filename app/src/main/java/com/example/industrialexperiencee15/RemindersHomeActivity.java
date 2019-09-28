@@ -3,10 +3,9 @@ package com.example.industrialexperiencee15;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,8 +25,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
+public class RemindersHomeActivity extends AppCompatActivity {
 
-public class Dashboard extends AppCompatActivity {
+
     FirebaseAuth mFirebaseAuth;
     FirebaseFirestore db;
     TextView  sugarCon, fatCon,calShow, remainedTextView, goalToday, takenToday, burnedToday;
@@ -39,10 +39,12 @@ public class Dashboard extends AppCompatActivity {
     double calInShow;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_reminders_home);
 
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -50,99 +52,39 @@ public class Dashboard extends AppCompatActivity {
 
 
         burnedFinal = 0;
-        sugarCon = (TextView) findViewById(R.id.sugarAmount);
-        fatCon = (TextView) findViewById(R.id.fatAmount);
+        sugarCon = (TextView) findViewById(R.id.sugarAmountUserSettings);
+        fatCon = (TextView) findViewById(R.id.fatAmountUserSettings);
         calShow = (TextView) findViewById(R.id.calShow);
         remainedTextView = (TextView) findViewById(R.id.remained);
         goalToday = (TextView) findViewById(R.id.goalToday);
         takenToday = (TextView) findViewById(R.id.takenToday);
         burnedToday = (TextView) findViewById(R.id.burnedToday);
 
-        DBInAsyncTask dbReadin = new DBInAsyncTask();
+        RemindersHomeActivity.DBInAsyncTask dbReadin = new RemindersHomeActivity.DBInAsyncTask();
         dbReadin.execute();
 
+        final Button exerciseReminder = (Button) findViewById(R.id.btnTileRemindAboutExercise);
+        final Button waterReminder = (Button) findViewById(R.id.btnTileReminderToTakeWater);
 
-
-        final Button Insert = (Button) findViewById(R.id.btnTile1);
-        final Button TrackFood = (Button) findViewById(R.id.btnTile2);
-        final Button logout = (Button) findViewById(R.id.logout);
-        final Button exercise = (Button) findViewById(R.id.btnTile3);
-        final Button report = (Button) findViewById(R.id.btnTile5);
-        final Button stepsCounter = (Button) findViewById(R.id.btnTile6);
-        final Button findFacilitiesNearby = (Button) findViewById(R.id.btnTile4);
-        final Button reminder = (Button) findViewById(R.id.remider);
-
-
-
-        logout.setOnClickListener(new View.OnClickListener() {
+        exerciseReminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent out = new Intent(Dashboard.this, MainActivity.class);
-                Dashboard.this.startActivity(out);
+                Intent notificationActivity = new Intent(RemindersHomeActivity.this, Notification.class);
+                RemindersHomeActivity.this.startActivity(notificationActivity);
+            }
+        });
+
+        waterReminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent waterReminder = new Intent(RemindersHomeActivity.this, Notification.class);
+                RemindersHomeActivity.this.startActivity(waterReminder);
             }
         });
 
 
-        Insert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent insert = new Intent(Dashboard.this, Tracker.class);
-//                String test = FirebaseAuth.getInstance().getCurrentUser().getUid();//Get user id from firebase
-                Dashboard.this.startActivity(insert);
-            }
-        });
-
-        TrackFood.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent trackFood = new Intent(Dashboard.this, TrackFood.class);
-                Dashboard.this.startActivity(trackFood);
-            }
-        });
-
-        exercise.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent exercise = new Intent(Dashboard.this, activity_exercise.class);
-                Dashboard.this.startActivity(exercise);
-            }
-        });
-
-        stepsCounter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent Pedometer = new Intent(Dashboard.this, Pedometer.class);
-                Dashboard.this.startActivity(Pedometer);
-            }
-        });
-
-        report.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent dataVisual = new Intent(Dashboard.this, DataVisual.class);
-                Dashboard.this.startActivity(dataVisual);
-            }
-        });
-
-
-        findFacilitiesNearby.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent exercise = new Intent(Dashboard.this, RemindersHomeActivity.class);
-                Dashboard.this.startActivity(exercise);
-            }
-        });
-
-        reminder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent reminder = new Intent(Dashboard.this, Notification.class);
-                Dashboard.this.startActivity(reminder);
-            }
-        });
     }
-
 
     private class DBInAsyncTask extends AsyncTask<Void, Void, String> {
 
@@ -185,7 +127,7 @@ public class Dashboard extends AppCompatActivity {
 
                     fatCon.setText(Double.toString(fatFinal.doubleValue()) + "g");
                     sugarCon.setText(Double.toString(sugarFinal.doubleValue()) + "g");
-                    ShowAsyncTask show = new ShowAsyncTask();
+                    RemindersHomeActivity.ShowAsyncTask show = new RemindersHomeActivity.ShowAsyncTask();
                     show.execute(calFinal.doubleValue());
                 }
             });
@@ -279,6 +221,3 @@ public class Dashboard extends AppCompatActivity {
         }
     }
 }
-
-
-
