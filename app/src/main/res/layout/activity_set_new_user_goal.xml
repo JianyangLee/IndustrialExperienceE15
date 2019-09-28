@@ -7,40 +7,38 @@
     android:background="@drawable/onboard2"
     tools:context=".OnBoard_Welcome_S1">
 
-
-    <TextView
-        android:id="@+id/textView3"
+    <ImageView
+        android:id="@+id/imageViewUserNewGoal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/welcome"
-        android:textSize="25dp"
-        android:gravity="center"/>
+        android:layout_height="151dp"
+        android:layout_marginTop="70dp"
+        app:srcCompat="@drawable/user_change_in_goal" />
 
     <TextView
         android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="186dp"
-        android:layout_below="@+id/textView3"
+        android:layout_below="@+id/imageViewUserNewGoal"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textColor="#2E2424"
         android:ems="10"
         android:gravity="center_horizontal"
         android:inputType="textMultiLine"
-        android:text="@string/Welcome_page_Message"
+        android:text="@string/setNewGoal_page_Message"
         android:textSize="25dp" />
 
 
     <Button
-        android:id="@+id/Lets_get_Started"
-        android:layout_width="150dp"
+        android:id="@+id/Lets_get_Started_for_New_Goal"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="130dp"
         android:textColor="#FFFFFF"
         android:background="@drawable/transparent_bg_bordered_button"

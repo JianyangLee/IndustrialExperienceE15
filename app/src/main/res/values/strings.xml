@@ -7,6 +7,8 @@
     <string name="lets_get_started">Lets Get Started</string>
     <string name="welcome">Welcome</string>
     <string name="Welcome_page_Message">We just need to ask you a few quick questions so we can calculate your recommended daily calories and help you achieve your goals </string>
+    <string name="setNewGoal_page_Message">Its never too late to change the goal !! </string>
+
     <!-- Goal Page -->
     <string name="whatIsYourGoal">What is your goal ?</string>
     <string name="weightLossOption">To lose weight</string>

@@ -7,13 +7,19 @@
     android:background="@drawable/onboard2"
     tools:context=".OnBoard_Goal_S2">
 
-
+    <ImageView
+        android:id="@+id/imageViewUserGoal"
+        android:layout_width="match_parent"
+        android:layout_height="101dp"
+        android:layout_marginTop="70dp"
+        app:srcCompat="@drawable/user_target" />
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewUserGoal"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="225dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:text="@string/whatIsYourGoal"
         android:textSize="25dp" />
@@ -25,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView4"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="73dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="20dp"
         android:orientation="vertical"
         android:paddingTop="2dp"
@@ -73,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/radio_goal"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="149dp"
+        android:layout_marginTop="100dp"
         android:layout_marginRight="20dp"
         android:paddingRight="10dp"
         android:text="@string/buttonPrevious"
@@ -88,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/radio_goal"
         android:layout_marginLeft="90dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="100dp"
         android:textColor="#FFFFFF"
         android:layout_marginRight="20dp"
         android:layout_toRightOf="@id/S2PreviousButton"

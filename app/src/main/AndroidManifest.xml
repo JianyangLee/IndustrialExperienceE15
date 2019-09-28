@@ -19,7 +19,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Notification"></activity>
+        <activity android:name=".setNewUserGoal"></activity>
+        <activity android:name=".UserSettingsHome" />
+        <activity android:name=".Notification" />
         <activity android:name=".PedometerDashboard" />
         <activity android:name=".Pedometer" />
         <activity android:name=".Graph" />
@@ -77,7 +79,8 @@
         <activity
             android:name=".Signup"
             android:label="@string/Tracker" />
-        <receiver android:name=".AlarmReceiver"/>
+
+        <receiver android:name=".AlarmReceiver" />
     </application>
 
 </manifest>
