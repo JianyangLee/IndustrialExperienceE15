@@ -273,7 +273,7 @@
                                 android:layout_centerInParent="true"
                                 android:layout_alignParentTop="true"
                                 android:layout_marginTop="25dp"
-                                android:src="@drawable/todays_report" />
+                                android:src="@drawable/user_target" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -282,11 +282,11 @@
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="10dp"
-                                android:text="Today's Report"
+                                android:text="Enter Exercise"
                                 android:textSize="16sp" />
 
                             <Button
-                                android:id="@+id/btnTileDailyUserReport"
+                                android:id="@+id/btnTileEnterUserExerises"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@android:color/transparent" />
@@ -325,7 +325,7 @@
                                 android:layout_centerInParent="true"
                                 android:layout_alignParentTop="true"
                                 android:layout_marginTop="25dp"
-                                android:src="@drawable/progress_report_bar" />
+                                android:src="@drawable/logouticon" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -334,11 +334,11 @@
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="10dp"
-                                android:text="Progress Report"
+                                android:text="View My Exercises"
                                 android:textSize="16sp" />
 
                             <Button
-                                android:id="@+id/btnTileUserProgressReport"
+                                android:id="@+id/btnTileViewUserExercises"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@android:color/transparent" />
