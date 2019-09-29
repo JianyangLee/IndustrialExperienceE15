@@ -3,10 +3,9 @@ package com.example.industrialexperiencee15;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,11 +25,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
+public class userSportsOptionsHome extends AppCompatActivity {
 
-public class Dashboard extends AppCompatActivity {
     FirebaseAuth mFirebaseAuth;
     FirebaseFirestore db;
-    TextView  sugarCon, fatCon,calShow, remainedTextView, goalToday, takenToday, burnedToday;
+    TextView sugarCon, fatCon, calShow, remainedTextView, goalToday, takenToday, burnedToday;
     private BigDecimal sugarFinal;
     private BigDecimal fatFinal;
     private Integer burnedFinal;
@@ -39,110 +38,50 @@ public class Dashboard extends AppCompatActivity {
     double calInShow;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_user_sports_options_home);
 
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         db = FirebaseFirestore.getInstance();
 
-
         burnedFinal = 0;
-        sugarCon = (TextView) findViewById(R.id.sugarAmount);
-        fatCon = (TextView) findViewById(R.id.fatAmount);
+        sugarCon = (TextView) findViewById(R.id.sugarAmountUserSettings);
+        fatCon = (TextView) findViewById(R.id.fatAmountUserSettings);
         calShow = (TextView) findViewById(R.id.calShow);
         remainedTextView = (TextView) findViewById(R.id.remained);
         goalToday = (TextView) findViewById(R.id.goalToday);
         takenToday = (TextView) findViewById(R.id.takenToday);
         burnedToday = (TextView) findViewById(R.id.burnedToday);
 
-        DBInAsyncTask dbReadin = new DBInAsyncTask();
+        userSportsOptionsHome.DBInAsyncTask dbReadin = new userSportsOptionsHome.DBInAsyncTask();
         dbReadin.execute();
 
+        final Button findSportsFeatures = (Button) findViewById(R.id.btnTileFindSportsFacilities);
+        final Button trackUserRun = (Button) findViewById(R.id.btnTileTrackUserRun);
 
 
-        final Button inBoundCaloriesHome = (Button) findViewById(R.id.btnTile1);
-        final Button outBoundCaloriesHome = (Button) findViewById(R.id.btnTile2);
-        final Button logout = (Button) findViewById(R.id.logout);
-        final Button remindersHomePage = (Button) findViewById(R.id.btnTile3);
-        final Button report = (Button) findViewById(R.id.btnTile5);
-        final Button stepsCounter = (Button) findViewById(R.id.btnTile6);
-        final Button findFacilitiesNearby = (Button) findViewById(R.id.btnTile4);
-        //final Button reminder = (Button) findViewById(R.id.remider);
-
-
-
-        logout.setOnClickListener(new View.OnClickListener() {
+        findSportsFeatures.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent out = new Intent(Dashboard.this, MainActivity.class);
-                Dashboard.this.startActivity(out);
+                Intent addExcerises = new Intent(userSportsOptionsHome.this, Facilities.class);
+                userSportsOptionsHome.this.startActivity(addExcerises);
+            }
+        });
+        trackUserRun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent viewExerises = new Intent(userSportsOptionsHome.this, Pedometer.class);
+                userSportsOptionsHome.this.startActivity(viewExerises);
             }
         });
 
 
-        inBoundCaloriesHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent insertInboundCalories = new Intent(Dashboard.this, InBoundCaloriesHome.class);
-//                String test = FirebaseAuth.getInstance().getCurrentUser().getUid();//Get user id from firebase
-                Dashboard.this.startActivity(insertInboundCalories);
-            }
-        });
-
-        outBoundCaloriesHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent trackFood = new Intent(Dashboard.this, OutBoundCaloriesHome.class);
-                Dashboard.this.startActivity(trackFood);
-            }
-        });
-
-        remindersHomePage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent reminders = new Intent(Dashboard.this, RemindersHomeActivity.class);
-                Dashboard.this.startActivity(reminders);
-            }
-        });
-
-        stepsCounter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent Pedometer = new Intent(Dashboard.this, Pedometer.class);
-                Dashboard.this.startActivity(Pedometer);
-            }
-        });
-
-        report.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent dataVisual = new Intent(Dashboard.this, userReportsHome.class);
-                Dashboard.this.startActivity(dataVisual);
-            }
-        });
-
-
-        findFacilitiesNearby.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent exercise = new Intent(Dashboard.this, userSportsOptionsHome.class);
-                Dashboard.this.startActivity(exercise);
-            }
-        });
-
-//        reminder.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent reminder = new Intent(Dashboard.this, Notification.class);
-//                Dashboard.this.startActivity(reminder);
-//            }
-//        });
     }
-
 
     private class DBInAsyncTask extends AsyncTask<Void, Void, String> {
 
@@ -185,12 +124,12 @@ public class Dashboard extends AppCompatActivity {
 
                     fatCon.setText(Double.toString(fatFinal.doubleValue()) + "g");
                     sugarCon.setText(Double.toString(sugarFinal.doubleValue()) + "g");
-                    ShowAsyncTask show = new ShowAsyncTask();
+                    userSportsOptionsHome.ShowAsyncTask show = new userSportsOptionsHome.ShowAsyncTask();
                     show.execute(calFinal.doubleValue());
                 }
             });
 
-            return "" ;
+            return "";
         }
 
 
@@ -210,24 +149,21 @@ public class Dashboard extends AppCompatActivity {
             String todayDate = currentDate.format(c.getTime());
             calInShow = params[0];
 
-            String returnValue = RestService.findByUseridAndDate(userID,todayDate );
+            String returnValue = RestService.findByUseridAndDate(userID, todayDate);
             try {
                 JSONObject jsnobject = new JSONObject(returnValue);
                 JSONArray jsonArr = jsnobject.getJSONArray("data");
-                for(int i = 0; i < jsonArr.length(); i++)
-                {
+                for (int i = 0; i < jsonArr.length(); i++) {
                     try {
                         JSONObject obj = jsonArr.getJSONObject(i);
                         int energy = obj.getInt("ENERGY_BURNED");
                         burnedFinal = burnedFinal + energy;
-                    }
-                    catch (Exception e) {
-                        Log.e("test","get test");
+                    } catch (Exception e) {
+                        Log.e("test", "get test");
                     }
                 }
 
-            }
-            catch(Exception e){
+            } catch (Exception e) {
 
             }
 
@@ -242,13 +178,12 @@ public class Dashboard extends AppCompatActivity {
                             Calculation calculation = d.toObject(Calculation.class);
                             if (userID.equals(calculation.getUID())) {
 
-                                Integer calorieToShowInScreeen = (int)(calculation.getCalorieLimit() - (int)calInShow + burnedFinal);
-                                Integer calLimit = (int)(calculation.getCalorieLimit());
-                                Integer calTaken = (int)(calInShow);
-                                if (calorieToShowInScreeen >= 0){
+                                Integer calorieToShowInScreeen = (int) (calculation.getCalorieLimit() - (int) calInShow + burnedFinal);
+                                Integer calLimit = (int) (calculation.getCalorieLimit());
+                                Integer calTaken = (int) (calInShow);
+                                if (calorieToShowInScreeen >= 0) {
 
-                                }
-                                else{
+                                } else {
                                     calorieToShowInScreeen = calorieToShowInScreeen * -1;
                                     remainedTextView.setText("Over");
                                     calShow.setTextColor(getResources().getColor(R.color.red));
@@ -262,7 +197,7 @@ public class Dashboard extends AppCompatActivity {
 
                                 SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userLeft", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor userSharedPreferenceEditor = userSharedPreferenceDetails.edit();
-                                userSharedPreferenceEditor.putInt("Left",(int)(calculation.getCalorieLimit() - (int)calInShow + burnedFinal));
+                                userSharedPreferenceEditor.putInt("Left", (int) (calculation.getCalorieLimit() - (int) calInShow + burnedFinal));
                                 userSharedPreferenceEditor.apply();
                             }
                         }
@@ -279,6 +214,3 @@ public class Dashboard extends AppCompatActivity {
         }
     }
 }
-
-
-

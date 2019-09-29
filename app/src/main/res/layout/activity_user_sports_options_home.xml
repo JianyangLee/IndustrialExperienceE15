@@ -282,11 +282,11 @@
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="10dp"
-                                android:text="Enter Exercise"
+                                android:text="Find Sports Facilities"
                                 android:textSize="16sp" />
 
                             <Button
-                                android:id="@+id/btnTileEnterUserExerises"
+                                android:id="@+id/btnTileFindSportsFacilities"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@android:color/transparent" />
@@ -334,11 +334,11 @@
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="10dp"
-                                android:text="View My Exercises"
+                                android:text="Track My Run"
                                 android:textSize="16sp" />
 
                             <Button
-                                android:id="@+id/btnTileViewUserExercises"
+                                android:id="@+id/btnTileTrackUserRun"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@android:color/transparent" />

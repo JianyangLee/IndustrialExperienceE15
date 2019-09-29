@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OutBoundCaloriesHome"></activity>
+        <activity android:name=".userSportsOptionsHome"></activity>
+        <activity android:name=".OutBoundCaloriesHome" />
         <activity android:name=".InBoundCaloriesHome" />
         <activity android:name=".userReportsHome" />
         <activity android:name=".RemindersHomeActivity" />
