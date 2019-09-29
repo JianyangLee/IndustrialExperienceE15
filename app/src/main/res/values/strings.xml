@@ -52,5 +52,6 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_facilities">Map</string>
     <string name="title_activity_facilities_with__maps">Facilities_with_Maps</string>
+    <string name="title_activity_sports_coach">sportsCoach</string>
 
 </resources>
