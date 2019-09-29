@@ -312,7 +312,7 @@
                                     android:layout_centerHorizontal="true"
                                     android:layout_marginTop="5dp"
                                     android:layout_marginBottom="10dp"
-                                    android:text="Add Food"
+                                    android:text="Calories Inbound"
                                     android:textSize="16sp" />
 
                                 <Button
@@ -492,7 +492,7 @@
                                     android:layout_centerHorizontal="true"
                                     android:layout_marginTop="5dp"
                                     android:layout_marginBottom="10dp"
-                                    android:text="Get your report"
+                                    android:text="My Reports"
                                     android:textSize="16sp" />
 
                                 <Button
