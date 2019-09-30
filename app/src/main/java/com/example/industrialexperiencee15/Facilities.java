@@ -54,11 +54,12 @@ public class Facilities extends AppCompatActivity {
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-          Menu menu = navView.getMenu();
-          for(int i=0;i<=3;i++) {
-              MenuItem menuItem = menu.getItem(i);
-              menuItem.setChecked(false);
-          }
+        Menu menu = navView.getMenu();
+        for(int i=0;i<=3;i++) {
+            MenuItem menuItem = menu.getItem(i);
+            menuItem.setChecked(false);
+            menuItem.setCheckable(false);
+        }
 
 
         listView = (ListView) findViewById(R.id.facilitiesListView);

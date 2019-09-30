@@ -8,10 +8,13 @@ import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -81,6 +84,9 @@ public class Tracker extends AppCompatActivity {
         currentFat = 0;
         currentCal = 0;
         burnedFinal = 0;
+
+
+
 
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         db = FirebaseFirestore.getInstance();
@@ -565,5 +571,7 @@ public class Tracker extends AppCompatActivity {
             v.vibrate(500);
         }
     }
+
+
 }
 

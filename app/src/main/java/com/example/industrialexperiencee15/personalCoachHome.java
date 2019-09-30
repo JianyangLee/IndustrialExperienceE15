@@ -54,8 +54,10 @@ public class personalCoachHome extends AppCompatActivity {
         Menu menu = navView.getMenu();
         for(int i=0;i<=3;i++) {
             MenuItem menuItem = menu.getItem(i);
-            menuItem.setChecked(true);
-            }
+            menuItem.setChecked(false);
+            menuItem.setCheckable(false);
+        }
+
 
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 

@@ -4,9 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -61,6 +65,15 @@ public class InBoundCaloriesHome extends AppCompatActivity {
         InBoundCaloriesHome.DBInAsyncTask dbReadin = new InBoundCaloriesHome.DBInAsyncTask();
         dbReadin.execute();
 
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        Menu menu = navView.getMenu();
+        for(int i=0;i<=3;i++) {
+            MenuItem menuItem = menu.getItem(i);
+            menuItem.setChecked(false);
+            menuItem.setCheckable(false);
+        }
+
         final Button foodTracker = (Button) findViewById(R.id.btnTileEnterUserFood);
         final Button trackUserFood = (Button) findViewById(R.id.btnTileViewUserFood);
 
@@ -81,6 +94,8 @@ public class InBoundCaloriesHome extends AppCompatActivity {
 
 
     }
+
+
 
     private class DBInAsyncTask extends AsyncTask<Void, Void, String> {
 
@@ -139,6 +154,35 @@ public class InBoundCaloriesHome extends AppCompatActivity {
         }
     }
 
+
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_food:
+                    Intent intent_Tracker = new Intent(InBoundCaloriesHome.this, Tracker.class);
+                    startActivity(intent_Tracker);
+                    return true;
+                case R.id.navigation_dashboard:
+                    Intent intent_activity_exercise = new Intent(InBoundCaloriesHome.this, Dashboard.class);
+                    startActivity(intent_activity_exercise);
+                    ;
+                    return true;
+                case R.id.navigation_exercise:
+                    Intent intent_Dashboard = new Intent(InBoundCaloriesHome.this, activity_exercise.class);
+                    startActivity(intent_Dashboard);
+                    return true;
+                case R.id.navigation_settings:
+                    Intent intent_Settings = new Intent(InBoundCaloriesHome.this, UserSettingsHome.class);
+                    startActivity(intent_Settings);
+                    return true;
+            }
+            return false;
+        }
+    };
 
     private class ShowAsyncTask extends AsyncTask<Double, Void, String> {
         @Override

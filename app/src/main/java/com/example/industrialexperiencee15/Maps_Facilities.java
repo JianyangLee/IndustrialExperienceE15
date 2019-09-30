@@ -4,14 +4,19 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +55,17 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // ------------------- Navigation Bar Code   -------------------
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        Menu menu = navView.getMenu();
+        for(int i=0;i<=3;i++) {
+            MenuItem menuItem = menu.getItem(i);
+            menuItem.setChecked(false);
+            menuItem.setCheckable(false);
+        }
+        // ------------------ End of Navigation bar Code ----------------
 
         // get the sport value from previous values
 
@@ -187,6 +203,34 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
        //plotUsersAreasOfInterestInMaps();
 
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_food:
+                    Intent intent_Tracker = new Intent(Maps_Facilities.this, Tracker.class);
+                    startActivity(intent_Tracker);
+                    return true;
+                case R.id.navigation_dashboard:
+                    Intent intent_activity_exercise = new Intent(Maps_Facilities.this, Dashboard.class);
+                    startActivity(intent_activity_exercise);
+                    ;
+                    return true;
+                case R.id.navigation_exercise:
+                    Intent intent_Dashboard = new Intent(Maps_Facilities.this, activity_exercise.class);
+                    startActivity(intent_Dashboard);
+                    return true;
+                case R.id.navigation_settings:
+                    Intent intent_Settings = new Intent(Maps_Facilities.this, UserSettingsHome.class);
+                    startActivity(intent_Settings);
+                    return true;
+            }
+            return false;
+        }
+    };
 
 
     // this Method take care of placing a  marker in the maps screen once the user long click on any area of the maps
