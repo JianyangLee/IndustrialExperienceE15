@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -51,8 +52,14 @@ public class Facilities extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facilities);
 
-        //BottomNavigationView navView = findViewById(R.id.nav_view);
-        //navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+          Menu menu = navView.getMenu();
+          for(int i=0;i<=3;i++) {
+              MenuItem menuItem = menu.getItem(i);
+              menuItem.setChecked(false);
+          }
+
 
         listView = (ListView) findViewById(R.id.facilitiesListView);
 
@@ -97,7 +104,6 @@ public class Facilities extends AppCompatActivity {
                 facilitiesName.setText(value);
             }
         });
-
 
 
         backToDash.setOnClickListener(new View.OnClickListener() {
@@ -152,7 +158,7 @@ public class Facilities extends AppCompatActivity {
                     startActivity(intent_Dashboard);
                     return true;
                 case R.id.navigation_settings:
-                    Intent intent_Settings = new Intent(Facilities.this, activity_exercise.class);
+                    Intent intent_Settings = new Intent(Facilities.this, UserSettingsHome.class);
                     startActivity(intent_Settings);
                     return true;
             }
@@ -165,9 +171,8 @@ public class Facilities extends AppCompatActivity {
             listItems = new ArrayList<>(Arrays.asList(facilitiesList));
             adapter = new ArrayAdapter<String>(this, R.layout.list_item, R.id.textView, listItems);
             listView.setAdapter(adapter);
-        }
-        catch(Exception e){
-            Toast.makeText(Facilities.this,"Please check your network connection.",Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            Toast.makeText(Facilities.this, "Please check your network connection.", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -180,9 +185,8 @@ public class Facilities extends AppCompatActivity {
                 }
             }
             adapter.notifyDataSetChanged();
-        }
-        catch(Exception e){
-            Toast.makeText(Facilities.this,"Please check your network connection.",Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            Toast.makeText(Facilities.this, "Please check your network connection.", Toast.LENGTH_LONG).show();
         }
     }
 

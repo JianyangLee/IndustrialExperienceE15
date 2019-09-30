@@ -70,51 +70,24 @@
     </ListView>
 
     <LinearLayout
-        android:id="@+id/bottom4"
+        android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:weightSum="2"
+        android:weightSum="1"
         android:orientation="horizontal">
-        <RelativeLayout
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/nav_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center">
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/dashicon"
-                android:layout_marginLeft="15dp"
-                android:layout_centerVertical="true"/>
-            <Button
-                android:id="@+id/dashbtn4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="#00FFFFFF"
-                android:text="Dashboard"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center">
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/logouticon"
-                android:layout_marginLeft="30dp"
-                android:layout_centerVertical="true"/>
-            <Button
-                android:id="@+id/logout4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="#00FFFFFF"
-                android:text="Log out" />
-        </RelativeLayout>
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:background="?android:attr/windowBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:menu="@menu/bottom_nav_menu" />
     </LinearLayout>
 
 </RelativeLayout>

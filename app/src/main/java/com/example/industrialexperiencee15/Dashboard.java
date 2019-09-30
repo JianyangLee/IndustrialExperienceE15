@@ -65,7 +65,7 @@ public class Dashboard extends AppCompatActivity {
 
         final Button inBoundCaloriesHome = (Button) findViewById(R.id.btnTile1);
         final Button outBoundCaloriesHome = (Button) findViewById(R.id.btnTile2);
-        final Button logout = (Button) findViewById(R.id.logout);
+        //final Button logout = (Button) findViewById(R.id.logout);
         final Button remindersHomePage = (Button) findViewById(R.id.btnTile3);
         final Button report = (Button) findViewById(R.id.btnTile5);
         final Button stepsCounter = (Button) findViewById(R.id.btnTile6);
@@ -74,14 +74,14 @@ public class Dashboard extends AppCompatActivity {
 
 
 
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent out = new Intent(Dashboard.this, MainActivity.class);
-                Dashboard.this.startActivity(out);
-            }
-        });
+//        logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FirebaseAuth.getInstance().signOut();
+//                Intent out = new Intent(Dashboard.this, MainActivity.class);
+//                Dashboard.this.startActivity(out);
+//            }
+//        });
 
 
         inBoundCaloriesHome.setOnClickListener(new View.OnClickListener() {

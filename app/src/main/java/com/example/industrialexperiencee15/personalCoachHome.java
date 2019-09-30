@@ -4,9 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -45,6 +49,14 @@ public class personalCoachHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_coach_home);
 
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        Menu menu = navView.getMenu();
+        for(int i=0;i<=3;i++) {
+            MenuItem menuItem = menu.getItem(i);
+            menuItem.setChecked(true);
+            }
+
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         db = FirebaseFirestore.getInstance();
@@ -82,6 +94,35 @@ public class personalCoachHome extends AppCompatActivity {
 
 
     }
+
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_food:
+                    Intent intent_Tracker = new Intent(personalCoachHome.this, Tracker.class);
+                    startActivity(intent_Tracker);
+                    return true;
+                case R.id.navigation_dashboard:
+                    Intent intent_activity_exercise = new Intent(personalCoachHome.this, Dashboard.class);
+                    startActivity(intent_activity_exercise);
+                    ;
+                    return true;
+                case R.id.navigation_exercise:
+                    Intent intent_Dashboard = new Intent(personalCoachHome.this, activity_exercise.class);
+                    startActivity(intent_Dashboard);
+                    return true;
+                case R.id.navigation_settings:
+                    Intent intent_Settings = new Intent(personalCoachHome.this, UserSettingsHome.class);
+                    startActivity(intent_Settings);
+                    return true;
+            }
+            return false;
+        }
+    };
 
     private class DBInAsyncTask extends AsyncTask<Void, Void, String> {
 
