@@ -61,7 +61,7 @@ public class PedometerDashboard extends AppCompatActivity {
         // Calorie Calculation
         caloriesBurnedByUser=0.0;
 
-        double caloriesBurned = userSteps*0.05;
+        double caloriesBurned = userSteps*0.005;
         DecimalFormat df1 = new DecimalFormat("##.00");
         caloriesBurned = Double.valueOf(df1.format(caloriesBurned));
 
@@ -82,7 +82,6 @@ public class PedometerDashboard extends AppCompatActivity {
             public void onClick(View arg0) {
                 Intent backToDash = new Intent(PedometerDashboard.this, Dashboard.class);
                 PedometerDashboard.this.startActivity(backToDash);
-
             }
         });
     }
