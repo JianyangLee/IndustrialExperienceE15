@@ -56,16 +56,7 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // ------------------- Navigation Bar Code   -------------------
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        Menu menu = navView.getMenu();
-        for(int i=0;i<=3;i++) {
-            MenuItem menuItem = menu.getItem(i);
-            menuItem.setChecked(false);
-            menuItem.setCheckable(false);
-        }
-        // ------------------ End of Navigation bar Code ----------------
+
 
         // get the sport value from previous values
 
@@ -80,6 +71,17 @@ public class Maps_Facilities extends FragmentActivity implements OnMapReadyCallb
         //Instantiate the Maps in to the Content View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps__facilities);
+
+        // ------------------- Navigation Bar Code   -------------------
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        Menu menu = navView.getMenu();
+        for(int i=0;i<=3;i++) {
+            MenuItem menuItem = menu.getItem(i);
+            menuItem.setChecked(false);
+            menuItem.setCheckable(false);
+        }
+        // ------------------ End of Navigation bar Code ----------------
 
         //Plot the Locations Fetched from Server
         //plotUsersAreasOfInterestInMaps();

@@ -311,6 +311,7 @@
                         android:layout_gravity="center"
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
+                        app:cardCornerRadius="20dp"
                         android:orientation="vertical"
                         >
 

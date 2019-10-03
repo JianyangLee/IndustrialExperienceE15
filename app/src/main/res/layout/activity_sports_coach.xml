@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
@@ -7,27 +7,125 @@
     android:layout_height="match_parent"
     tools:context=".sportsCoach">
 
+    <Button
+        android:id="@+id/btnBackToExerciseHome"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/imageViewUserGoalSuccessImage"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_marginTop="70dp"
+        app:srcCompat="@drawable/personal_coach_trainer" />
+
+
     <TextView
-        android:id="@+id/message"
+        android:id="@+id/textViewforCoach"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/title_home"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_below="@id/imageViewUserGoalSuccessImage"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:inputType="textMultiLine"
+        android:text="@string/sports_Goal_Message"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/linearForTimeAvailable"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewforCoach"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/timeAvailable"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/white"
+            android:ems="10"
+            android:hint="Planned Time"
+            android:inputType="textPersonName"
+            android:textColor="#090A09"
+            android:textColorHint="#222522" />
+
+        <TextView
+            android:id="@+id/minutesforSports"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:inputType="numberDecimal"
+            android:text="Minutes"
+            android:textColor="#171B18"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearForCalorieGoal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearForTimeAvailable"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/calorieBurnGoal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/white"
+            android:ems="10"
+            android:hint="Calorie Goal"
+            android:inputType="textPersonName"
+            android:textColor="#090A09"
+            android:textColorHint="#222522" />
+
+        <TextView
+            android:id="@+id/calorieUnitForSports"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:inputType="numberDecimal"
+            android:text="Calories"
+            android:textColor="#171B18"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/lets_Start_now"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearForCalorieGoal"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/transparent_bg_bordered_button"
+        android:text="@string/lets_Start"
+        android:textColor="#FFFFFF" />
+
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/nav_view"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
+        android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

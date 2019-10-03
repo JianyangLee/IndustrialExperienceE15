@@ -42,6 +42,8 @@
 
     As per your goals , the recommended intake values are </string>
 
+    <string name="sports_Goal_Message">Please enter the time you can allocate for physical activity and the calories you aim to burn through it.</string>
+
     <string name="running_Acknowledgement">Great Run  \n\n
 
     The details of your run are </string>

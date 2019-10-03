@@ -14,13 +14,14 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+        android:layout_above="@id/bottom"
         tools:context=".Maps_Facilities" />
 
     <LinearLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:layout_alignParentBottom="true"
         android:weightSum="1"
         android:orientation="horizontal">
