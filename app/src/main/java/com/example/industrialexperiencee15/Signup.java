@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ public class Signup extends AppCompatActivity {
     private EditText email,password;
     private Button btnRegister;
     FirebaseAuth mFirebaseAuth;
+    ProgressBar pgbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,23 +32,29 @@ public class Signup extends AppCompatActivity {
         email = findViewById(R.id.username);
         password = findViewById(R.id.password);
         btnRegister = findViewById(R.id.register);
+        pgbar = findViewById(R.id.progress);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String emailValue = email.getText().toString();
                 String passwordValue = password.getText().toString();
+                pgbar.setVisibility(View.VISIBLE);
+                Toast.makeText(Signup.this,"Please wait",Toast.LENGTH_LONG).show();
 
                 if (emailValue.isEmpty()){
                     email.setError("Please enter email, it cannot be empty!");
+                    pgbar.setVisibility(View.GONE);
                     email.requestFocus();
                 }
                 else if (passwordValue.isEmpty()){
                     password.setError("Please enter password, it cannot be empty!");
+                    pgbar.setVisibility(View.GONE);
                     password.requestFocus();
                 }
                 else if (emailValue.isEmpty() && passwordValue.isEmpty()){
                     Toast.makeText(Signup.this,"Both fields need to be filled",Toast.LENGTH_LONG).show();
+                    pgbar.setVisibility(View.GONE);
                 }
                 else if (!(emailValue.isEmpty() && passwordValue.isEmpty())){
                     mFirebaseAuth.createUserWithEmailAndPassword(emailValue,passwordValue).addOnCompleteListener(Signup.this, new OnCompleteListener<AuthResult>() {

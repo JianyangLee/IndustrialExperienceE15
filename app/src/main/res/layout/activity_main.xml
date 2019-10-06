@@ -36,6 +36,17 @@
         android:layout_marginTop="170dp"
         android:src="@drawable/logo"/>
 
+    <ProgressBar
+        android:id="@+id/loginpageprogress"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/username"
+        android:layout_marginBottom="40dp"
+        android:visibility="invisible"
+        />
+
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"

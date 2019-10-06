@@ -51,6 +51,42 @@ public class RestService {
         }
     }
 
+    public static void createUserInfo(Userinfo userinfo){
+        Log.i("create workout","message");
+        final String methodPath = "https://jnknlzj91b.execute-api.ap-southeast-2.amazonaws.com/insertUserinf";
+        //initialise
+        URL url = null;
+        HttpURLConnection conn = null;
+        //making HTTP request
+        try {
+            Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").create();
+            String jsonWorkout = gson.toJson(userinfo);
+            url = new URL(methodPath);
+            //open the connection
+            conn = (HttpURLConnection) url.openConnection();
+            //set the timeout
+            conn.setReadTimeout(10000);
+            conn.setConnectTimeout(15000);
+            //set the connection method to POST
+            conn.setRequestMethod("POST"); //set the output to true
+            conn.setDoOutput(true);
+            //set length of the data you want to send
+            conn.setFixedLengthStreamingMode(jsonWorkout.getBytes().length); //add HTTP headers
+            Log.i("jsonWorkout",jsonWorkout);
+            conn.setRequestProperty("Content-Type", "application/json");
+            Log.i("pass",url.toString());
+            //Send the POST out
+            PrintWriter out= new PrintWriter(conn.getOutputStream());
+            out.print(jsonWorkout);
+            out.close();
+            Log.i("error",new Integer(conn.getResponseCode()).toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            conn.disconnect();
+        }
+    }
+
     public static void createWorkout(Workout workout){
         Log.i("create workout","message");
         final String methodPath = "https://1r6vx6xa47.execute-api.ap-southeast-2.amazonaws.com/insertnewworkout";

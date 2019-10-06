@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Button logIn, SignUpButton;
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    ProgressBar logpgBar;
 
 
     @Override
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         passwordId = findViewById(R.id.password);
         logIn = findViewById(R.id.button1);
         SignUpButton = (Button) findViewById(R.id.button2);
+        logpgBar  = findViewById(R.id.loginpageprogress);
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
 
@@ -84,17 +87,23 @@ public class MainActivity extends AppCompatActivity {
 
                 String emailValue = emailId.getText().toString();
                 String passwordValue = passwordId.getText().toString();
+                logpgBar.setVisibility(View.VISIBLE);
+                Toast.makeText(MainActivity.this,"Please wait",Toast.LENGTH_LONG).show();
 
                 if (emailValue.isEmpty()){
                     emailId.setError("Please enter email, it cannot be empty!");
+                    logpgBar.setVisibility(View.GONE);
                     emailId.requestFocus();
                 }
                 else if (passwordValue.isEmpty()){
                     passwordId.setError("Please enter password, it cannot be empty!");
+                    logpgBar.setVisibility(View.GONE);
                     passwordId.requestFocus();
                 }
                 else if (emailValue.isEmpty() && passwordValue.isEmpty()){
+
                     Toast.makeText(MainActivity.this,"Both fields need to be filled",Toast.LENGTH_LONG).show();
+                    logpgBar.setVisibility(View.GONE);
                 }
                 else if (!(emailValue.isEmpty() && passwordValue.isEmpty())){
                     mFirebaseAuth.signInWithEmailAndPassword(emailValue,passwordValue).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
@@ -102,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if ( !task.isSuccessful()){
                                 Toast.makeText(MainActivity.this,"Login error, try again.",Toast.LENGTH_LONG).show();
+//                                logpgBar.setVisibility(View.GONE);
                             }
                             else{
                                 Intent goDashboard = new Intent(MainActivity.this, Dashboard.class);
@@ -112,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     Toast.makeText(MainActivity.this,"Error occurred, check your network connection.",Toast.LENGTH_LONG).show();
+                    logpgBar.setVisibility(View.GONE);
                 }
             }
         });

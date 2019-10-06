@@ -1,9 +1,14 @@
 package com.example.industrialexperiencee15;
 
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,6 +48,8 @@ public class RemindersHomeActivity extends AppCompatActivity {
     String userID;
     double calInShow;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    PendingIntent alarmIntent;
+    AlarmManager alarm;
 
 
     @Override
@@ -49,6 +57,7 @@ public class RemindersHomeActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminders_home);
+        createNotificationChannel();
 
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -94,9 +103,24 @@ public class RemindersHomeActivity extends AppCompatActivity {
         waterReminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(RemindersHomeActivity.this, AlarmReceiver.class);
+                intent.putExtra("notificationId", 2);
+                intent.putExtra("todo", "You should take 500ml water now");
+                alarmIntent = PendingIntent.getBroadcast(RemindersHomeActivity.this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-                Intent waterReminder = new Intent(RemindersHomeActivity.this, Notification.class);
-                RemindersHomeActivity.this.startActivity(waterReminder);
+
+                Calendar startTime = Calendar.getInstance();
+                startTime.set(Calendar.HOUR_OF_DAY, 9);
+                startTime.set(Calendar.MINUTE, 00);
+                startTime.set(Calendar.SECOND, 0);
+
+                long alarmStartTime = startTime.getTimeInMillis();
+
+                alarm.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
+
+                Toast.makeText(RemindersHomeActivity.this,"Set water reminding successfully.",Toast.LENGTH_LONG).show();
+
             }
         });
 
@@ -236,6 +260,20 @@ public class RemindersHomeActivity extends AppCompatActivity {
 
 
         }
+    }
+
+
+    private void createNotificationChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence name = "ReminderChannel";
+            String description = "Channel for reminder";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("notify",name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
