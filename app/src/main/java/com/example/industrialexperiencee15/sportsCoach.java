@@ -1,6 +1,7 @@
 package com.example.industrialexperiencee15;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +25,9 @@ public class sportsCoach extends AppCompatActivity {
     String userID;
     Button recommendSportsToUser;
     Button btnAddToTheWorkout;
-    ArrayList<String> exerciseList;
+    ArrayList<userWorkoutPojo> exerciseList;
+    ArrayList<userWorkoutPojo> userExerciseBehaviourList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +56,10 @@ public class sportsCoach extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Redirect
-                recommendSportsForSpecificUser();
-                setContentView(R.layout.activity_user_reports_home);
+                getWorkOutFromDatabse getWorkOut = new getWorkOutFromDatabse();
+                getWorkOut.execute();
+                findUserpatternOfExercises();
+
             }
         });
 
@@ -69,29 +74,84 @@ public class sportsCoach extends AppCompatActivity {
 
     }
 
-    private void recommendSportsForSpecificUser() {
-        String sportsPlayedByUserResponse = RestService.getAllWorkoutById(userID);
-        if (sportsPlayedByUserResponse != null && !sportsPlayedByUserResponse.isEmpty()) {
-            try {
-                JSONObject jsnobject = new JSONObject(sportsPlayedByUserResponse);
-                JSONArray jsonArr = jsnobject.getJSONArray("data");
-                for (int i = 0; i < jsonArr.length(); i++) {
-                    try {
-                        JSONObject obj = jsonArr.getJSONObject(i);
-                        String energy = obj.getString("ENERGY_BURNED");
-                        exerciseList.add(energy);
-                    } catch (Exception e) {
-                        Log.e("test", "get test");
+    private class getWorkOutFromDatabse extends AsyncTask<Void, Void, String> {
+
+        @Override
+        protected String doInBackground(Void... params) {
+            String sportsPlayedByUserResponse = RestService.getAllWorkoutById(userID);
+            exerciseList = new ArrayList<>();
+            if (sportsPlayedByUserResponse != null && !sportsPlayedByUserResponse.isEmpty()) {
+                try {
+                    JSONObject jsnobject = new JSONObject(sportsPlayedByUserResponse);
+                    JSONArray jsonArr = jsnobject.getJSONArray("data");
+                    for (int i = 0; i < jsonArr.length(); i++) {
+                        try {
+                            boolean isMatchFound = false;
+                            JSONObject obj = jsonArr.getJSONObject(i);
+                            String excerciseID = obj.getString("EXERCISEID");
+                            Integer durationOfExercise = Integer.parseInt(obj.getString("DURATION"));
+                            for (userWorkoutPojo eachExerciseList : exerciseList) {
+                                if (excerciseID.equals(eachExerciseList.getExerciseID())) {
+                                    eachExerciseList.setDuration(eachExerciseList.getDuration() + durationOfExercise);
+                                    eachExerciseList.setCountOfExercise(eachExerciseList.getCountOfExercise() + 1);
+                                    isMatchFound = true;
+                                }
+                            }
+                            if (!isMatchFound) {
+                                userWorkoutPojo newExercise = new userWorkoutPojo();
+                                newExercise.setExerciseID(excerciseID);
+                                newExercise.setDuration(durationOfExercise);
+                                newExercise.setCountOfExercise(1);
+                                exerciseList.add(newExercise);
+                                isMatchFound = false;
+                            }
+                        } catch (Exception e) {
+                            Log.e("test", "get test");
+                        }
                     }
+
+                } catch (Exception e) {
+
                 }
-
-            } catch (Exception e) {
-
             }
-        } else {
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String response) {
 
         }
     }
+
+    private void findUserpatternOfExercises() {
+        Integer maxCount = 0;
+        Integer maxDuration = 0;
+        userExerciseBehaviourList = new ArrayList<>();
+
+        for (userWorkoutPojo eachExerciseList : exerciseList) {
+            if (maxCount <= eachExerciseList.getCountOfExercise()) {
+                maxCount = eachExerciseList.getCountOfExercise();
+            }
+            if (maxDuration <= eachExerciseList.getDuration()) {
+                maxDuration = eachExerciseList.getDuration();
+            }
+        }
+
+        //Getting the Behaviour of the user Exercise Pattern
+        for (userWorkoutPojo eachExerciseList : exerciseList) {
+
+            if (maxCount == eachExerciseList.getCountOfExercise()) {
+                eachExerciseList.setMostFrequent(true);
+                userExerciseBehaviourList.add(eachExerciseList);
+            }
+            if (maxDuration == eachExerciseList.getDuration() && maxCount != eachExerciseList.getCountOfExercise()) {
+                eachExerciseList.setMostDuration(true);
+                userExerciseBehaviourList.add(eachExerciseList);
+            }
+
+        }
+    }
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -120,4 +180,6 @@ public class sportsCoach extends AppCompatActivity {
             return false;
         }
     };
+
+
 }

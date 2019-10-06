@@ -10,6 +10,35 @@ public class Consumption {
     double calorie;
     int amount;
     String type;
+    Integer countOfOccurance;
+    boolean mostFrequent;
+    boolean mostCaloriesConsumed;
+
+    public boolean isMostFrequent() {
+        return mostFrequent;
+    }
+
+    public void setMostFrequent(boolean mostFrequent) {
+        this.mostFrequent = mostFrequent;
+    }
+
+    public boolean isMostCaloriesConsumed() {
+        return mostCaloriesConsumed;
+    }
+
+    public void setMostCaloriesConsumed(boolean mostCaloriesConsumed) {
+        this.mostCaloriesConsumed = mostCaloriesConsumed;
+    }
+
+    public Integer getCountOfOccurance() {
+        return countOfOccurance;
+    }
+
+    public void setCountOfOccurance(Integer countOfOccurance) {
+        this.countOfOccurance = countOfOccurance;
+    }
+
+
 
 
 
