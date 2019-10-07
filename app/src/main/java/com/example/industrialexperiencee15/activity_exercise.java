@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,6 +42,7 @@ public class activity_exercise extends AppCompatActivity {
     String[] exerciseList;
     String userID;
     JSONArray jsonArr;
+    ProgressBar pgbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class activity_exercise extends AppCompatActivity {
 
         exerciseName = (EditText) findViewById(R.id.exerciseName);
         time = (EditText) findViewById(R.id.time);
+        pgbar = (ProgressBar) findViewById(R.id.pginexercise);
 
         final Button backToDash = (Button) findViewById(R.id.btnBackExercise);
         final Button addExercise = (Button) findViewById(R.id.btnAddExercise);
@@ -104,16 +107,18 @@ public class activity_exercise extends AppCompatActivity {
         addExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pgbar.setVisibility(View.VISIBLE);
                 if(time.getText().toString().equals("") && exerciseName.getText().toString().equals("") ) {
                     Animation shake = AnimationUtils.loadAnimation(activity_exercise.this, R.anim.shake);
                     exerciseName.startAnimation(shake);
+                    pgbar.setVisibility(View.GONE);
                     exerciseName.setError("Please choose an item");
                     time.setError("Please enter numeric value and it cannot be empty");
                     vibrateField();
                     return;
                 }
                 if (time.getText().toString().equals("")) {
-
+                    pgbar.setVisibility(View.GONE);
                     Animation shake = AnimationUtils.loadAnimation(activity_exercise.this, R.anim.shake);
                     time.startAnimation(shake);
                     time.setError("Please enter numeric value and it cannot be empty");
@@ -121,7 +126,7 @@ public class activity_exercise extends AppCompatActivity {
                     return;
                 }
                 if (exerciseName.getText().toString().equals("")) {
-
+                    pgbar.setVisibility(View.GONE);
                     Animation shake = AnimationUtils.loadAnimation(activity_exercise.this, R.anim.shake);
                     exerciseName.startAnimation(shake);
                     exerciseName.setError("Please enter numeric value and it cannot be empty");
@@ -225,6 +230,7 @@ public class activity_exercise extends AppCompatActivity {
             initialList();
             exerciseName.setText("");
             time.setText("");
+            pgbar.setVisibility(View.GONE);
         }
     }
 

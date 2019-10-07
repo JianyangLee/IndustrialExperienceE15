@@ -34,6 +34,7 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class RemindersHomeActivity extends AppCompatActivity {
 
@@ -105,14 +106,16 @@ public class RemindersHomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(RemindersHomeActivity.this, AlarmReceiver.class);
                 intent.putExtra("notificationId", 2);
-                intent.putExtra("todo", "You should take 500ml water now");
+                intent.putExtra("todo", "You should take 1 cup of water now");
                 alarmIntent = PendingIntent.getBroadcast(RemindersHomeActivity.this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
                 alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
 
 
+                Calendar calendar = Calendar.getInstance();
+
                 Calendar startTime = Calendar.getInstance();
-                startTime.set(Calendar.HOUR_OF_DAY, 9);
-                startTime.set(Calendar.MINUTE, 00);
+                startTime.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY) + 1);
+                startTime.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE));
                 startTime.set(Calendar.SECOND, 0);
 
                 long alarmStartTime = startTime.getTimeInMillis();

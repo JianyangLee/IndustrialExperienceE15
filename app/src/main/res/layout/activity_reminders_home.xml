@@ -334,7 +334,7 @@
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="10dp"
-                                android:text="Remind Water"
+                                android:text="Remind Water (Next 1 hour)"
                                 android:textSize="16sp" />
 
                             <Button

@@ -27,6 +27,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.os.AsyncTask;
@@ -74,6 +75,7 @@ public class Tracker extends AppCompatActivity {
     String userID;
     Integer burnedFinal;
     String foodUnit = "";
+    ProgressBar pgbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +102,7 @@ public class Tracker extends AppCompatActivity {
         unit = (TextView) findViewById(R.id.unit);
         image = (ImageView) findViewById(R.id.fisrtView);
         hello = (TextView) findViewById(R.id.hello);
+        pgbar = (ProgressBar) findViewById(R.id.pginfood);
 
         initialList();
 
@@ -170,16 +173,19 @@ public class Tracker extends AppCompatActivity {
         addFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pgbar.setVisibility(View.VISIBLE);
+
                 if(amount.getText().toString().equals("") && foodName.getText().toString().equals("") ) {
                     Animation shake = AnimationUtils.loadAnimation(Tracker.this, R.anim.shake);
                     foodName.startAnimation(shake);
+                    pgbar.setVisibility(View.GONE);
                     foodName.setError("Please choose an item");
                     amount.setError("Please enter numeric value and it cannot be empty");
                     vibrateField();
                     return;
                 }
                 if (amount.getText().toString().equals("")) {
-
+                    pgbar.setVisibility(View.GONE);
                     Animation shake = AnimationUtils.loadAnimation(Tracker.this, R.anim.shake);
                     amount.startAnimation(shake);
                     amount.setError("Please enter numeric value and it cannot be empty");
@@ -187,7 +193,7 @@ public class Tracker extends AppCompatActivity {
                     return;
                 }
                 if (foodName.getText().toString().equals("")) {
-
+                    pgbar.setVisibility(View.GONE);
                     Animation shake = AnimationUtils.loadAnimation(Tracker.this, R.anim.shake);
                     foodName.startAnimation(shake);
                     foodName.setError("Please enter numeric value and it cannot be empty");
@@ -467,7 +473,7 @@ public class Tracker extends AppCompatActivity {
 
             foodName.setText("");
             amount.setText("");
-
+            pgbar.setVisibility(View.GONE);
         }
     }
 
