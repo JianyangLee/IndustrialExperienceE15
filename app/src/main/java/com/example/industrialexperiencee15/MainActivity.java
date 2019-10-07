@@ -110,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if ( !task.isSuccessful()){
-                                Toast.makeText(MainActivity.this,"Login error, try again.",Toast.LENGTH_LONG).show();
-//                                logpgBar.setVisibility(View.GONE);
+                                logpgBar.setVisibility(View.GONE);
+                                Toast.makeText(MainActivity.this,"Login error, check your password, try again.",Toast.LENGTH_LONG).show();
                             }
                             else{
                                 Intent goDashboard = new Intent(MainActivity.this, Dashboard.class);

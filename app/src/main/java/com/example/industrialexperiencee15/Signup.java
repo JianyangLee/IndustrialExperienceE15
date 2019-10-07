@@ -61,6 +61,7 @@ public class Signup extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()){
+                                pgbar.setVisibility(View.GONE);
                                 Toast.makeText(Signup.this,"Unsuccessful register, your password is too short (more than 6) or you cannot have space in username, try again!",Toast.LENGTH_LONG).show();
                             }
                             else{
@@ -71,6 +72,7 @@ public class Signup extends AppCompatActivity {
                     });
                 }
                 else{
+                    pgbar.setVisibility(View.GONE);
                     Toast.makeText(Signup.this,"Error occurred, check your network connection.",Toast.LENGTH_LONG).show();
                 }
             }
