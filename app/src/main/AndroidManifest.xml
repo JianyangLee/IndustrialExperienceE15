@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".foodCoach"></activity>
+        <activity android:name=".ID"></activity>
+        <activity android:name=".foodCoach" />
         <activity
             android:name=".sportsCoach"
             android:label="@string/title_activity_sports_coach" />

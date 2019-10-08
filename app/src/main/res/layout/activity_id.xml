@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".ID">
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="Please copy paste your ID to website"
+        android:textSize="20dp"/>
+    <TextView
+        android:id="@+id/idCopy"
+        android:layout_width="400dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="Getting ID failed, try again later"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+</LinearLayout>

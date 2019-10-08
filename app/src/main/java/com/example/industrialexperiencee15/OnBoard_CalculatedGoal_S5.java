@@ -16,11 +16,19 @@ package com.example.industrialexperiencee15;
         import com.google.android.gms.tasks.OnFailureListener;
         import com.google.android.gms.tasks.OnSuccessListener;
         import com.google.firebase.auth.FirebaseAuth;
+        import com.google.firebase.database.DataSnapshot;
+        import com.google.firebase.database.DatabaseError;
+        import com.google.firebase.database.FirebaseDatabase;
+        import com.google.firebase.database.ValueEventListener;
         import com.google.firebase.firestore.CollectionReference;
         import com.google.firebase.firestore.DocumentReference;
+        import com.google.firebase.firestore.DocumentSnapshot;
         import com.google.firebase.firestore.FirebaseFirestore;
+        import com.google.firebase.firestore.QuerySnapshot;
 
         import java.math.BigDecimal;
+        import java.util.Collections;
+        import java.util.List;
 
 public class OnBoard_CalculatedGoal_S5 extends AppCompatActivity {
     private Button btnNextToDashboard;
@@ -52,6 +60,7 @@ public class OnBoard_CalculatedGoal_S5 extends AppCompatActivity {
     FirebaseFirestore db;
     FirebaseAuth mFirebaseAuth;
     String userID;
+    String firebaseID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +74,37 @@ public class OnBoard_CalculatedGoal_S5 extends AppCompatActivity {
         btnNextToDashboard = (Button) findViewById(R.id.lets_Start_now);
 
 
+        db.collection("calculation").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                if (!queryDocumentSnapshots.isEmpty()) {
+                    List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                    Collections.reverse(list);
+                    for (DocumentSnapshot d : list) {
+                        Calculation calculation = d.toObject(Calculation.class);
+                        if (userID.equals(calculation.getUID())) {
+                            firebaseID = d.getId();
+                            db.collection("calculation").document(firebaseID)
+                                    .delete()
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d("TAG", "DocumentSnapshot successfully deleted!");
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w("TAG", "Error deleting document", e);
+                                        }
+                                    });
+                        }
+                    }
+                }
+            }
+        });
+
+
 
         btnNextToDashboard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +112,8 @@ public class OnBoard_CalculatedGoal_S5 extends AppCompatActivity {
 
                 InsertUserinfo insertUserinfo = new InsertUserinfo();
                 insertUserinfo.execute();
+
+
 
 //                SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
 //                SharedPreferences.Editor userSharedPreferenceEditor = userSharedPreferenceDetails.edit();

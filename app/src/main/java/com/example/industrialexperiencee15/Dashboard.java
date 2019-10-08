@@ -278,7 +278,6 @@ public class Dashboard extends AppCompatActivity {
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                     if (!queryDocumentSnapshots.isEmpty()) {
                         List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-                        Collections.reverse(list);
 
                         for (DocumentSnapshot d : list) {
                             Calculation calculation = d.toObject(Calculation.class);

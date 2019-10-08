@@ -80,6 +80,7 @@ public class UserSettingsHome extends AppCompatActivity {
 
         final Button updateUserGoal = (Button) findViewById(R.id.btnTileChangeUserGoal);
         final Button logout = (Button) findViewById(R.id.btnTileUserLogout);
+        final Button getID = (Button) findViewById(R.id.btnShowid);
 
         updateUserGoal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +96,14 @@ public class UserSettingsHome extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 Intent out = new Intent(UserSettingsHome.this, MainActivity.class);
                 UserSettingsHome.this.startActivity(out);
+            }
+        });
+
+        getID.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent newUserGoal = new Intent(UserSettingsHome.this, ID.class);
+                UserSettingsHome.this.startActivity(newUserGoal);
             }
         });
 
