@@ -1,32 +1,25 @@
 package com.example.industrialexperiencee15;
 
+import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
-
-import com.google.firebase.auth.FirebaseAuth;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 public class sportsCoach extends AppCompatActivity {
     private TextView mTextMessage;
-    String userID;
+
     Button recommendSportsToUser;
-    Button btnAddToTheWorkout;
-    ArrayList<userWorkoutPojo> exerciseList;
-    ArrayList<userWorkoutPojo> userExerciseBehaviourList;
+    Button btnbackTotheExerciseHomePage;
+    private EditText calorieGoalEnteredByUser;
 
 
     @Override
@@ -34,11 +27,12 @@ public class sportsCoach extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sports_coach);
         mTextMessage = findViewById(R.id.message);
-        exerciseList = new ArrayList<>();
-        userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        //get the values of the fields in the UI
+        calorieGoalEnteredByUser = (EditText) findViewById(R.id.weight);
         recommendSportsToUser = (Button) findViewById(R.id.recommend_Me_now);
-        btnAddToTheWorkout = (Button) findViewById(R.id.btnBackToExerciseHome);
+        btnbackTotheExerciseHomePage = (Button) findViewById(R.id.btnBackToExerciseHome);
+
         // ------------------- Navigation Bar Code   -------------------
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -55,15 +49,26 @@ public class sportsCoach extends AppCompatActivity {
         recommendSportsToUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Redirect
-                getWorkOutFromDatabse getWorkOut = new getWorkOutFromDatabse();
-                getWorkOut.execute();
-                findUserpatternOfExercises();
+                String weightValue = calorieGoalEnteredByUser.getText().toString();
 
+                if (!(weightValue.matches("^[0-9]{1,3}$"))) {
+                    calorieGoalEnteredByUser.setError("Calorie Goal can be Numeric Characters");
+                    calorieGoalEnteredByUser.requestFocus();
+                } else {
+                    SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor userSharedPreferenceEditor = userSharedPreferenceDetails.edit();
+                    userSharedPreferenceEditor.putInt("CalorieBurnByExerciseGaol", Integer.valueOf(calorieGoalEnteredByUser.getText().toString()));
+                    userSharedPreferenceEditor.apply();
+//                    sportsDiscussion = (EditText) findViewById(R.id.mostCountSportsRecommendPrompt);
+//                    sportsName.setText("Hii");
+                    Intent backToSportsHome = new Intent(sportsCoach.this, sportsCoach2.class);
+                    sportsCoach.this.startActivity(backToSportsHome);
+
+                }
             }
         });
 
-        btnAddToTheWorkout.setOnClickListener(new View.OnClickListener() {
+        btnbackTotheExerciseHomePage.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
@@ -74,84 +79,16 @@ public class sportsCoach extends AppCompatActivity {
 
     }
 
-    private class getWorkOutFromDatabse extends AsyncTask<Void, Void, String> {
 
-        @Override
-        protected String doInBackground(Void... params) {
-            String sportsPlayedByUserResponse = RestService.getAllWorkoutById(userID);
-            exerciseList = new ArrayList<>();
-            if (sportsPlayedByUserResponse != null && !sportsPlayedByUserResponse.isEmpty()) {
-                try {
-                    JSONObject jsnobject = new JSONObject(sportsPlayedByUserResponse);
-                    JSONArray jsonArr = jsnobject.getJSONArray("data");
-                    for (int i = 0; i < jsonArr.length(); i++) {
-                        try {
-                            boolean isMatchFound = false;
-                            JSONObject obj = jsonArr.getJSONObject(i);
-                            String excerciseID = obj.getString("EXERCISEID");
-                            Integer durationOfExercise = Integer.parseInt(obj.getString("DURATION"));
-                            for (userWorkoutPojo eachExerciseList : exerciseList) {
-                                if (excerciseID.equals(eachExerciseList.getExerciseID())) {
-                                    eachExerciseList.setDuration(eachExerciseList.getDuration() + durationOfExercise);
-                                    eachExerciseList.setCountOfExercise(eachExerciseList.getCountOfExercise() + 1);
-                                    isMatchFound = true;
-                                }
-                            }
-                            if (!isMatchFound) {
-                                userWorkoutPojo newExercise = new userWorkoutPojo();
-                                newExercise.setExerciseID(excerciseID);
-                                newExercise.setDuration(durationOfExercise);
-                                newExercise.setCountOfExercise(1);
-                                exerciseList.add(newExercise);
-                                isMatchFound = false;
-                            }
-                        } catch (Exception e) {
-                            Log.e("test", "get test");
-                        }
-                    }
-
-                } catch (Exception e) {
-
-                }
-            }
-            return "";
+    private boolean validateWeight(String weightValue, EditText weight) {
+        //Ensuring the field is within the limit of the Database Field
+        if (!(weightValue.matches("^[0-9]{1,3}$"))) {
+            weight.setError("Calorie Goal can be Numeric Characters");
+            weight.requestFocus();
+            return false;
         }
-
-        @Override
-        protected void onPostExecute(String response) {
-
-        }
+        return true;
     }
-
-    private void findUserpatternOfExercises() {
-        Integer maxCount = 0;
-        Integer maxDuration = 0;
-        userExerciseBehaviourList = new ArrayList<>();
-
-        for (userWorkoutPojo eachExerciseList : exerciseList) {
-            if (maxCount <= eachExerciseList.getCountOfExercise()) {
-                maxCount = eachExerciseList.getCountOfExercise();
-            }
-            if (maxDuration <= eachExerciseList.getDuration()) {
-                maxDuration = eachExerciseList.getDuration();
-            }
-        }
-
-        //Getting the Behaviour of the user Exercise Pattern
-        for (userWorkoutPojo eachExerciseList : exerciseList) {
-
-            if (maxCount == eachExerciseList.getCountOfExercise()) {
-                eachExerciseList.setMostFrequent(true);
-                userExerciseBehaviourList.add(eachExerciseList);
-            }
-            if (maxDuration == eachExerciseList.getDuration() && maxCount != eachExerciseList.getCountOfExercise()) {
-                eachExerciseList.setMostDuration(true);
-                userExerciseBehaviourList.add(eachExerciseList);
-            }
-
-        }
-    }
-
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {

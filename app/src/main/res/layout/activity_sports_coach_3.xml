@@ -50,27 +50,18 @@
         android:orientation="horizontal">
 
 
-
-
-        <android.support.design.widget.TextInputLayout
+        <EditText
             android:id="@+id/calorieBurnGoal"
-            android:layout_width="match_parent"
-            android:layout_below="@+id/heighttext"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_height="wrap_content">
-
-            <AutoCompleteTextView
-                android:id="@+id/weight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/weighttext"
-                android:hint="@string/prompt_goal"
-                android:inputType="numberDecimal"
-                android:nextFocusDown="@+id/dob"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-        </android.support.design.widget.TextInputLayout>
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/white"
+            android:ems="10"
+            android:hint="( Calorie Goal )"
+            android:inputType="textPersonName"
+            android:textColor="#121413"
+            android:textColorHint="#222522" />
 
         <TextView
             android:id="@+id/calorieUnitForSports"

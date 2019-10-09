@@ -113,8 +113,6 @@ public class OnBoard_CalculatedGoal_S5 extends AppCompatActivity {
                 InsertUserinfo insertUserinfo = new InsertUserinfo();
                 insertUserinfo.execute();
 
-
-
 //                SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
 //                SharedPreferences.Editor userSharedPreferenceEditor = userSharedPreferenceDetails.edit();
 //                userSharedPreferenceEditor.putInt("calorieLimit", computedCalorieLimit.intValue());

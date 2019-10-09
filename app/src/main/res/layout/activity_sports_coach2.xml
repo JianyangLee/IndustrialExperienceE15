@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:text="@string/sports_behaviour_Recommnedation_text"
+        android:textSize="25dp"
+        android:inputType="textMultiLine"
+        android:gravity="center"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/mostCountSportsPrompt"
+        android:layout_width="150dp"
+        android:layout_height="57dp"
+        android:layout_below="@+id/textView5"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginRight="20dp"
+        android:ems="10"
+        android:text=""
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/mostCountSportsRecommendPrompt"
+        android:layout_width="120dp"
+        android:layout_height="57dp"
+        android:layout_below="@+id/textView5"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="51dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginRight="20dp"
+        android:layout_toRightOf="@id/mostCountSportsPrompt"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:textSize="25dp" />
+
+
+    //2nd Row
+
+    <TextView
+        android:id="@+id/mostDurationOfSportsPrompt"
+        android:layout_width="150dp"
+        android:layout_height="57dp"
+        android:layout_below="@+id/mostCountSportsRecommendPrompt"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginRight="20dp"
+        android:ems="10"
+        android:text=""
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/mostDurationOfSportsValuePrompt"
+        android:layout_width="120dp"
+        android:layout_height="57dp"
+        android:layout_below="@+id/mostCountSportsRecommendPrompt"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="51dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginRight="20dp"
+        android:layout_toRightOf="@id/mostDurationOfSportsPrompt"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:textSize="25dp" />
+
+
+
+    <Button
+        android:id="@+id/btn_Recommend_Something_New"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mostDurationOfSportsValuePrompt"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/transparent_bg_bordered_button"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:text="Recommend New"
+
+        />
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:weightSum="1"
+        android:orientation="horizontal">
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:background="?android:attr/windowBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:menu="@menu/bottom_nav_menu" />
+    </LinearLayout>
+
+    <!-- -->
+</RelativeLayout>
+
