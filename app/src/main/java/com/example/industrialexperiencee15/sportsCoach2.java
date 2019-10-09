@@ -33,18 +33,24 @@ public class sportsCoach2 extends AppCompatActivity {
     private EditText sportsDiscussion;
     private Integer userCalrieGoalToBeBurnedForTheDay;
     ArrayList<userWorkoutPojo> exerciseListFromAsync = new ArrayList<>();
+    ArrayList<userWorkoutPojo> databaseListOfExercises = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sports_coach2);
+
         exerciseList = new ArrayList<>();
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         //Get the value from Pref
         SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
         userCalrieGoalToBeBurnedForTheDay = userSharedPreferenceDetails.getInt("CalorieBurnByExerciseGaol", 0);
-        getUserActivitesAndPattern();
-        writeSuggestionsToScreen();
+
+        //Async Class
+        getWorkOutFromDatabse getWorkOut = new getWorkOutFromDatabse();
+        getWorkOut.execute();
+
+
+        setContentView(R.layout.activity_sports_coach2);
 
         // ------------------- Navigation Bar Code   -------------------
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -60,27 +66,29 @@ public class sportsCoach2 extends AppCompatActivity {
     }
 
     private void getUserActivitesAndPattern() {
-        getWorkOutFromDatabse getWorkOut = new getWorkOutFromDatabse();
-        getWorkOut.execute();
-        findUserpatternOfExercises();
+
     }
 
     private void writeSuggestionsToScreen() {
 
         sportsName = (TextView) findViewById(R.id.mostCountSportsPrompt);
-        sportsName2 = (TextView) findViewById(R.id.mostCountSportsRecommendPrompt);
-        sportsName1Duration = (TextView) findViewById(R.id.mostDurationOfSportsPrompt);
+        sportsName1Duration = (TextView) findViewById(R.id.mostCountSportsRecommendPrompt);
+        sportsName2 = (TextView) findViewById(R.id.mostDurationOfSportsPrompt);
         sportsName2Duration = (TextView) findViewById(R.id.mostDurationOfSportsValuePrompt);
         Integer i = 0;
         for (userWorkoutPojo eachWorkout : userExerciseBehaviourList) {
             if (i == 0) {
-                sportsName.setText(eachWorkout.exerciseID.toString());
-                sportsName1Duration.setText(eachWorkout.duration.toString()+" Minutes");
+                String[] NameArray = eachWorkout.getExerciseName().split(",");
+                sportsName.setText(NameArray[0]);
+                Double durationOfExerciseToBePerformed = userCalrieGoalToBeBurnedForTheDay / eachWorkout.getCaloiresBurnedPerMinute();
+                sportsName1Duration.setText(durationOfExerciseToBePerformed.toString() + " Minutes");
                 i++;
             }
             if (i == 1) {
-                sportsName2.setText(eachWorkout.exerciseID.toString());
-                sportsName2Duration.setText(eachWorkout.duration.toString()+" Minutes");
+                String[] NameArray2 = eachWorkout.getExerciseName().split(",");
+                sportsName2.setText(NameArray2[0]);
+                Double durationOfExerciseToBePerformed2 = userCalrieGoalToBeBurnedForTheDay / eachWorkout.getCaloiresBurnedPerMinute();
+                sportsName2Duration.setText(durationOfExerciseToBePerformed2.toString() + " Minutes");
             }
         }
 
@@ -101,7 +109,7 @@ public class sportsCoach2 extends AppCompatActivity {
                             JSONObject obj = jsonArr.getJSONObject(i);
                             String excerciseID = obj.getString("EXERCISEID");
                             Integer durationOfExercise = Integer.parseInt(obj.getString("DURATION"));
-                            for (userWorkoutPojo eachExerciseList : exerciseList) {
+                            for (userWorkoutPojo eachExerciseList : exerciseListFromAsync) {
                                 if (excerciseID.equals(eachExerciseList.getExerciseID())) {
                                     eachExerciseList.setDuration(eachExerciseList.getDuration() + durationOfExercise);
                                     eachExerciseList.setCountOfExercise(eachExerciseList.getCountOfExercise() + 1);
@@ -113,7 +121,9 @@ public class sportsCoach2 extends AppCompatActivity {
                                 newExercise.setExerciseID(excerciseID);
                                 newExercise.setDuration(durationOfExercise);
                                 newExercise.setCountOfExercise(1);
-                                exerciseList.add(newExercise);
+                                Double energyBurned = (Double) obj.getDouble("ENERGY_BURNED");
+                                newExercise.setCaloiresBurnedPerMinute(energyBurned / durationOfExercise);
+                                exerciseListFromAsync.add(newExercise);
                                 isMatchFound = false;
                             }
                         } catch (Exception e) {
@@ -125,12 +135,61 @@ public class sportsCoach2 extends AppCompatActivity {
 
                 }
             }
+            exerciseList.addAll(exerciseListFromAsync);
             return "";
         }
 
         @Override
         protected void onPostExecute(String response) {
+            findUserpatternOfExercises();
+            GetAllExerciseAsync getAllExercisesFromDatabse = new GetAllExerciseAsync();
+            getAllExercisesFromDatabse.execute();
 
+        }
+    }
+
+    private class GetAllExerciseAsync extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                String returnValue = RestService.getAllExercise();
+                JSONObject jsnobject = new JSONObject(returnValue);
+                JSONArray jsonArr = jsnobject.getJSONArray("data");
+
+
+                for (Integer i = 0; i < jsonArr.length(); i++) {
+                    try {
+                        JSONObject obj = jsonArr.getJSONObject(i);
+                        String name = obj.getString("EXERCISE_NAME");
+                        userWorkoutPojo newExercise = new userWorkoutPojo();
+                        newExercise.setExerciseName(name);
+                        newExercise.setExerciseID(i.toString());
+                        databaseListOfExercises.add(newExercise);
+                    } catch (Exception e) {
+                        Log.e("test", "get test");
+                    }
+                }
+            } catch (Exception e) {
+
+            }
+
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String response) {
+            initialList();
+            writeSuggestionsToScreen();
+        }
+    }
+
+    private void initialList() {
+        for (userWorkoutPojo eachExercise : databaseListOfExercises) {
+            for (userWorkoutPojo eachUserExercise : userExerciseBehaviourList) {
+                if (eachUserExercise.getExerciseID().equalsIgnoreCase(eachExercise.getExerciseID())) {
+                    eachUserExercise.setExerciseName(eachExercise.getExerciseName());
+                }
+            }
         }
     }
 
@@ -159,7 +218,6 @@ public class sportsCoach2 extends AppCompatActivity {
                 eachExerciseList.setMostDuration(true);
                 userExerciseBehaviourList.add(eachExerciseList);
             }
-
         }
     }
 

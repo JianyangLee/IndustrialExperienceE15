@@ -6,6 +6,26 @@ public class userWorkoutPojo {
     Integer duration;
     Integer countOfExercise;
     boolean isMostDuration;
+    boolean isMostFrequent;
+
+    public String getExerciseName() {
+        return exerciseName;
+    }
+
+    public void setExerciseName(String exerciseName) {
+        this.exerciseName = exerciseName;
+    }
+
+    Double caloiresBurnedPerMinute;
+    String exerciseName;
+
+    public Double getCaloiresBurnedPerMinute() {
+        return caloiresBurnedPerMinute;
+    }
+
+    public void setCaloiresBurnedPerMinute(Double caloiresBurnedPerMinute) {
+        this.caloiresBurnedPerMinute = caloiresBurnedPerMinute;
+    }
 
     public boolean isMostDuration() {
         return isMostDuration;
@@ -23,7 +43,7 @@ public class userWorkoutPojo {
         isMostFrequent = mostFrequent;
     }
 
-    boolean isMostFrequent;
+
 
 
     public String getExerciseID() {
