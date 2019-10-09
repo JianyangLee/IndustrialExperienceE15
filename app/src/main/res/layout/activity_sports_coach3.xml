@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="170dp"
         android:layout_marginTop="70dp"
-        app:srcCompat="@drawable/personal_coach_trainer" />
+        app:srcCompat="@drawable/clock" />
 
 
     <TextView
@@ -34,7 +34,7 @@
         android:layout_marginTop="30dp"
         android:gravity="center"
         android:inputType="textMultiLine"
-        android:text="@string/sports_Goal_Message"
+        android:text="@string/sports_Time_Goal_Message"
         android:textSize="25dp"
         android:textStyle="bold" />
 
@@ -50,18 +50,27 @@
         android:orientation="horizontal">
 
 
-        <EditText
+
+
+        <android.support.design.widget.TextInputLayout
             android:id="@+id/calorieBurnGoal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/heighttext"
             android:layout_marginLeft="20dp"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/white"
-            android:ems="10"
-            android:hint="( Calorie Goal )"
-            android:inputType="textPersonName"
-            android:textColor="#121413"
-            android:textColorHint="#222522" />
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:id="@+id/TimeGoalByUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/weighttext"
+                android:hint="@string/prompt_Time_goal"
+                android:inputType="numberDecimal"
+                android:nextFocusDown="@+id/dob"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
 
         <TextView
             android:id="@+id/calorieUnitForSports"
@@ -76,13 +85,13 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/recommend_Me_now"
+        android:id="@+id/recommend_me_now_new_Sportss"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearForCalorieGoal"
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/transparent_bg_bordered_button"
         android:text="@string/recommend"
         android:textColor="#FFFFFF" />

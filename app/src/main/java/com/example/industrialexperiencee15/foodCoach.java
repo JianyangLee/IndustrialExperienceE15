@@ -19,10 +19,13 @@ package com.example.industrialexperiencee15;
         import org.json.JSONObject;
 
         import java.util.ArrayList;
+        import java.util.Calendar;
+        import java.util.Date;
 
 public class foodCoach extends AppCompatActivity {
     private TextView mTextMessage;
     String userID;
+    String timeOftheDay;
     Button recommendFoodToUser;
     Button btnAddToTheWorkout;
     ArrayList<Consumption> consumptionList;
@@ -132,7 +135,31 @@ public class foodCoach extends AppCompatActivity {
 
         }
     }
+private void getBasicsInforForFoodRecommendation(){
 
+    Date currentTime = Calendar.getInstance().getTime();
+    Integer hourOftheDay=currentTime.getHours();
+    if(6<=hourOftheDay && hourOftheDay <=11){
+//Brekkie
+        timeOftheDay="BreakFast";
+    }
+    if(12<=hourOftheDay && hourOftheDay <16){
+//Lunch
+        timeOftheDay="Lunch";
+    }
+    if(16<=hourOftheDay && hourOftheDay < 19){
+//Snack
+        timeOftheDay="Snack";
+    }
+    if(19<hourOftheDay && hourOftheDay < 24){
+//Dinner
+        timeOftheDay="Dinner";
+    }
+    if(00<hourOftheDay && hourOftheDay < 6){
+//Snack
+        timeOftheDay="Snack";
+    }
+}
     private void findUserpatternOfExercises() {
         Integer maxNumberOfIntake = 0;
         Integer maxAmountOfIntake = 0;

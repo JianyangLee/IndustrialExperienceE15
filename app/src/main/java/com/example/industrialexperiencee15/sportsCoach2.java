@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -34,23 +36,24 @@ public class sportsCoach2 extends AppCompatActivity {
     private Integer userCalrieGoalToBeBurnedForTheDay;
     ArrayList<userWorkoutPojo> exerciseListFromAsync = new ArrayList<>();
     ArrayList<userWorkoutPojo> databaseListOfExercises = new ArrayList<>();
+    Button btntoNewRecommendations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sports_coach2);
 
         exerciseList = new ArrayList<>();
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         //Get the value from Pref
         SharedPreferences userSharedPreferenceDetails = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
         userCalrieGoalToBeBurnedForTheDay = userSharedPreferenceDetails.getInt("CalorieBurnByExerciseGaol", 0);
+        btntoNewRecommendations = (Button) findViewById(R.id.btn_Recommend_Something_New_Sports);
 
         //Async Class
         getWorkOutFromDatabse getWorkOut = new getWorkOutFromDatabse();
         getWorkOut.execute();
 
-
-        setContentView(R.layout.activity_sports_coach2);
 
         // ------------------- Navigation Bar Code   -------------------
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -63,6 +66,13 @@ public class sportsCoach2 extends AppCompatActivity {
         }
         // ------------------ End of Navigation bar Code ----------------
 
+        btntoNewRecommendations.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                Intent backToSportsHome = new Intent(sportsCoach2.this, sportsCoach3.class);
+                sportsCoach2.this.startActivity(backToSportsHome);
+            }
+        });
     }
 
     private void getUserActivitesAndPattern() {

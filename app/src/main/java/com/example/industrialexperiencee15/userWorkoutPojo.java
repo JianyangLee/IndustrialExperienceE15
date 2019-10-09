@@ -6,7 +6,10 @@ public class userWorkoutPojo {
     Integer duration;
     Integer countOfExercise;
     boolean isMostDuration;
+    Double caloiresBurnedPerMinute;
+    String exerciseName;
     boolean isMostFrequent;
+    Double  caloriesBurnedPerHour;
 
     public String getExerciseName() {
         return exerciseName;
@@ -16,8 +19,6 @@ public class userWorkoutPojo {
         this.exerciseName = exerciseName;
     }
 
-    Double caloiresBurnedPerMinute;
-    String exerciseName;
 
     public Double getCaloiresBurnedPerMinute() {
         return caloiresBurnedPerMinute;
@@ -68,5 +69,12 @@ public class userWorkoutPojo {
 
     public void setCountOfExercise(Integer countOfExercise) {
         this.countOfExercise = countOfExercise;
+    }
+    public Double getCaloriesBurnedPerHour() {
+        return caloriesBurnedPerHour;
+    }
+
+    public void setCaloriesBurnedPerHour(Double caloriesBurnedPerHour) {
+        this.caloriesBurnedPerHour = caloriesBurnedPerHour;
     }
 }

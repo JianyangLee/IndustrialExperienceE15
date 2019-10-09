@@ -35,6 +35,7 @@
     <string name="prompt_height">Height (cm)</string>
     <string name="prompt_weight">Weight (kg)</string>
     <string name="prompt_goal">Daily Workout Goal(Calories)</string>
+    <string name="prompt_Time_goal">Time (Minutes)</string>
     <string name="prompt_gender">Gender</string>
     <string name="prompt_lastname">Last Name</string>
     <string name="prompt_firstname">First Name</string>
@@ -43,8 +44,9 @@
 
     As per your goals , the recommended intake values are </string>
 
-    <string name="sports_Goal_Message">Please enter the time you can allocate for physical activity and the calories you aim to burn through it.</string>
+    <string name="sports_Goal_Message">Please enter the calories you aim to burn via physical activities.</string>
     <string name="sports_behaviour_Recommnedation_text">You seem to be a fan of the below sports , enjoy either of the activites to achieve your daily goal</string>
+    <string name="sports_Time_Goal_Message">Please enter the time you can allocate for physical activity.</string>
 
 
     <string name="running_Acknowledgement">Great Run  \n\n
