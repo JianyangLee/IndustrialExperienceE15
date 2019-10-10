@@ -38,6 +38,8 @@ public class sportsCoach4 extends AppCompatActivity {
     private Bitmap bitmapForFoodSearch;
     private String keyword;
     private ImageView image;
+    private Integer startRange;
+    private Integer endrange;
 
     private TextView sportsName;
 
@@ -57,6 +59,8 @@ public class sportsCoach4 extends AppCompatActivity {
         timeAvailableForUser = userSharedPreferenceDetails.getFloat("CalorieBurnByExerciseTimeGoal", 0);
         CaloriesToBeBurned = userSharedPreferenceDetails.getInt("CalorieBurnByExerciseGaol", 0);
         userCalorieGoalPerHour = (Integer) ((CaloriesToBeBurned / timeAvailableForUser.intValue()) * 60);
+        startRange=userCalorieGoalPerHour-10;
+        endrange=userCalorieGoalPerHour+10;
 
         btnTakeMeThere = (Button) findViewById(R.id.btn_Take_Me_There);
 
@@ -71,9 +75,8 @@ public class sportsCoach4 extends AppCompatActivity {
         }
         // ------------------ End of Navigation bar Code ----------------
 
-        GetAllExerciseAsync getall = new GetAllExerciseAsync();
-        getall.execute();
-
+        GetNewExercisesBasedOnTimeAsync getallEx = new GetNewExercisesBasedOnTimeAsync();
+        getallEx.execute();
 
 
         //image Fetching from  the google search results
@@ -89,25 +92,25 @@ public class sportsCoach4 extends AppCompatActivity {
     }
 
 
-    private class GetAllExerciseAsync extends AsyncTask<String, Void, String> {
+    private class GetNewExercisesBasedOnTimeAsync extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
             try {
-                String returnValue = RestService.getAllExercise();
+                recommenderExerciseList=new ArrayList<>();
+                String returnValue = RestService.getExerciseByRange(startRange,endrange);
                 JSONObject jsnobject = new JSONObject(returnValue);
                 JSONArray jsonArr = jsnobject.getJSONArray("data");
 
-
-                for (Integer i = 0; i < jsonArr.length(); i++) {
+                if(jsonArr.length()>3) {
                     try {
-                        JSONObject obj = jsonArr.getJSONObject(i);
+                        JSONObject obj = jsonArr.getJSONObject(3);
                         String name = obj.getString("EXERCISE_NAME");
                         userWorkoutPojo newExercise = new userWorkoutPojo();
                         newExercise.setExerciseName(name);
                         Double caloriesBurnedPerHour = obj.getDouble("CALORIES_PER_HOUR");
                         newExercise.setCaloriesBurnedPerHour(caloriesBurnedPerHour);
                         newExercise.setExerciseID(obj.getString("EXERCISEID"));
-                        databaseListOfExercises.add(newExercise);
+                        recommenderExerciseList.add(newExercise);
                     } catch (Exception e) {
                         Log.e("test", "get test");
                     }
@@ -121,31 +124,14 @@ public class sportsCoach4 extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String response) {
-            initialList();
+
+            SearchInGoogleAsyncTask searchInGoogleAsyncTask = new SearchInGoogleAsyncTask();
+            keyword=recommenderExerciseList.get(recommenderExerciseList.size()-1).getExerciseName();
+            searchInGoogleAsyncTask.execute(keyword);
+
             writeSuggestionsToScreen();
-
-
         }
     }
-
-    private void initialList() {
-        Integer numberOfMatches = 0;
-        Integer varianceFactor = 20;
-        for (userWorkoutPojo eachExercise : databaseListOfExercises) {
-            while (numberOfMatches <= 1){
-                    if (((userCalorieGoalPerHour - varianceFactor) <= eachExercise.getCaloriesBurnedPerHour()) && ((userCalorieGoalPerHour + varianceFactor) >= eachExercise.getCaloriesBurnedPerHour())) {
-                        recommenderExerciseList.add(eachExercise);
-                        keyword = eachExercise.getExerciseName();
-                        numberOfMatches++;
-                    }
-                }
-            varianceFactor++;
-            }
-
-        SearchInGoogleAsyncTask searchInGoogleAsyncTask = new SearchInGoogleAsyncTask();
-        keyword=recommenderExerciseList.get(0).getExerciseName();
-        searchInGoogleAsyncTask.execute(keyword);
-        }
 
     private void writeSuggestionsToScreen() {
 

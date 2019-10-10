@@ -82,7 +82,7 @@ public class personalCoachHome extends AppCompatActivity {
         foodCoach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent addExcerises = new Intent(personalCoachHome.this, sportsCoach.class);
+                Intent addExcerises = new Intent(personalCoachHome.this, foodCoach.class);
                 personalCoachHome.this.startActivity(addExcerises);
             }
         });
