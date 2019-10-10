@@ -469,4 +469,38 @@ public class RestService {
         }
         return textResult;
     }
+
+    public static String getExerciseByRange(int x, int y){
+        final String methodPath = "https://rp5ck2669j.execute-api.ap-southeast-2.amazonaws.com/getExerciseRange/" + x + "/" + y;
+        //initialise
+        URL url = null;
+        HttpURLConnection conn = null;
+        String textResult = "";
+        //making HTTP request
+        try {
+            url = new URL(methodPath);
+            //open connection
+            conn = (HttpURLConnection) url.openConnection();
+            //set the timeout
+            conn.setReadTimeout(10000);
+            conn.setConnectTimeout(15000);
+            //set the connection method to GET
+            conn.setRequestMethod("GET");
+            //add http headers to set your response type to json
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            //Read the response
+            Scanner inStream = new Scanner(conn.getInputStream());
+            //READ the input stream and store it as string
+            while (inStream.hasNextLine()) {
+                textResult += inStream.nextLine();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            conn.disconnect();
+        }
+        return textResult;
+    }
 }
