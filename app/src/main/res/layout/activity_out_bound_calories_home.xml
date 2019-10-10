@@ -325,7 +325,7 @@
                                 android:layout_centerInParent="true"
                                 android:layout_alignParentTop="true"
                                 android:layout_marginTop="25dp"
-                                android:src="@drawable/myexercise" />
+                                android:src="@drawable/foodview" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -334,7 +334,7 @@
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="10dp"
-                                android:text="View My Exercises"
+                                android:text="View My Consumption"
                                 android:textSize="16sp" />
 
                             <Button
