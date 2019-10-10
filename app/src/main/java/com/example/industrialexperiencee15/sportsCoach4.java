@@ -114,6 +114,11 @@ public class sportsCoach4 extends AppCompatActivity {
                     } catch (Exception e) {
                         Log.e("test", "get test");
                     }
+                }else{
+                    userWorkoutPojo newExercise = new userWorkoutPojo();
+                    String MaxExerise = "Running";
+                    newExercise.setExerciseName(MaxExerise);
+                    recommenderExerciseList.add(newExercise);
                 }
             } catch (Exception e) {
 
