@@ -33,82 +33,21 @@
         android:textSize="25dp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/mostCountSportsPrompt"
-        android:layout_width="150dp"
-        android:layout_height="57dp"
-        android:layout_below="@+id/textViewCaloriesLeftForTheDay"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="63dp"
-        android:layout_marginRight="20dp"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:inputType="textMultiLine"
-        android:text=""
-        android:textSize="25dp" />
-
-    <TextView
-        android:id="@+id/mostCountSportsRecommendPrompt"
-        android:layout_width="120dp"
-        android:layout_height="57dp"
-        android:layout_below="@+id/textViewCaloriesLeftForTheDay"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="51dp"
-        android:layout_marginTop="63dp"
-        android:layout_marginRight="20dp"
-        android:layout_toRightOf="@id/mostDurationOfSportsPrompt"
-
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:inputType="textMultiLine"
-        android:textSize="25dp" />
-
 
     //2nd Row
-
-    <TextView
-        android:id="@+id/mostDurationOfSportsPrompt"
-        android:layout_width="150dp"
-        android:layout_height="57dp"
-        android:layout_below="@+id/mostCountSportsRecommendPrompt"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="63dp"
-        android:layout_marginRight="20dp"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:inputType="textMultiLine"
-        android:text=""
-        android:textSize="25dp" />
-
-    <TextView
-        android:id="@+id/mostDurationOfSportsValuePrompt"
-        android:layout_width="120dp"
-        android:layout_height="57dp"
-        android:layout_below="@+id/mostCountSportsRecommendPrompt"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="51dp"
-        android:layout_marginTop="63dp"
-        android:layout_marginRight="20dp"
-        android:layout_toRightOf="@id/mostDurationOfSportsPrompt"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:inputType="textMultiLine"
-        android:textSize="25dp" />
 
 
     <Button
         android:id="@+id/Btn_To_Dashboard_app"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/mostDurationOfSportsValuePrompt"
+        android:layout_below="@+id/textViewCaloriesLeftForTheDay"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="50dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/transparent_bg_bordered_button"
         android:gravity="center"
-        android:text="Recommend New"
+        android:text="Dashboard"
         android:textColor="#FFFFFF"
 
         />
