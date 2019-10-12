@@ -34,7 +34,7 @@
     <string name="prompt_dob">Date of Birth</string>
     <string name="prompt_height">Height (cm)</string>
     <string name="prompt_weight">Weight (kg)</string>
-    <string name="prompt_goal">Daily Workout Goal(Calories)</string>
+    <string name="prompt_goal">Daily Workout Calorie Goal(Enter 1-999)</string>
     <string name="prompt_Time_goal">Time (Minutes)</string>
     <string name="prompt_gender">Gender</string>
     <string name="prompt_lastname">Last Name</string>
