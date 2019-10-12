@@ -108,7 +108,7 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/transparent_bg_bordered_button"
         android:gravity="center"
-        android:text="Recommend New"
+        android:text="Dashboard"
         android:textColor="#FFFFFF"
 
         />
