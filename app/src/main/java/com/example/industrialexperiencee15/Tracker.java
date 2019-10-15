@@ -201,6 +201,15 @@ public class Tracker extends AppCompatActivity {
                     return;
                 }
 
+                if (Integer.parseInt(amount.getText().toString()) < 0) {
+                    pgbar.setVisibility(View.GONE);
+                    Animation shake = AnimationUtils.loadAnimation(Tracker.this, R.anim.shake);
+                    amount.startAnimation(shake);
+                    amount.setError("Please enter absolutely value");
+                    vibrateField();
+                    return;
+                }
+
                 double foodSugar = 0;
                 double foodFat = 0;
                 double foodCal = 0;

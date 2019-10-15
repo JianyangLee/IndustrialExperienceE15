@@ -129,10 +129,20 @@ public class activity_exercise extends AppCompatActivity {
                     pgbar.setVisibility(View.GONE);
                     Animation shake = AnimationUtils.loadAnimation(activity_exercise.this, R.anim.shake);
                     exerciseName.startAnimation(shake);
-                    exerciseName.setError("Please enter numeric value and it cannot be empty");
+                    time.setError("Please enter numeric value and it cannot be empty");
                     vibrateField();
                     return;
                 }
+
+                if (Integer.parseInt(time.getText().toString()) < 0){
+                    pgbar.setVisibility(View.GONE);
+                    Animation shake = AnimationUtils.loadAnimation(activity_exercise.this, R.anim.shake);
+                    time.startAnimation(shake);
+                    time.setError("Please enter the absolute value");
+                    vibrateField();
+                    return;
+                }
+
 
 
 

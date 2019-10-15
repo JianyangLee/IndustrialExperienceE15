@@ -23,4 +23,21 @@
         android:textSize="20dp"
         android:textIsSelectable="true"
         android:textStyle="bold"/>
+    <TextView
+        android:layout_width="400dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:text="Click the link to go to the website"
+        android:textSize="15dp"
+        android:textIsSelectable="true"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="http://yunlife21.ml/"
+        android:gravity="center"
+        android:textSize="15dp"
+        android:clickable="true"
+        android:linksClickable="true"/>
 </LinearLayout>
