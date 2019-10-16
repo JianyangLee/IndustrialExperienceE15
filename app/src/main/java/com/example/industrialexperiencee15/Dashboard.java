@@ -110,7 +110,7 @@ public class Dashboard extends AppCompatActivity {
         outBoundCaloriesHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent trackFood = new Intent(Dashboard.this, OutBoundCaloriesHome.class);
+                Intent trackFood = new Intent(Dashboard.this, activity_exercise.class);
                 Dashboard.this.startActivity(trackFood);
             }
         });
