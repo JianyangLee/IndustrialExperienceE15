@@ -32,7 +32,7 @@ public class ID extends AppCompatActivity {
 
         link.setClickable(true);
         link.setMovementMethod(LinkMovementMethod.getInstance());
-        String text = "<a href='yunlife21.ml'> Yun Life website </a>";
+        String text = "<a href='yunlife21.ml'>http://yunlife21.ml/</a>";
         link.setText(Html.fromHtml(text));
 
         ID.setOnClickListener(new View.OnClickListener() {
