@@ -29,16 +29,6 @@
         android:background="@drawable/transparent_bg_bordered_button"
         android:layout_gravity="center"
         android:text=" Get daily calorie result "/>
-    <Button
-        android:id="@+id/btnGoToLine"
-        android:textAllCaps="false"
-        android:textSize="22sp"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/transparent_bg_bordered_button"
-        android:layout_gravity="center"
-        android:text="Go to period result"/>
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/chart"
@@ -61,6 +51,16 @@
         android:layout_gravity="center"
         android:textSize="20dp"
         android:textStyle="italic"/>
+    <Button
+        android:id="@+id/btnGoToLine"
+        android:textAllCaps="false"
+        android:textSize="22sp"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/transparent_bg_bordered_button"
+        android:layout_gravity="center"
+        android:text="Go to period result"/>
 
     <LinearLayout
         android:id="@+id/bottom"
@@ -82,5 +82,6 @@
             app:layout_constraintRight_toRightOf="parent"
             app:menu="@menu/bottom_nav_menu" />
     </LinearLayout>
+
 
 </LinearLayout>
